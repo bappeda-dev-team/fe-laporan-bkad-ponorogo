@@ -49,7 +49,7 @@ export const ModalKinerjaKonker: React.FC<Modal> = ({ isOpen, onClose, onSuccess
 
     const [Proses, setProses] = useState<boolean>(false);
     const { toastError, toastSuccess } = useToast();
-    const url = `/api/v1/timkerja/realisasianggaran`
+    const url = `/api/v1/timkerjabkad/realisasianggaran`
     const onSubmit: SubmitHandler<FormValue> = async (data) => {
         const payload = {
             bukti_dukung: "",

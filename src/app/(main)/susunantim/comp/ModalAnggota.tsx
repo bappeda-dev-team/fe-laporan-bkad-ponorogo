@@ -113,7 +113,7 @@ export const ModalAnggota: React.FC<Modal> = ({ isOpen, onClose, onSuccess, jeni
 
         try {
             setProses(true);
-            await apiFetch("/api/v1/timkerja/susunantim", {
+            await apiFetch("/api/v1/timkerjabkad/susunantim", {
                 method: "POST",
                 body: payload as any
             }).then((resp: any) => {
@@ -161,7 +161,7 @@ export const ModalAnggota: React.FC<Modal> = ({ isOpen, onClose, onSuccess, jeni
                 })
         }
         if (OptionJabatan.length === 0) {
-            apiFetch(`/api/v1/timkerja/jabatantim`)
+            apiFetch(`/api/v1/timkerjabkad/jabatantim`)
                 .then((resp: any) => {
                     if (resp.code === 200) {
                         const J = resp.data.map((p: any) => ({

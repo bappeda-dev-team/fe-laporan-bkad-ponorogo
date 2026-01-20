@@ -79,7 +79,7 @@ export const ModalProgramUnggulan: React.FC<Modal> = ({ isOpen, onClose, onSucce
     // console.log(payload);
     try {
       setProses(true);
-      await apiFetch(`/api/v1/timkerja/timkerja/${Data?.kode_tim}/program_unggulan`, {
+      await apiFetch(`/api/v1/timkerjabkad/timkerja/${Data?.kode_tim}/program_unggulan`, {
         method: "POST",
         body: payload as any
       }).then(_ => {

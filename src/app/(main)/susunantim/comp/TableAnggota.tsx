@@ -44,7 +44,7 @@ export const TableAnggota: React.FC<Props> = ({ data, onSuccess }) => {
 
     const hapusTim = async (id: number) => {
         try {
-            await apiFetch(`/api/v1/timkerja/timkerja/${id}`, { method: "DELETE" });
+            await apiFetch(`/api/v1/timkerjabkad/timkerja/${id}`, { method: "DELETE" });
             AlertNotification("Berhasil", "Tim berhasil dihapus", "success", 3000, true);
             onSuccess();
         } catch (err) {
@@ -54,7 +54,7 @@ export const TableAnggota: React.FC<Props> = ({ data, onSuccess }) => {
 
     const hapusAnggota = async (id: number) => {
         try {
-            await apiFetch(`/api/v1/timkerja/susunantim/${id}`, { method: "DELETE" });
+            await apiFetch(`/api/v1/timkerjabkad/susunantim/${id}`, { method: "DELETE" });
             AlertNotification("Berhasil", "Anggota berhasil dihapus", "success", 3000, true);
             onSuccess();
         } catch (err) {

@@ -94,7 +94,7 @@ export const ModalCloneSusunanTim: React.FC<ModalCloneProps> = ({
         try {
             setProses(true);
 
-            await apiFetch("/api/v1/timkerja/susunantim/clone", {
+            await apiFetch("/api/v1/timkerjabkad/susunantim/clone", {
                 method: "POST",
                 body: payload as any,
             });

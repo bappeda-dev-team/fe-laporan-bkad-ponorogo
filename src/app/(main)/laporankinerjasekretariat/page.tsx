@@ -22,7 +22,7 @@ const LaporanKinerjaSekretariat = () => {
             // endpoint dummy yang tidak dipakai
             return "/api/__noop";
         }
-        return `/api/v1/timkerja/timkerja-sekretariat?tahun=${tahun}&bulan=${bulan}`;
+        return `/api/v1/timkerjabkad/timkerja-sekretariat?tahun=${tahun}&bulan=${bulan}`;
     }, [isReady, tahun, bulan]);
 
     const { data, loading, error, message } = useGet<TimGetResponse[]>(

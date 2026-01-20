@@ -49,7 +49,7 @@ export const ModalPelaksana: React.FC<Modal> = ({ isOpen, onClose, onSuccess, ko
     const [Proses, setProses] = useState<boolean>(false);
     const { toastSuccess, toastInfo } = useToast();
 
-    const { data, error, loading } = useGet<GetResponseAnggotaTimDropdown[]>(`/api/v1/timkerja/susunantim/${kode_tim}/pelaksana`)
+    const { data, error, loading } = useGet<GetResponseAnggotaTimDropdown[]>(`/api/v1/timkerjabkad/susunantim/${kode_tim}/pelaksana`)
 
     useEffect(() => {
         if (data) {
@@ -82,7 +82,7 @@ export const ModalPelaksana: React.FC<Modal> = ({ isOpen, onClose, onSuccess, ko
         // console.log(payload);
         try {
             setProses(true);
-            await apiFetch(`/api/v1/timkerja/petugas_tim`, {
+            await apiFetch(`/api/v1/timkerjabkad/petugas_tim`, {
                 method: "POST",
                 body: payload as any
             }).then(_ => {

@@ -21,7 +21,7 @@ const PenilaianKinerjaTim = () => {
         if (!isReady) {
             return null;
         }
-        return `/api/v1/timkerja/laporan_tpp_all?tahun=${tahun}&bulan=${bulan}`;
+        return `/api/v1/timkerjabkad/laporan_tpp_all?tahun=${tahun}&bulan=${bulan}`;
     }, [isReady, tahun, bulan]);
 
     const { data, loading, error, message } = useGet<PenilaianKinerjas[]>(

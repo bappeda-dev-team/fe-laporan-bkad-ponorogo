@@ -43,7 +43,7 @@ export const Table: React.FC<Table> = ({ data }) => {
     if (!isReady) {
       return null;
     }
-    return `/api/v1/timkerja/timkerja_sekretariat/${data.kode_tim}/rencana_kinerja?tahun=${tahun}&bulan=${bulan}`;
+    return `/api/v1/timkerjabkad/timkerja_sekretariat/${data.kode_tim}/rencana_kinerja?tahun=${tahun}&bulan=${bulan}`;
   }, [isReady, tahun, bulan]);
 
   const { data: DataTable, error: ErrorRekin, loading: LoadingRekin } = useGet<RencanaKinerjaSekretariatResponse[]>(
@@ -75,7 +75,7 @@ export const Table: React.FC<Table> = ({ data }) => {
   }
 
   const hapusRekin = async (id: number) => {
-    await apiFetch(`/api/v1/timkerja/timkerja_sekretariat/${data.kode_tim}/rencana_kinerja/${id}`, {
+    await apiFetch(`/api/v1/timkerjabkad/timkerja_sekretariat/${data.kode_tim}/rencana_kinerja/${id}`, {
       method: "DELETE",
     }).then(_resp => {
       toastSuccess("Rencana Kinerja dihapus");

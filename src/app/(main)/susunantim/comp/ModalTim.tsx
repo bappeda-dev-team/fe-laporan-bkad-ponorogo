@@ -68,9 +68,9 @@ export const ModalTim: React.FC<Modal> = ({ isOpen, onClose, onSuccess, jenis, d
     const { toastError, toastSuccess } = useToast();
     const timId = data?.id
     const urlConfig = jenis === "baru" ?
-        { url: "/api/v1/timkerja/timkerja", method: "POST" }
+        { url: "/api/v1/timkerjabkad/timkerja", method: "POST" }
         :
-        { url: `/api/v1/timkerja/timkerja/${timId}`, method: "PUT" }
+        { url: `/api/v1/timkerjabkad/timkerja/${timId}`, method: "PUT" }
 
     const onSubmit: SubmitHandler<FormValue> = async (data) => {
         if (!resolvedTahun) {

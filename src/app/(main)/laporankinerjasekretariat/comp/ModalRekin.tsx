@@ -95,7 +95,7 @@ export const ModalRekin: React.FC<Modal> = ({ isOpen, onClose, onSuccess, kode_t
     }
     // console.log(payload);
     try {
-      await apiFetch(`/api/v1/timkerja/timkerja_sekretariat/${kode_tim}/rencana_kinerja`, {
+      await apiFetch(`/api/v1/timkerjabkad/timkerja_sekretariat/${kode_tim}/rencana_kinerja`, {
         method: "POST",
         body: payload as any
       }).then(_ => {
