@@ -72,7 +72,8 @@ ARG NEXT_PUBLIC_LOGO_URL
 ENV NEXT_PUBLIC_LOGO_URL=${NEXT_PUBLIC_LOGO_URL}
 
 ARG NEXT_PUBLIC_KODE_OPD
-ENV NEXT_PUBLIC_KODE_OPD=${NEXT_PUBLIC_KODE_OPD}# Uncomment the following line to disable telemetry at run time
+ENV NEXT_PUBLIC_KODE_OPD=${NEXT_PUBLIC_KODE_OPD}
+# Uncomment the following line to disable telemetry at run time
 ENV NEXT_TELEMETRY_DISABLED=1
 
 # Note: Don't expose ports here, Compose will handle that for us
