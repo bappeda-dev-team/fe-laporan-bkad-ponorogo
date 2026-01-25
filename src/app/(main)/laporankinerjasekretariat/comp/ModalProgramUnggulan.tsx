@@ -46,7 +46,7 @@ export const ModalProgramUnggulan: React.FC<Modal> = ({ isOpen, onClose, onSucce
   const tahunAkhir = 2030;
   const tahunAwal = 2025;
 
-  const { data, error, loading } = useGet<ProgramUnggulanGetResponse[]>(`/api/v1/perencanaan/program_unggulan/findall/${tahunAwal}/${tahunAkhir}`)
+  const { data, error, loading } = useGet<ProgramUnggulanGetResponse[]>(`/api/v1/perencanaan/program_unggulan/findallbytahun/${tahun}`)
 
   useEffect(() => {
     if (data) {
