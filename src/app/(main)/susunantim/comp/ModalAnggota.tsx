@@ -61,6 +61,8 @@ export const ModalAnggota: React.FC<Modal> = ({ isOpen, onClose, onSuccess, jeni
     const [OptionPegawai, setOptionPegawai] = useState<OptionTypeString[]>([]);
     const [OptionJabatan, setOptionJabatan] = useState<OptionTypeString[]>([]);
 
+    const [LoadingOption, setLoadingOption] = useState<boolean>(false);
+
     const handleClose = () => {
         onClose();
         reset();
@@ -140,46 +142,44 @@ export const ModalAnggota: React.FC<Modal> = ({ isOpen, onClose, onSuccess, jeni
         }
     }
 
-    useEffect(() => {
-        if (OptionPegawai.length === 0) {
-            const kode_opd = process.env.NEXT_PUBLIC_KODE_OPD;
-            apiFetch(`/api/v1/perencanaan/pegawai/findall?kode_opd=${kode_opd}`)
-                .then((resp: any) => {
-                    if (resp.code === 200) {
-                        const DataPegawai = resp.data.map((p: any) => ({
-                            value: p.nip,
-                            label: p.nama_pegawai,
-                        }))
-                        setOptionPegawai(DataPegawai);
-                    } else {
-                        AlertNotification("GAGAL", `pegawai : ${resp.data}`, "error", 3000, true);
-                    }
-                })
-                .catch(err => {
-                    AlertNotification("GAGAL", `gagal mendapatkan data pegawai`, "error", 3000, true);
-                    console.log(err);
-                })
-        }
-        if (OptionJabatan.length === 0) {
-            apiFetch(`/api/v1/timkerjabkad/jabatantim`)
-                .then((resp: any) => {
-                    if (resp.code === 200) {
-                        const J = resp.data.map((p: any) => ({
-                            value: p.id,
-                            label: p.nama_jabatan,
-                        }))
-                        setOptionJabatan(J);
-                    } else {
-                        AlertNotification("GAGAL", `jabatan : ${resp.data}`, "error", 3000, true);
-                    }
-                })
-                .catch(err => {
-                    AlertNotification("GAGAL", `gagal mendapatkan data jabatan`, "error", 3000, true);
-                    console.log(err);
-                })
-
-        }
-    }, [OptionPegawai, OptionJabatan]);
+    const getOptionPegawai = async () => {
+        setLoadingOption(true);
+        apiFetch(`/api/v1/tpp/jabatan/detail/master/opd/${branding?.opd}`)
+            .then((resp: any) => {
+                const DataPegawai = resp.map((p: any) => ({
+                    value: p.nip,
+                    label: p.namaPegawai,
+                }))
+                setOptionPegawai(DataPegawai);
+            })
+            .catch(err => {
+                AlertNotification("GAGAL", `gagal mendapatkan data pegawai`, "error", 3000, true);
+                console.log(err);
+            }).finally(() => {
+                setLoadingOption(false);
+            })
+    }
+    const getOptionJabatan = async () => {
+        setLoadingOption(true);
+        apiFetch(`/api/v1/timkerjabkad/jabatantim`)
+            .then((resp: any) => {
+                if (resp.code === 200) {
+                    const J = resp.data.map((p: any) => ({
+                        value: p.id,
+                        label: p.nama_jabatan,
+                    }))
+                    setOptionJabatan(J);
+                } else {
+                    AlertNotification("GAGAL", `jabatan : ${resp.data}`, "error", 3000, true);
+                }
+            })
+            .catch(err => {
+                AlertNotification("GAGAL", `gagal mendapatkan data jabatan`, "error", 3000, true);
+                console.log(err);
+            }).finally(() => {
+                setLoadingOption(false);
+            })
+    }
 
 
     return (
@@ -201,6 +201,12 @@ export const ModalAnggota: React.FC<Modal> = ({ isOpen, onClose, onSuccess, jeni
                                 {...field}
                                 id="nip"
                                 options={OptionPegawai}
+                                onMenuOpen={() => {
+                                    if (OptionPegawai.length === 0) {
+                                        getOptionPegawai();
+                                    }
+                                }}
+                                isLoading={LoadingOption}
                                 label="Nama Pegawai"
                             />
                             {errors.nip &&
@@ -219,6 +225,12 @@ export const ModalAnggota: React.FC<Modal> = ({ isOpen, onClose, onSuccess, jeni
                                 {...field}
                                 id="nama_jabatan_tim"
                                 options={OptionJabatan}
+                                onMenuOpen={() => {
+                                    if (OptionJabatan.length === 0) {
+                                        getOptionJabatan();
+                                    }
+                                }}
+                                isLoading={LoadingOption}
                                 label="Jabatan Dalam Tim"
                             />
                             {errors.nama_jabatan_tim &&

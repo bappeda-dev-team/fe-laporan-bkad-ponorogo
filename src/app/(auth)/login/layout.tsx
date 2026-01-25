@@ -26,7 +26,7 @@ export default function LoginLayout({
                         className="mb-2"
                     />
 
-                    <h1 className="text-2xl font-extrabold uppercase tracking-wide">
+                    <h1 className="text-2xl font-extrabold text-center uppercase tracking-wide">
                         {branding.nama_app}
                     </h1>
                 </div>

@@ -69,7 +69,9 @@ export const Sidebar: React.FC<Sidebar> = ({ onShow, show }) => {
           width={40}
           height={40}
         />
-        <h1 className="font-bold text-emerald-600 uppercase border-b border-emerald-600 text-center">BADAN PENDAPATAN, PENGELOLAAN KEUANGAN DAN ASET DAERAH (BPPKAD)</h1>
+        {show &&
+          <h1 className="font-bold text-emerald-600 uppercase border-b border-emerald-600 text-center">BADAN PENDAPATAN, PENGELOLAAN KEUANGAN DAN ASET DAERAH (BPPKAD)</h1>
+        }
       </div>
       <ul className="flex flex-col gap-2">
         <Link
@@ -117,11 +119,9 @@ export const Sidebar: React.FC<Sidebar> = ({ onShow, show }) => {
           )}`}
         >
           <TbDeviceAnalytics />
+
           {show &&
-            app !== "Prioritas Pembangunan" ?
             <p>Kinerja Konker</p>
-            :
-            <p>Prioritas Pembangunan</p>
           }
         </Link>
         <Link

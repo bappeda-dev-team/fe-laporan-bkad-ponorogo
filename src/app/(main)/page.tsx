@@ -20,7 +20,7 @@ export default function Home() {
             width={100}
             height={100}
           />
-          <h1 className="text-4xl uppercase font-extrabold">Laporan BPKAD</h1>
+          <h1 className="text-4xl uppercase font-extrabold">Laporan BPPKAD</h1>
           <h3 className="text-base font-light">{pemda}</h3>
           <ButtonBlackBorder 
             halaman_url='/datamaster'

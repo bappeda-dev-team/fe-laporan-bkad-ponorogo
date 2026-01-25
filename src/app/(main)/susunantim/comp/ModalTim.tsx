@@ -20,6 +20,7 @@ interface Modal {
     tahun: number | null;
 }
 interface FormValue {
+    id: number;
     is_active: boolean;
     is_sekretariat: boolean;
     keterangan: string;
@@ -79,11 +80,12 @@ export const ModalTim: React.FC<Modal> = ({ isOpen, onClose, onSuccess, jenis, d
         }
 
         const payload = {
+            id: timId,
             nama_tim: data.nama_tim,
             keterangan: data.keterangan,
             is_active: true,
             is_sekretariat: Sekretariat,
-            tahun: resolvedTahun
+            tahun: String(resolvedTahun)
         }
         // console.log(payload);
 

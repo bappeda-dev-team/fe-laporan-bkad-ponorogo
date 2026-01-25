@@ -122,7 +122,7 @@ export const Header = () => {
 
   return (
     <>
-      <nav className={`inset-x-1 m-1 ml-2 bg-white border border-sky-200 shadow-lg shadow-slate-400 rounded-xl fixed left-0 top-0 z-50 transition duration-300 ${visible ? 'translate-y-0' : '-translate-y-full'}`}>
+      <nav className={`inset-x-1 m-1 ml-2 bg-white border border-emerald-200 shadow-lg shadow-slate-400 rounded-xl fixed left-0 top-0 z-50 transition duration-300 ${visible ? 'translate-y-0' : '-translate-y-full'}`}>
         <div className="mx-auto flex justify-between gap-5 items-center px-4 py-3">
           <div className="flex flex-wrap justify-start gap-5">
             <ButtonBlackBorder
@@ -179,7 +179,7 @@ export const Header = () => {
               isSearchable
             />
             <button
-              className="border py-1 px-3 rounded-lg border-sky-500 text-sky-600 hover:bg-sky-600 hover:text-white cursor-pointer"
+              className="border py-1 px-3 rounded-lg border-emerald-500 text-emerald-600 hover:bg-emerald-600 hover:text-white cursor-pointer"
               onClick={() => {
                 setCookies("tahun", Tahun);
                 setCookies("bulan", Bulan);
@@ -197,7 +197,7 @@ export const Header = () => {
           <div className="lg:hidden">
             <button
               onClick={toggleMobileMenu}
-              className={`focus:outline-none cursor-pointer rounded-lg p-1 border border-sky-500 text-sky-500 hover:text-sky-500 hover:bg-white`}
+              className={`focus:outline-none cursor-pointer rounded-lg p-1 border border-emerald-500 text-emerald-500 hover:text-emerald-500 hover:bg-white`}
             >
               <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
                 <path fillRule="evenodd" d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z" />
@@ -242,7 +242,7 @@ export const Header = () => {
               isSearchable
             />
             <button
-              className="border py-1 px-3 rounded-lg border-sky-500 text-sky-600 hover:bg-sky-600 hover:text-white cursor-pointer"
+              className="border py-1 px-3 rounded-lg border-emerald-500 text-emerald-600 hover:bg-emerald-600 hover:text-white cursor-pointer"
               onClick={() => {
                 setCookies("tahun", Tahun);
                 setCookies("bulan", Bulan);
