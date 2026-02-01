@@ -75,7 +75,7 @@ export const ModalUserInfo: React.FC<Modal> = ({ isOpen, onClose }) => {
                                         "tidak mempunyai role"
                                     :
                                         user?.roles.map((r: string, index: number) => (
-                                            <span>{r || ""}, </span>
+                                            <span key={index}>{r || ""}, </span>
                                         ))
                                     }
                                 </p>
