@@ -10,7 +10,7 @@ import {
 } from "react-icons/tb";
 import { usePathname } from "next/navigation";
 import useToast from "./toast";
-import { logout } from "@/lib/auth"
+import { logout } from "@/lib/logout"
 
 interface Sidebar {
   onShow: () => void;
@@ -37,7 +37,8 @@ export const Sidebar: React.FC<Sidebar> = ({ onShow, show }) => {
   };
 
   const handleLogout = () => {
-    logout()
+    logout();
+    localStorage.removeItem("timkerja-sessionId");
   }
 
   return (
