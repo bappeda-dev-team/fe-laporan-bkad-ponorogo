@@ -119,7 +119,7 @@ export const ButtonBlack: React.FC<button> = ({children, type, className, halama
 
     return(
         <button
-            className={`px-3 flex justify-center items-center bg-gradient-to-r cursor-pointer from-[#1C201A] to-[#434848] hover:from-[#3A4238] hover:to-[#676C6F] text-white rounded-lg ${className}`}
+            className={`px-3 flex justify-center items-center bg-gradient-to-r cursor-pointer from-[#1d293d] to-[#434848] hover:from-[#3A4238] hover:to-[#676C6F] text-white rounded-lg ${className}`}
             disabled={disabled || Loading}
             type={type}
             onClick={onClick || pindahHalaman}
@@ -181,7 +181,7 @@ export const ButtonBlackBorder: React.FC<button> = ({children, type, className, 
 
     return(
         <button
-            className={`px-3 flex justify-center items-center bg-gradient-to-r cursor-pointer border-2 border-[#1C201A] hover:bg-[#1C201A] text-[#1C201A] hover:text-white rounded-lg ${className}`}
+            className={`px-3 flex justify-center items-center bg-gradient-to-r cursor-pointer border-2 border-[#1d293d] hover:bg-[#1C201A] text-[#1C201A] hover:text-white rounded-lg ${className}`}
             disabled={disabled || Loading}
             type={type}
             onClick={onClick || pindahHalaman}

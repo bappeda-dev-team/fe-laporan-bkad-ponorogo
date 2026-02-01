@@ -39,6 +39,7 @@ export const Sidebar: React.FC<Sidebar> = ({ onShow, show }) => {
   const handleLogout = () => {
     logout();
     localStorage.removeItem("timkerja-sessionId");
+    localStorage.removeItem("branding-user");
   }
 
   return (
