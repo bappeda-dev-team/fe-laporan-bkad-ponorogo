@@ -35,7 +35,7 @@ export const ModalUserInfo: React.FC<Modal> = ({ isOpen, onClose }) => {
                     {/* Profil Section (Avatar & Nama Utama) */}
                     <div className="flex flex-col items-center mb-8">
                         <div className="w-20 h-20 bg-gradient-to-tr from-green-600 to-emerald-400 rounded-full flex items-center justify-center text-white text-2xl font-bold shadow-lg mb-3">
-                            {getInitials(user?.username || "Guest")}
+                            {getInitials(user?.firstName || "Guest")}
                         </div>
                         <h2 className="text-lg font-semibold text-slate-800 uppercase tracking-wide">
                             {user?.username ?? "Username Kosong"}
