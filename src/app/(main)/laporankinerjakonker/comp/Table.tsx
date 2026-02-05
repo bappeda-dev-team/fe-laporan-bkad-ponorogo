@@ -48,6 +48,459 @@ export const Table: React.FC<Table> = ({ data }) => {
 
   const isReady = Number.isInteger(bulan) && Number.isInteger(tahun);
 
+  const Dummy = [
+    {
+      "id": 1,
+      "kode_tim": "TIM-001",
+      "id_program_unggulan": 1,
+      "program_unggulan": "Pembangunan / Revitalisasi Embung",
+      "tahun": "2026",
+      "kode_opd": "OPD-01",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 2,
+      "kode_tim": "TIM-002",
+      "id_program_unggulan": 2,
+      "program_unggulan": "Penguatan Ketahanan Pangan",
+      "tahun": "2026",
+      "kode_opd": "OPD-01",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 3,
+      "kode_tim": "TIM-003",
+      "id_program_unggulan": 3,
+      "program_unggulan": "Pengembangan & pengelolaan sistem irigasi partisipatif",
+      "tahun": "2026",
+      "kode_opd": "OPD-01",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 4,
+      "kode_tim": "TIM-004",
+      "id_program_unggulan": 4,
+      "program_unggulan": "Menuju Kabupaten Organik",
+      "tahun": "2026",
+      "kode_opd": "OPD-01",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 5,
+      "kode_tim": "TIM-005",
+      "id_program_unggulan": 5,
+      "program_unggulan": "Melanjutkan pembangunan Monumen Reog dan Museum Peradaban",
+      "tahun": "2026",
+      "kode_opd": "OPD-02",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 6,
+      "kode_tim": "TIM-006",
+      "id_program_unggulan": 6,
+      "program_unggulan": "Ponorogo Kota Festival (menyelenggarakan event/event skala nasional enam kali dalam setahun)",
+      "tahun": "2026",
+      "kode_opd": "OPD-02",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 7,
+      "kode_tim": "TIM-007",
+      "id_program_unggulan": 7,
+      "program_unggulan": "Pengembangan sarana prasarana olahraga (sirkuit, stadion, dll)",
+      "tahun": "2026",
+      "kode_opd": "OPD-02",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 8,
+      "kode_tim": "TIM-008",
+      "id_program_unggulan": 8,
+      "program_unggulan": "Membangun ekosistem pariwisata",
+      "tahun": "2026",
+      "kode_opd": "OPD-02",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 9,
+      "kode_tim": "TIM-009",
+      "id_program_unggulan": 9,
+      "program_unggulan": "Kemudahan dan promosi investasi",
+      "tahun": "2026",
+      "kode_opd": "OPD-03",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 10,
+      "kode_tim": "TIM-010",
+      "id_program_unggulan": 10,
+      "program_unggulan": "Program Pertanian Terpadu",
+      "tahun": "2026",
+      "kode_opd": "OPD-01",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 11,
+      "kode_tim": "TIM-011",
+      "id_program_unggulan": 11,
+      "program_unggulan": "Cadangan Pangan",
+      "tahun": "2026",
+      "kode_opd": "OPD-01",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 12,
+      "kode_tim": "TIM-012",
+      "id_program_unggulan": 12,
+      "program_unggulan": "Penguatan Daya Saing Produk",
+      "tahun": "2026",
+      "kode_opd": "OPD-03",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 13,
+      "kode_tim": "TIM-013",
+      "id_program_unggulan": 13,
+      "program_unggulan": "Pengembangan wisata Religi",
+      "tahun": "2026",
+      "kode_opd": "OPD-02",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 14,
+      "kode_tim": "TIM-014",
+      "id_program_unggulan": 14,
+      "program_unggulan": "Pengembangan Destinasi Wisata Unggulan",
+      "tahun": "2026",
+      "kode_opd": "OPD-02",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 15,
+      "kode_tim": "TIM-015",
+      "id_program_unggulan": 15,
+      "program_unggulan": "Menuju PAD 1 triliun",
+      "tahun": "2026",
+      "kode_opd": "OPD-04",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 16,
+      "kode_tim": "TIM-016",
+      "id_program_unggulan": 16,
+      "program_unggulan": "Pemberdayaan UMKM dan Koperasi",
+      "tahun": "2026",
+      "kode_opd": "OPD-03",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 17,
+      "kode_tim": "TIM-017",
+      "id_program_unggulan": 17,
+      "program_unggulan": "Irigasi Air Tanah Dalam (Sumur Dalam)",
+      "tahun": "2026",
+      "kode_opd": "OPD-01",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 18,
+      "kode_tim": "TIM-018",
+      "id_program_unggulan": 18,
+      "program_unggulan": "Penguatan dan Perluasan Angkatan Kerja",
+      "tahun": "2026",
+      "kode_opd": "OPD-05",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 19,
+      "kode_tim": "TIM-019",
+      "id_program_unggulan": 19,
+      "program_unggulan": "Tatakelola Keuangan Daerah",
+      "tahun": "2026",
+      "kode_opd": "OPD-04",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 20,
+      "kode_tim": "TIM-020",
+      "id_program_unggulan": 20,
+      "program_unggulan": "Tatakelola Perencanaan Pembangunan",
+      "tahun": "2026",
+      "kode_opd": "OPD-06",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 21,
+      "kode_tim": "TIM-021",
+      "id_program_unggulan": 21,
+      "program_unggulan": "Percepatan Pembangunan Infrastruktur Jalan dan Wilayah",
+      "tahun": "2026",
+      "kode_opd": "OPD-07",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 22,
+      "kode_tim": "TIM-022",
+      "id_program_unggulan": 22,
+      "program_unggulan": "Peningkatan Kualitas Lingkungan Hidup",
+      "tahun": "2026",
+      "kode_opd": "OPD-08",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 23,
+      "kode_tim": "TIM-023",
+      "id_program_unggulan": 23,
+      "program_unggulan": "Melanjutkan penataan kota untuk menciptakan pusat ekonomi baru",
+      "tahun": "2026",
+      "kode_opd": "OPD-07",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 24,
+      "kode_tim": "TIM-024",
+      "id_program_unggulan": 24,
+      "program_unggulan": "Resiliensi/ketahanan terhadap bencana dan perubahan iklim",
+      "tahun": "2026",
+      "kode_opd": "OPD-09",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 25,
+      "kode_tim": "TIM-025",
+      "id_program_unggulan": 25,
+      "program_unggulan": "Mewujudkan Ponorogo sebagai Smart City",
+      "tahun": "2026",
+      "kode_opd": "OPD-10",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 26,
+      "kode_tim": "TIM-026",
+      "id_program_unggulan": 26,
+      "program_unggulan": "Melanjutkan program dana RT",
+      "tahun": "2026",
+      "kode_opd": "OPD-11",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 27,
+      "kode_tim": "TIM-027",
+      "id_program_unggulan": 27,
+      "program_unggulan": "Mendorong Desa Ramah Perempuan, anak dan disabilitas",
+      "tahun": "2026",
+      "kode_opd": "OPD-11",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 28,
+      "kode_tim": "TIM-028",
+      "id_program_unggulan": 28,
+      "program_unggulan": "Penguatan, Pemberdayaan dan Perlindungan Perempuan dan Anak",
+      "tahun": "2026",
+      "kode_opd": "OPD-12",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 29,
+      "kode_tim": "TIM-029",
+      "id_program_unggulan": 29,
+      "program_unggulan": "Perpustakaan Digital",
+      "tahun": "2026",
+      "kode_opd": "OPD-13",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 30,
+      "kode_tim": "TIM-030",
+      "id_program_unggulan": 30,
+      "program_unggulan": "Peningkatan mutu pendidikan berbasis agama",
+      "tahun": "2026",
+      "kode_opd": "OPD-14",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 31,
+      "kode_tim": "TIM-031",
+      "id_program_unggulan": 31,
+      "program_unggulan": "Peningkatan Muatan Lokal Program Pendidikan",
+      "tahun": "2026",
+      "kode_opd": "OPD-14",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 32,
+      "kode_tim": "TIM-032",
+      "id_program_unggulan": 32,
+      "program_unggulan": "Peningkatan Kualitas Sarana Prasana Pendidikan",
+      "tahun": "2026",
+      "kode_opd": "OPD-14",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 33,
+      "kode_tim": "TIM-033",
+      "id_program_unggulan": 33,
+      "program_unggulan": "Pendidikan Kesetaraan",
+      "tahun": "2026",
+      "kode_opd": "OPD-14",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 34,
+      "kode_tim": "TIM-034",
+      "id_program_unggulan": 34,
+      "program_unggulan": "Peningkatan Pendidik dan Tenaga Kependidikan",
+      "tahun": "2026",
+      "kode_opd": "OPD-14",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 35,
+      "kode_tim": "TIM-035",
+      "id_program_unggulan": 35,
+      "program_unggulan": "Dokter Keluarga",
+      "tahun": "2026",
+      "kode_opd": "OPD-15",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 36,
+      "kode_tim": "TIM-036",
+      "id_program_unggulan": 36,
+      "program_unggulan": "Dokter dan perawat kunjungan langsung ke rumah",
+      "tahun": "2026",
+      "kode_opd": "OPD-15",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 37,
+      "kode_tim": "TIM-037",
+      "id_program_unggulan": 37,
+      "program_unggulan": "Peningkatan Sarana dan Prasarana Kesehatan",
+      "tahun": "2026",
+      "kode_opd": "OPD-15",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 38,
+      "kode_tim": "TIM-038",
+      "id_program_unggulan": 38,
+      "program_unggulan": "Peningkatan Mutu dan Kualitas Pelayanan Kesehatan",
+      "tahun": "2026",
+      "kode_opd": "OPD-15",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 39,
+      "kode_tim": "TIM-039",
+      "id_program_unggulan": 39,
+      "program_unggulan": "Peningkatan Kualitas Tenaga Kesehatan",
+      "tahun": "2026",
+      "kode_opd": "OPD-15",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 40,
+      "kode_tim": "TIM-040",
+      "id_program_unggulan": 40,
+      "program_unggulan": "Keluarga Sehat Sejahtera",
+      "tahun": "2026",
+      "kode_opd": "OPD-15",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 41,
+      "kode_tim": "TIM-041",
+      "id_program_unggulan": 41,
+      "program_unggulan": "Pengembangan menuju BUMDes Mandiri",
+      "tahun": "2026",
+      "kode_opd": "OPD-11",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 42,
+      "kode_tim": "TIM-042",
+      "id_program_unggulan": 42,
+      "program_unggulan": "Tatakelola Pemerintahan yang akuntabel",
+      "tahun": "2026",
+      "kode_opd": "OPD-06",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 43,
+      "kode_tim": "TIM-043",
+      "id_program_unggulan": 43,
+      "program_unggulan": "SIMAS Hebat",
+      "tahun": "2026",
+      "kode_opd": "OPD-10",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 44,
+      "kode_tim": "TIM-044",
+      "id_program_unggulan": 44,
+      "program_unggulan": "Keamanan dan Ketertiban masyarakat terjaga",
+      "tahun": "2026",
+      "kode_opd": "OPD-16",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    },
+    {
+      "id": 45,
+      "kode_tim": "TIM-045",
+      "id_program_unggulan": 45,
+      "program_unggulan": "Membangun pemerintahan yang bersih dan transparan serta berorientasi pada pelayanan publik berbasis teknologi informasi",
+      "tahun": "2026",
+      "kode_opd": "OPD-06",
+      "pohon_kinerja": [],
+      "petugas_tims": []
+    }
+  ]
+
   const url = useMemo(() => {
     if (!isReady) {
       return null;
@@ -139,7 +592,7 @@ export const Table: React.FC<Table> = ({ data }) => {
   return (
     <>
       <div className="flex flex-wrap items-center justify-between mb-1">
-        <div className="flex items-start gap-1 mb-1">
+        {/* <div className="flex items-start gap-1 mb-1">
           <TbCircleFilled className="mt-2 text-blue-500" />
           <div className="flex flex-col">
             <h1 className="uppercase font-bold text-2xl">Susunan Tim: {data.nama_tim || "-"}</h1>
@@ -163,7 +616,7 @@ export const Table: React.FC<Table> = ({ data }) => {
             <TbPrinter />
             Cetak
           </ButtonBlackBorder>
-        </div>
+        </div> */}
       </div>
       <TableComponent className="border-blue-500">
         <table className="w-full">
@@ -234,12 +687,12 @@ export const Table: React.FC<Table> = ({ data }) => {
               </tbody>
               :
               <tbody>
-                {DataTable?.length === 0 ?
+                {Dummy?.length === 0 ?
                   <tr>
                     <td colSpan={30} className="px-6 py-4">Data Kosong, Tambahkan Program Unggulan</td>
                   </tr>
                   :
-                  DataTable?.map((item: KinerjaKonkerGetResponse, index: number) => (
+                  Dummy?.map((item: KinerjaKonkerGetResponse, index: number) => (
                     <React.Fragment key={index}>
                       <tr>
                         <td rowSpan={item.pohon_kinerja?.length > 0 ? item.pohon_kinerja.length + 1 : 2} className="border-b border-blue-500 px-6 py-4 text-center">{index + 1}</td>
@@ -423,7 +876,7 @@ export const Table: React.FC<Table> = ({ data }) => {
                             </td>
                             <td className="border border-blue-500 px-6 py-4">
                               <div className="flex flex-col items-center justify-center gap-1">
-                                 catatan pelaporan keuangan
+                                catatan pelaporan keuangan
                                 <EditButton onClick={() => handleModalKonker(p, item.kode_tim, item.id_program_unggulan)} />
                               </div>
                             </td>
