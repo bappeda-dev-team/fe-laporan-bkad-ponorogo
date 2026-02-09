@@ -68,26 +68,26 @@ export const ModalKinerjaKonker: React.FC<Modal> = ({ isOpen, onClose, onSuccess
             catatan_pelaporan_aset: data?.catatan_pelaporan_aset,
             tahun: String(branding?.tahun?.value)
         }
-        console.log(payload);
-        // try {
-        //     setProses(true);
-        //     await apiFetch(url, {
-        //         method: "POST",
-        //         body: payload as any
-        //     }).then(_ => {
-        //         toastSuccess("data berhasil disimpan");
-        //         // AlertNotification("Berhasil", "Berhasil Menyimpan Data", "success", 3000, true);
-        //         onSuccess();
-        //         handleClose();
-        //     }).catch(err => {
-        //         AlertNotification("Gagal", `${err}`, "error", 3000, true);
-        //     })
-        // } catch (err) {
-        //     console.log(err);
-        //     AlertNotification("Gagal", `${err}`, "error", 3000, true);
-        // } finally {
-        //     setProses(false);
-        // }
+        // console.log(payload);
+        try {
+            setProses(true);
+            await apiFetch(url, {
+                method: "POST",
+                body: payload as any
+            }).then(_ => {
+                toastSuccess("data berhasil disimpan");
+                // AlertNotification("Berhasil", "Berhasil Menyimpan Data", "success", 3000, true);
+                onSuccess();
+                handleClose();
+            }).catch(err => {
+                AlertNotification("Gagal", `${err}`, "error", 3000, true);
+            })
+        } catch (err) {
+            console.log(err);
+            AlertNotification("Gagal", `${err}`, "error", 3000, true);
+        } finally {
+            setProses(false);
+        }
     }
 
     useEffect(() => {
