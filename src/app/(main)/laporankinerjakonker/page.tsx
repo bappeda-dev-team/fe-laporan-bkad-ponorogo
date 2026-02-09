@@ -50,15 +50,9 @@ const LaporanKinerjaKonker = () => {
   } else {
     return (
       <>
-        {(data?.length === 0 || data === null) ?
-          <h1>Tidak ada Tim yang dibentuk / Belum Ditambahkan</h1>
-          :
-          data.map((item: TimGetResponse, index: number) => (
-            <div key={index} className="flex flex-col p-2 mb-2 border-2 border-blue-500 rounded-lg">
-              <Table data={item} />
-            </div>
-          ))
-        }
+        <div className="flex flex-col p-2 mb-2 border-2 border-blue-500 rounded-lg">
+          <Table />
+        </div>
       </>
     )
   }
