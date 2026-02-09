@@ -39,7 +39,6 @@ export const ModalKinerjaKonker: React.FC<Modal> = ({ isOpen, onClose, onSuccess
             realisasi_anggaran: Number(Data?.realisasi_anggaran),
             rekomendasi_tl: Data?.rekomendasi_tl || "",
             tahun: String(branding?.tahun?.value),
-            analisa_pendapatan_sumber_dana_pendapatan: Data?.analisa_pendapatan_sumber_dana_pendapatan,
             catatan_realisasi_anggaran: Data?.catatan_realisasi_anggaran,
             catatan_penataan_usaha_keuangan: Data?.catatan_penataan_usaha_keuangan,
             catatan_pelaporan_keuangan: Data?.catatan_pelaporan_keuangan,
@@ -63,34 +62,32 @@ export const ModalKinerjaKonker: React.FC<Modal> = ({ isOpen, onClose, onSuccess
             rencana_aksi: data.rencana_aksi,
             realisasi_anggaran: Number(data.realisasi_anggaran),
             rekomendasi_tl: data.rekomendasi_tl,
-            analisa_pendapatan_sumber_dana_pendapatan: data?.analisa_pendapatan_sumber_dana_pendapatan,
             catatan_realisasi_anggaran: data?.catatan_realisasi_anggaran,
             catatan_penataan_usaha_keuangan: data?.catatan_penataan_usaha_keuangan,
             catatan_pelaporan_keuangan: data?.catatan_pelaporan_keuangan,
             catatan_pelaporan_aset: data?.catatan_pelaporan_aset,
             tahun: String(branding?.tahun?.value)
         }
-        // console.log(payload);
-
-        try {
-            setProses(true);
-            await apiFetch(url, {
-                method: "POST",
-                body: payload as any
-            }).then(_ => {
-                toastSuccess("data berhasil disimpan");
-                // AlertNotification("Berhasil", "Berhasil Menyimpan Data", "success", 3000, true);
-                onSuccess();
-                handleClose();
-            }).catch(err => {
-                AlertNotification("Gagal", `${err}`, "error", 3000, true);
-            })
-        } catch (err) {
-            console.log(err);
-            AlertNotification("Gagal", `${err}`, "error", 3000, true);
-        } finally {
-            setProses(false);
-        }
+        console.log(payload);
+        // try {
+        //     setProses(true);
+        //     await apiFetch(url, {
+        //         method: "POST",
+        //         body: payload as any
+        //     }).then(_ => {
+        //         toastSuccess("data berhasil disimpan");
+        //         // AlertNotification("Berhasil", "Berhasil Menyimpan Data", "success", 3000, true);
+        //         onSuccess();
+        //         handleClose();
+        //     }).catch(err => {
+        //         AlertNotification("Gagal", `${err}`, "error", 3000, true);
+        //     })
+        // } catch (err) {
+        //     console.log(err);
+        //     AlertNotification("Gagal", `${err}`, "error", 3000, true);
+        // } finally {
+        //     setProses(false);
+        // }
     }
 
     useEffect(() => {
@@ -136,17 +133,6 @@ export const ModalKinerjaKonker: React.FC<Modal> = ({ isOpen, onClose, onSuccess
                                 label="Rencana Aksi"
                             />
                         </>
-                    )}
-                />
-                <Controller
-                    name="analisa_pendapatan_sumber_dana_pendapatan"
-                    control={control}
-                    render={({ field }) => (
-                        <FloatingLabelInput
-                            {...field}
-                            id="analisa_pendapatan_sumber_dana_pendapatan"
-                            label="Analisa Pendapatan Sumber Dana Pendapatan"
-                        />
                     )}
                 />
                 <Controller

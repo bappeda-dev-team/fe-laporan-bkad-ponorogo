@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { login } from "../../../lib/auth"
 import { TbEye, TbEyeClosed } from "react-icons/tb"
 
@@ -11,6 +11,10 @@ export default function LoginPage() {
     const [error, setError] = useState<string | null>(null)
     const [loading, setLoading] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
+
+    useEffect(() => {
+        localStorage.removeItem("branding-user");
+    }, [])
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()

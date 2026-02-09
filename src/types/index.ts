@@ -68,6 +68,7 @@ export interface ProgramUnggulanGetResponse {
 export interface KinerjaKonkerGetResponse {
   id: number;
   kode_tim: string;
+  nama_tim: string;
   id_program_unggulan: number;
   program_unggulan: string;
   tahun: string;
@@ -93,6 +94,10 @@ export interface PohonKinerjaKonker {
   keterangan: string;
   indikator: IndikatorRencanaKinerja[];
   realisasi_anggaran: number;
+  catatan_realisasi_anggaran: string;
+  catatan_penata_usaha_keuangan: string;
+  catatan_pelaporan_keuangan: string;
+  catatan_pelaporan_aset: string;
   rencana_aksi: string;
   faktor_pendorong: string;
   faktor_penghambat: string;

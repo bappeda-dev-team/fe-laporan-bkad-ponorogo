@@ -131,9 +131,32 @@ export const Table = () => {
     return <h1>Menyiapkan periode...</h1>;
   }
 
-
   return (
     <>
+      <div className="flex flex-wrap items-center justify-between mb-2">
+        <div className="flex flex-col">
+          <h1 className="uppercase font-bold text-2xl">Laporan Kinerja Konker</h1>
+          <h1 className="font-medium">Bulan {branding?.bulan?.label} {branding?.tahun?.label}</h1>
+        </div>
+        <div className="flex flex-wrap flex-col justify-center gap-1">
+          {/* <ButtonSkyBorder
+            className="flex items-center gap-1"
+            onClick={() => setModalRekinOpen(true)}
+          >
+            <TbCirclePlus />
+            Tambah Rencana Kinerja
+          </ButtonSkyBorder>
+          <ButtonBlackBorder
+            className="flex items-center gap-1"
+            onClick={() =>
+              cetakPdf()
+            }
+          >
+            <TbPrinter />
+            Cetak
+          </ButtonBlackBorder> */}
+        </div>
+      </div>
       <TableComponent className="border-blue-500">
         <table className="w-full">
           <thead>
@@ -363,59 +386,65 @@ export const Table = () => {
                                 "-"
                               }
                             </td>
-                            <td className="border border-blue-500 px-6 py-4">
-                              <div className="flex flex-col items-center justify-center gap-1">
-                                Rp.{formatRupiah(p.realisasi_anggaran || 0)}
-                                <EditButton onClick={() => handleModalKonker(p, item.kode_tim, item.id_program_unggulan)} />
-                              </div>
-                            </td>
-                            <td className="border border-blue-500 px-6 py-4">
-                              <div className="flex flex-col items-center justify-center gap-1">
-                                {p.rencana_aksi || ""}
-                                <EditButton onClick={() => handleModalKonker(p, item.kode_tim, item.id_program_unggulan)} />
-                              </div>
-                            </td>
-                            <td className="border border-blue-500 px-6 py-4">
-                              <div className="flex flex-col items-center justify-center gap-1">
-                                catatan realisasi anggaran
-                                <EditButton onClick={() => handleModalKonker(p, item.kode_tim, item.id_program_unggulan)} />
-                              </div>
-                            </td>
-                            <td className="border border-blue-500 px-6 py-4">
-                              <div className="flex flex-col items-center justify-center gap-1">
-                                catatan penataan usaha keuangan
-                                <EditButton onClick={() => handleModalKonker(p, item.kode_tim, item.id_program_unggulan)} />
-                              </div>
-                            </td>
-                            <td className="border border-blue-500 px-6 py-4">
-                              <div className="flex flex-col items-center justify-center gap-1">
-                                catatan pelaporan keuangan
-                                <EditButton onClick={() => handleModalKonker(p, item.kode_tim, item.id_program_unggulan)} />
-                              </div>
-                            </td>
-                            <td className="border border-blue-500 px-6 py-4">
-                              <div className="flex flex-col items-center justify-center gap-1">
-                                catatan pelaporan aset
-                                <EditButton onClick={() => handleModalKonker(p, item.kode_tim, item.id_program_unggulan)} />
-                              </div>
-                            </td>
-                            <td className="border border-blue-500 px-6 py-4">
-                              <div className="flex flex-col items-center justify-center gap-1">
-                                {p.rekomendasi_tl || ""}
-                                <EditButton onClick={() => handleModalKonker(p, item.kode_tim, item.id_program_unggulan)} />
-                              </div>
-                            </td>
-                            <td className="border-b border-blue-500 px-6 py-4">
-                              <div className="flex justify-center">
-                                <ButtonSkyBorder
-                                  className="flex items-center gap-2"
-                                  onClick={() => setModalBuktiOpen(true)}
-                                >
-                                  <TbUpload />
-                                  Upload
-                                </ButtonSkyBorder>
-                              </div>
-                            </td>
+                            {item.petugas_tims.length === 0 ?
+                              <td colSpan={30} className="px-6 py-4 bg-yellow-500 text-white border border-blue-500">Petugas Tim Belum Di pilih</td>
+                              :
+                              <>
+                                <td className="border border-blue-500 px-6 py-4">
+                                  <div className="flex flex-col items-center justify-center gap-1">
+                                    Rp.{formatRupiah(p.realisasi_anggaran || 0)}
+                                    <EditButton onClick={() => handleModalKonker(p, item.kode_tim, item.id_program_unggulan)} />
+                                  </div>
+                                </td>
+                                <td className="border border-blue-500 px-6 py-4">
+                                  <div className="flex flex-col items-center justify-center gap-1">
+                                    {p.rencana_aksi || ""}
+                                    <EditButton onClick={() => handleModalKonker(p, item.kode_tim, item.id_program_unggulan)} />
+                                  </div>
+                                </td>
+                                <td className="border border-blue-500 px-6 py-4">
+                                  <div className="flex flex-col items-center justify-center gap-1">
+                                    {p.catatan_realisasi_anggaran || ""}
+                                    <EditButton onClick={() => handleModalKonker(p, item.kode_tim, item.id_program_unggulan)} />
+                                  </div>
+                                </td>
+                                <td className="border border-blue-500 px-6 py-4">
+                                  <div className="flex flex-col items-center justify-center gap-1">
+                                    {p.catatan_penata_usaha_keuangan || ""}
+                                    <EditButton onClick={() => handleModalKonker(p, item.kode_tim, item.id_program_unggulan)} />
+                                  </div>
+                                </td>
+                                <td className="border border-blue-500 px-6 py-4">
+                                  <div className="flex flex-col items-center justify-center gap-1">
+                                    {p.catatan_pelaporan_keuangan || ""}
+                                    <EditButton onClick={() => handleModalKonker(p, item.kode_tim, item.id_program_unggulan)} />
+                                  </div>
+                                </td>
+                                <td className="border border-blue-500 px-6 py-4">
+                                  <div className="flex flex-col items-center justify-center gap-1">
+                                    {p.catatan_pelaporan_aset || ""}
+                                    <EditButton onClick={() => handleModalKonker(p, item.kode_tim, item.id_program_unggulan)} />
+                                  </div>
+                                </td>
+                                <td className="border border-blue-500 px-6 py-4">
+                                  <div className="flex flex-col items-center justify-center gap-1">
+                                    {p.rekomendasi_tl || ""}
+                                    <EditButton onClick={() => handleModalKonker(p, item.kode_tim, item.id_program_unggulan)} />
+                                  </div>
+                                </td>
+                                <td className="border-b border-blue-500 px-6 py-4">
+                                  <div className="flex justify-center">
+                                    <ButtonSkyBorder
+                                      className="flex items-center gap-2"
+                                      onClick={() => setModalBuktiOpen(true)}
+                                    >
+                                      <TbUpload />
+                                      Upload
+                                    </ButtonSkyBorder>
+                                  </div>
+                                </td>
+                              </>
+                            }
                           </tr>
                         ))
                         :
@@ -452,16 +481,15 @@ export const Table = () => {
           onSuccess={() => setFetchTrigger((prev) => prev + 1)}
         />
       }
-      {/* {ModalPelaksanaOpen &&
+      {ModalPelaksanaOpen &&
         <ModalPelaksana
           isOpen={ModalPelaksanaOpen}
           onClose={() => handleModalPelaksana(null, 0)}
           onSuccess={() => setFetchTrigger((prev) => prev + 1)}
-          kode_tim={data.kode_tim}
           id_program={IdProgram}
           Data={DataPohon}
         />
-      } */}
+      }
       {ModalKonkerOpen &&
         <ModalKinerjaKonker
           isOpen={ModalKonkerOpen}
