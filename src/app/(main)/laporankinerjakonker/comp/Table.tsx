@@ -332,8 +332,16 @@ export const Table = () => {
                                 </ButtonSkyBorder>
                               </div>
                             </td>
-                            <td className="border-b border-blue-500 px-6 py-4 text-center">
-                              {item.nama_tim || "-"}
+                            <td className="border-b border-blue-500 px-6 py-4">
+                              {item.petugas_tims ?
+                                <div className="flex flex-col items-center gap-1">
+                                  {item.petugas_tims.map((pt: PetugasTims, tim_index) => (
+                                    <p key={tim_index} className="border rounded-lg px-1">{pt.nama_tim || "-"}</p>
+                                  ))}
+                                </div>
+                                :
+                                <p>-</p>
+                              }
                             </td>
                             <td className="border border-blue-500 px-6 py-4">
                               {p.pelaksanas?.length > 0 ?

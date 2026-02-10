@@ -114,6 +114,8 @@ export interface PetugasTims {
   id: number;
   pegawai_id: string;
   nama_pegawai: string;
+  nama_tim: string;
+  kode_tim: string;
 }
 
 export interface RencanaKinerjaPelaksanas {
