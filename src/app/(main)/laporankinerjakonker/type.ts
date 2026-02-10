@@ -12,7 +12,7 @@ export interface FormValue {
     rencana_aksi: string,
     analisa_pendapatan_sumber_dana_pendapatan: string;
     catatan_realisasi_anggaran: string;
-    catatan_penataan_usaha_keuangan: string;
+    catatan_penata_usaha_keuangan: string;
     catatan_pelaporan_keuangan: string;
     catatan_pelaporan_aset: string;
     tahun: string

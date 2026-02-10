@@ -176,7 +176,7 @@ export const Table = () => {
               <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Realisasi Anggaran</th>
               <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Rencana Aksi</th>
               <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[250px] text-center">Catatan Realisasi Anggaran</th>
-              <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[250px] text-center">Catatan Penataan Usaha Keuangan</th>
+              <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[250px] text-center">Catatan Penata Usaha Keuangan</th>
               <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[250px] text-center">Catatan Pelaporan Keuangan</th>
               <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[250px] text-center">Catatan Pelaporan Aset</th>
               <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[250px] text-center">Rekomendasi Tindak Lanjut</th>

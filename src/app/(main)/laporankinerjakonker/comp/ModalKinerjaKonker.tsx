@@ -40,7 +40,7 @@ export const ModalKinerjaKonker: React.FC<Modal> = ({ isOpen, onClose, onSuccess
             rekomendasi_tl: Data?.rekomendasi_tl || "",
             tahun: String(branding?.tahun?.value),
             catatan_realisasi_anggaran: Data?.catatan_realisasi_anggaran,
-            catatan_penataan_usaha_keuangan: Data?.catatan_penataan_usaha_keuangan,
+            catatan_penata_usaha_keuangan: Data?.catatan_penata_usaha_keuangan,
             catatan_pelaporan_keuangan: Data?.catatan_pelaporan_keuangan,
             catatan_pelaporan_aset: Data?.catatan_pelaporan_aset,
         }
@@ -63,7 +63,7 @@ export const ModalKinerjaKonker: React.FC<Modal> = ({ isOpen, onClose, onSuccess
             realisasi_anggaran: Number(data.realisasi_anggaran),
             rekomendasi_tl: data.rekomendasi_tl,
             catatan_realisasi_anggaran: data?.catatan_realisasi_anggaran,
-            catatan_penataan_usaha_keuangan: data?.catatan_penataan_usaha_keuangan,
+            catatan_penata_usaha_keuangan: data?.catatan_penata_usaha_keuangan,
             catatan_pelaporan_keuangan: data?.catatan_pelaporan_keuangan,
             catatan_pelaporan_aset: data?.catatan_pelaporan_aset,
             tahun: String(branding?.tahun?.value)
@@ -147,13 +147,13 @@ export const ModalKinerjaKonker: React.FC<Modal> = ({ isOpen, onClose, onSuccess
                     )}
                 />
                 <Controller
-                    name="catatan_penataan_usaha_keuangan"
+                    name="catatan_penata_usaha_keuangan"
                     control={control}
                     render={({ field }) => (
                         <FloatingLabelInput
                             {...field}
-                            id="catatan_penataan_usaha_keuangan"
-                            label="Catatan Penataan Usaha Keuangan"
+                            id="catatan_penata_usaha_keuangan"
+                            label="Catatan Penata Usaha Keuangan"
                         />
                     )}
                 />
