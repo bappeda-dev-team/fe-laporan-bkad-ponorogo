@@ -168,8 +168,7 @@ export const Table = () => {
               <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Target Tahun</th>
               <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Perangkat Daerah</th>
               <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Pelaksana</th>
-              <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[300px] text-center">Petugas Tim</th>
-              <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[300px] text-center">Nama Tim</th>
+              <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[400px] text-center">Petugas Tim</th>
               <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[300px] text-center">Rencana Kinerja</th>
               <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[300px] text-center">Sub Kegiatan</th>
               <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Pagu Anggaran</th>
@@ -201,8 +200,7 @@ export const Table = () => {
               <th className="border-r border-b py-1 border-gray-300 text-center">16</th>
               <th className="border-r border-b py-1 border-gray-300 text-center">17</th>
               <th className="border-r border-b py-1 border-gray-300 text-center">18</th>
-              <th className="border-r border-b py-1 border-gray-300 text-center">19</th>
-              <th className="border-b py-1 border-gray-300 text-center">20</th>
+              <th className="border-b py-1 border-gray-300 text-center">19</th>
             </tr>
           </thead>
           {LoadingProgram ?
@@ -307,7 +305,10 @@ export const Table = () => {
                                 {item.petugas_tims ?
                                   item.petugas_tims.map((pt: PetugasTims, pt_index) => (
                                     <div key={pt_index} className="px-1 flex items-center gap-1 border rounded-lg">
-                                      <p>{pt.nama_pegawai || "-"}</p>
+                                      <div className="flex flex-col gap-1">
+                                        <p className="text-sm">{pt.nama_pegawai || "-"}</p>
+                                        <p className="font-thin text-sm text-blue-500">{pt.nama_tim || ""}</p>
+                                      </div>
                                       <ButtonRedBorder
                                         className="p-1"
                                         onClick={() => AlertQuestion("Hapus Petugas", `hapus ${pt.nama_pegawai || "petugas"} dari program unggulan`, "question", "Hapus", "Batal").then((resp) => {
@@ -331,17 +332,6 @@ export const Table = () => {
                                   Petugas Tim
                                 </ButtonSkyBorder>
                               </div>
-                            </td>
-                            <td className="border-b border-blue-500 px-6 py-4">
-                              {item.petugas_tims ?
-                                <div className="flex flex-col items-center gap-1">
-                                  {item.petugas_tims.map((pt: PetugasTims, tim_index) => (
-                                    <p key={tim_index} className="border rounded-lg px-1">{pt.nama_tim || "-"}</p>
-                                  ))}
-                                </div>
-                                :
-                                <p>-</p>
-                              }
                             </td>
                             <td className="border border-blue-500 px-6 py-4">
                               {p.pelaksanas?.length > 0 ?
