@@ -1,8 +1,8 @@
 'use client'
 
 import TableComponent from "@/components/page/TableComponent";
-import { ButtonRedBorder, ButtonSkyBorder, ButtonGreenBorder, ButtonBlackBorder } from "@/components/button/button";
-import { TbX, TbTrash, TbUpload, TbCircleFilled, TbCirclePlus, TbPencil, TbPrinter } from "react-icons/tb";
+import { ButtonRedBorder, ButtonSkyBorder } from "@/components/button/button";
+import { TbX, TbTrash, TbUpload, TbPencil } from "react-icons/tb";
 import { AlertNotification, AlertQuestion } from "@/components/global/sweetalert2";
 import { formatRupiah } from "@/app/hooks/formatRupiah";
 import useToast from "@/components/global/toast";
@@ -37,6 +37,13 @@ export const Table = () => {
   const { toastSuccess } = useToast();
 
   const { branding } = useBrandingContext();
+  const user: string[] = branding?.user?.roles || [];
+
+  const AllowLevel1 = ["super_admin", "level_1"]
+  const AllowLevel2 = ["super_admin", "level_2"]
+
+  const UserLevel1 = user.some(role => AllowLevel1.includes(role));
+  const UserLevel2 = user.some(role => AllowLevel2.includes(role));
 
 
   const bulan = branding?.bulan?.value ?? null;
@@ -175,11 +182,19 @@ export const Table = () => {
               <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Realisasi Anggaran</th>
               <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Rencana Aksi</th>
               <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[250px] text-center">Catatan Realisasi Anggaran</th>
-              <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[250px] text-center">Catatan Penata Usaha Keuangan</th>
-              <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[250px] text-center">Catatan Pelaporan Keuangan</th>
-              <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[250px] text-center">Catatan Pelaporan Aset</th>
-              <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[250px] text-center">Rekomendasi Tindak Lanjut</th>
-              <th className="border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Bukti Pendukung</th>
+              {UserLevel1 &&
+                <>
+                  <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[250px] text-center">Catatan Penata Usaha Keuangan</th>
+                  <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[250px] text-center">Catatan Pelaporan Keuangan</th>
+                  <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[250px] text-center">Catatan Pelaporan Aset</th>
+                </>
+              }
+              {(UserLevel1 || UserLevel2) &&
+                <>
+                  <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[250px] text-center">Rekomendasi Tindak Lanjut</th>
+                  <th className="border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Bukti Pendukung</th>
+                </>
+              }
             </tr>
             <tr className="text-white bg-blue-600">
               <th className="border-r border-b py-1 border-gray-300 text-center">1</th>
@@ -196,11 +211,19 @@ export const Table = () => {
               <th className="border-r border-b py-1 border-gray-300 text-center">12</th>
               <th className="border-r border-b py-1 border-gray-300 text-center">13</th>
               <th className="border-r border-b py-1 border-gray-300 text-center">14</th>
-              <th className="border-r border-b py-1 border-gray-300 text-center">15</th>
-              <th className="border-r border-b py-1 border-gray-300 text-center">16</th>
-              <th className="border-r border-b py-1 border-gray-300 text-center">17</th>
-              <th className="border-r border-b py-1 border-gray-300 text-center">18</th>
-              <th className="border-b py-1 border-gray-300 text-center">19</th>
+              {UserLevel1 &&
+                <>
+                  <th className="border-r border-b py-1 border-gray-300 text-center">15</th>
+                  <th className="border-r border-b py-1 border-gray-300 text-center">16</th>
+                  <th className="border-r border-b py-1 border-gray-300 text-center">17</th>
+                </>
+              }
+              {(UserLevel1 || UserLevel2) &&
+                <>
+                  <th className="border-r border-b py-1 border-gray-300 text-center">18</th>
+                  <th className="border-b py-1 border-gray-300 text-center">19</th>
+                </>
+              }
             </tr>
           </thead>
           {LoadingProgram ?
@@ -406,41 +429,49 @@ export const Table = () => {
                                     <EditButton onClick={() => handleModalKonker(p, item.kode_tim, item.id_program_unggulan)} />
                                   </div>
                                 </td>
-                                <td className="border border-blue-500 px-6 py-4">
-                                  <div className="flex flex-col items-center justify-center gap-1">
-                                    {p.catatan_penata_usaha_keuangan || ""}
-                                    <EditButton onClick={() => handleModalKonker(p, item.kode_tim, item.id_program_unggulan)} />
-                                  </div>
-                                </td>
-                                <td className="border border-blue-500 px-6 py-4">
-                                  <div className="flex flex-col items-center justify-center gap-1">
-                                    {p.catatan_pelaporan_keuangan || ""}
-                                    <EditButton onClick={() => handleModalKonker(p, item.kode_tim, item.id_program_unggulan)} />
-                                  </div>
-                                </td>
-                                <td className="border border-blue-500 px-6 py-4">
-                                  <div className="flex flex-col items-center justify-center gap-1">
-                                    {p.catatan_pelaporan_aset || ""}
-                                    <EditButton onClick={() => handleModalKonker(p, item.kode_tim, item.id_program_unggulan)} />
-                                  </div>
-                                </td>
-                                <td className="border border-blue-500 px-6 py-4">
-                                  <div className="flex flex-col items-center justify-center gap-1">
-                                    {p.rekomendasi_tl || ""}
-                                    <EditButton onClick={() => handleModalKonker(p, item.kode_tim, item.id_program_unggulan)} />
-                                  </div>
-                                </td>
-                                <td className="border-b border-blue-500 px-6 py-4">
-                                  <div className="flex justify-center">
-                                    <ButtonSkyBorder
-                                      className="flex items-center gap-2"
-                                      onClick={() => setModalBuktiOpen(true)}
-                                    >
-                                      <TbUpload />
-                                      Upload
-                                    </ButtonSkyBorder>
-                                  </div>
-                                </td>
+                                {UserLevel1 &&
+                                  <>
+                                    <td className="border border-blue-500 px-6 py-4">
+                                      <div className="flex flex-col items-center justify-center gap-1">
+                                        {p.catatan_penata_usaha_keuangan || ""}
+                                        <EditButton onClick={() => handleModalKonker(p, item.kode_tim, item.id_program_unggulan)} />
+                                      </div>
+                                    </td>
+                                    <td className="border border-blue-500 px-6 py-4">
+                                      <div className="flex flex-col items-center justify-center gap-1">
+                                        {p.catatan_pelaporan_keuangan || ""}
+                                        <EditButton onClick={() => handleModalKonker(p, item.kode_tim, item.id_program_unggulan)} />
+                                      </div>
+                                    </td>
+                                    <td className="border border-blue-500 px-6 py-4">
+                                      <div className="flex flex-col items-center justify-center gap-1">
+                                        {p.catatan_pelaporan_aset || ""}
+                                        <EditButton onClick={() => handleModalKonker(p, item.kode_tim, item.id_program_unggulan)} />
+                                      </div>
+                                    </td>
+                                  </>
+                                }
+                                {(UserLevel1 || UserLevel2) &&
+                                  <>
+                                    <td className="border border-blue-500 px-6 py-4">
+                                      <div className="flex flex-col items-center justify-center gap-1">
+                                        {p.rekomendasi_tl || ""}
+                                        <EditButton onClick={() => handleModalKonker(p, item.kode_tim, item.id_program_unggulan)} />
+                                      </div>
+                                    </td>
+                                    <td className="border-b border-blue-500 px-6 py-4">
+                                      <div className="flex justify-center">
+                                        <ButtonSkyBorder
+                                          className="flex items-center gap-2"
+                                          onClick={() => setModalBuktiOpen(true)}
+                                        >
+                                          <TbUpload />
+                                          Upload
+                                        </ButtonSkyBorder>
+                                      </div>
+                                    </td>
+                                  </>
+                                }
                               </>
                             }
                           </tr>

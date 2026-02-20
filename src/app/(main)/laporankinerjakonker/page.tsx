@@ -50,7 +50,7 @@ const LaporanKinerjaKonker = () => {
   } else {
     return (
       <>
-        <div className="flex flex-col p-2 mb-2 border-2 border-blue-500 rounded-lg">
+        <div className="flex flex-col p-2 mb-2 border-2 border-blue-500 rounded-lg bg-white">
           <Table />
         </div>
       </>
