@@ -1,8 +1,8 @@
 'use client'
 
 import TableComponent from "@/components/page/TableComponent";
-import { ButtonRedBorder, ButtonSkyBorder } from "@/components/button/button";
-import { TbX, TbTrash, TbUpload, TbPencil } from "react-icons/tb";
+import { ButtonRedBorder, ButtonSkyBorder, ButtonBlackBorder } from "@/components/button/button";
+import { TbX, TbTrash, TbUpload, TbPencil, TbCirclePlus, TbPrinter } from "react-icons/tb";
 import { AlertNotification, AlertQuestion } from "@/components/global/sweetalert2";
 import { formatRupiah } from "@/app/hooks/formatRupiah";
 import useToast from "@/components/global/toast";
@@ -69,7 +69,7 @@ export const Table = () => {
     }
   }, [isReady]);
 
-  // const { cetakPdf } = useCetakKonker(DataTable ?? [], DataTable.nama_tim, data.keterangan);
+  const { cetakPdf } = useCetakKonker(DataTable ?? []);
 
   const handleModalProgram = (data: TimGetResponse | null) => {
     if (ModalProgram) {
@@ -151,8 +151,8 @@ export const Table = () => {
             onClick={() => setModalRekinOpen(true)}
           >
             <TbCirclePlus />
-            Tambah Rencana Kinerja
-          </ButtonSkyBorder>
+            Tambah Program Unggulan
+          </ButtonSkyBorder> */}
           <ButtonBlackBorder
             className="flex items-center gap-1"
             onClick={() =>
@@ -161,7 +161,7 @@ export const Table = () => {
           >
             <TbPrinter />
             Cetak
-          </ButtonBlackBorder> */}
+          </ButtonBlackBorder>
         </div>
       </div>
       <TableComponent className="border-blue-500">

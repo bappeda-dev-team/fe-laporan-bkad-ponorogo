@@ -6,7 +6,7 @@ import { KinerjaKonkerGetResponse, PohonKinerjaKonker, IndikatorRencanaKinerja, 
 import { useBrandingContext } from "@/provider/BrandingProvider";
 import { formatRupiah } from "@/app/hooks/formatRupiah";
 
-export function useCetakKonker(data: KinerjaKonkerGetResponse[], nama_tim: string, keterangan_tim: string) {
+export function useCetakKonker(data: KinerjaKonkerGetResponse[]) {
     const { branding } = useBrandingContext();
     const cetakPdf = () => {
         if (!data) return;
@@ -31,17 +31,9 @@ export function useCetakKonker(data: KinerjaKonkerGetResponse[], nama_tim: strin
 
         doc.setFontSize(12);
         doc.text(
-            `${nama_tim}`,
-            pageWidth / 2,
-            20,
-            { align: "center" }
-        );
-
-        doc.setFontSize(12);
-        doc.text(
             `BULAN ${(branding?.bulan?.label)?.toUpperCase() || ""}`,
             pageWidth / 2,
-            28,
+            24,
             { align: "center" }
         );
         const body: any[] = [];
@@ -222,7 +214,7 @@ export function useCetakKonker(data: KinerjaKonkerGetResponse[], nama_tim: strin
             },
         });
 
-        doc.save(`Kinerja-Konker-${nama_tim}-${branding?.tahun?.value || 0}-${keterangan_tim}.pdf`);
+        doc.save(`Kinerja-Konker-${branding?.tahun?.value || 0}.pdf`);
     };
 
     return { cetakPdf };
