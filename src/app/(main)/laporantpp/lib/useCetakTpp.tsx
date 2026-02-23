@@ -38,7 +38,7 @@ export function useCetakTpp(
 
         doc.setFontSize(12);
         doc.text(
-            "BADAN PERENCANAAN PEMBANGUNAN, RISET DAN INOVASI DAERAH",
+            "BADAN PENDAPATAN, PENGELOLAAN KEUANGAN DAN ASET DAERAH",
             pageWidth / 2,
             20,
             { align: "center" }
@@ -195,9 +195,9 @@ export function useCetakTpp(
         doc.text(`Ponorogo, ${tanggal} ${branding?.bulan?.label} ${branding.tahun?.value}`, centerX, startY);
 
         // Semua teks pakai centerX
-        doc.text(`Plt. KEPALA BADAN PERENCANAAN,`, centerX, startY + 5);
-        doc.text("RISET DAN INOVASI ", centerX, startY + 9);
-        doc.text("DAERAH ", centerX, startY + 13);
+        doc.text(`Plt. KEPALA BADAN PENDAPATAN,`, centerX, startY + 5);
+        doc.text("PENGELOLA KEUANGAN DAN ", centerX, startY + 9);
+        doc.text("ASET DAERAH ", centerX, startY + 13);
 
         // Spasi tanda tangan
         doc.text(`${data.penilaian_kinerjas[0].nama_pegawai ?? "Penanggung Jawab"}`, centerX, startY + 33);
