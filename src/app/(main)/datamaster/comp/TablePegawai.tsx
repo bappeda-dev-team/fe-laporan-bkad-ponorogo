@@ -25,7 +25,7 @@ const TablePegawai = () => {
     const [JenisModal, setJenisModal] = useState<"baru" | "edit" | "">("");
     const [DataJabatan, setDataJabatan] = useState<GetResponseFindallPegawai | null>(null);
 
-    const {branding} = useBrandingContext();
+    const { branding } = useBrandingContext();
     const { toastSuccess } = useToast();
 
     const handleModalJabatan = (data: GetResponseFindallPegawai | null, jenis: "baru" | "edit" | "") => {
@@ -44,7 +44,7 @@ const TablePegawai = () => {
         const fetchPegawai = async () => {
             try {
                 setLoading(true);
-                apiFetch(`/api/v1/tpp/jabatan/detail/master/opd/${branding?.opd}`)
+                apiFetch(`/api/v1/tpp/jabatan/detail/findall?kode_opd=${branding?.opd}&tahun=${branding?.tahun}&bulan=${branding?.bulan}`)
                     .then(resp => {
                         setData(resp);
                     }).catch(err => {
