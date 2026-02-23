@@ -145,7 +145,7 @@ export function useCetakTpp(
             "Jabatan Dalam Tim",
             "Nama Tim",
             "Basic TPP Konker",
-            "Nilai Kinerja Bappeda",
+            "Nilai Kinerja BPPKAD",
             "Nilai Kinerja Tim",
             "Nilai Kinerja Person",
             "Nilai Akhir",
