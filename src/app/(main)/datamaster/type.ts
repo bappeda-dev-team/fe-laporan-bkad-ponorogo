@@ -17,8 +17,8 @@ export interface GetResponseFindallPegawai {
     tanggalAkhir: string | null;
     createdDate: string;
     lastModifiedDate: string;
-    bulan_mulai: OptionType | null;
-    tahun_mulai: OptionType | null;
-    bulan_berakhir: OptionType | null;
-    tahun_berakhir: OptionType | null;
+    bulanMulai: OptionType | null;
+    tahunMulai: OptionType | null;
+    bulanBerakhir: OptionType | null;
+    tahunBerakhir: OptionType | null;
 }

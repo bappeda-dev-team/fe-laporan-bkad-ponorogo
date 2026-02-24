@@ -36,10 +36,10 @@ interface FormValue {
     isActive: boolean;
     tanggalMulai: string;
     tanggalAkhir: string;
-    bulan_mulai: OptionType | null;
-    tahun_mulai: OptionType | null;
-    bulan_berakhir?: OptionType | null;
-    tahun_berakhir?: OptionType | null;
+    bulanMulai: OptionType | null;
+    tahunMulai: OptionType | null;
+    bulanBerakhir?: OptionType | null;
+    tahunBerakhir?: OptionType | null;
 }
 
 export const ModalJabatanPegawai: React.FC<Modal> = ({ isOpen, onClose, onSuccess, jenis, Data }) => {
@@ -72,19 +72,19 @@ export const ModalJabatanPegawai: React.FC<Modal> = ({ isOpen, onClose, onSucces
             } : null,
             tanggalMulai: Data?.tanggalMulai ?? "",
             tanggalAkhir: Data?.tanggalAkhir ?? "",
-            bulan_mulai: Data?.bulan_mulai ? {
+            bulanMulai: Data?.bulanMulai ? {
                 value: branding?.bulan?.value,
                 label: branding?.bulan?.label,
             } : null,
-            tahun_mulai: Data?.tahun_mulai ? {
+            tahunMulai: Data?.tahunMulai ? {
                 value: branding?.tahun?.value,
                 label: branding?.tahun?.label
             } : null,
-            bulan_berakhir: Data?.bulan_berakhir ? {
+            bulanBerakhir: Data?.bulanBerakhir ? {
                 value: branding?.bulan?.value,
                 label: branding?.bulan?.label,
             } : null,
-            tahun_berakhir: Data?.tahun_berakhir ? {
+            tahunBerakhir: Data?.tahunBerakhir ? {
                 value: branding?.tahun?.value,
                 label: branding?.tahun?.label
             } : null,
@@ -178,10 +178,10 @@ export const ModalJabatanPegawai: React.FC<Modal> = ({ isOpen, onClose, onSucces
             pajak: data?.pajak?.value,
             tanggalMulai: data?.tanggalMulai,
             tanggalAkhir: data?.tanggalAkhir,
-            bulan_mulai: data?.bulan_mulai?.value,
-            tahun_mulai: data?.tahun_mulai?.value,
-            bulan_berakhir: data?.bulan_berakhir?.value,
-            tahun_berakhir: data?.tahun_berakhir?.value,
+            bulanMulai: data?.bulanMulai?.value,
+            tahunMulai: data?.tahunMulai?.value,
+            bulanBerakhir: data?.bulanBerakhir?.value,
+            tahunBerakhir: data?.tahunBerakhir?.value,
             // tanggalBerakhir: "01-01-2025"
         }
         // console.log(payload);
@@ -246,7 +246,7 @@ export const ModalJabatanPegawai: React.FC<Modal> = ({ isOpen, onClose, onSucces
                 }
                 <div className="flex items-center gap-1 rounded-lg w-full">
                     <Controller
-                        name="bulan_mulai"
+                        name="bulanMulai"
                         control={control}
                         rules={{ required: "wajib terisi" }}
                         render={({ field }) => (
@@ -254,18 +254,18 @@ export const ModalJabatanPegawai: React.FC<Modal> = ({ isOpen, onClose, onSucces
                                 <FloatingLabelSelect
                                     {...field}
                                     className="w-full"
-                                    id="bulan_mulai"
+                                    id="bulanMulai"
                                     label="Bulan Mulai"
                                     options={OptionBulan}
                                 />
-                                {errors.bulan_mulai &&
-                                    <p className="text-red-400 italic">{errors.bulan_mulai.message}</p>
+                                {errors.bulanMulai &&
+                                    <p className="text-red-400 italic">{errors.bulanMulai.message}</p>
                                 }
                             </>
                         )}
                     />
                     <Controller
-                        name="tahun_mulai"
+                        name="tahunMulai"
                         control={control}
                         rules={{ required: "wajib terisi" }}
                         render={({ field }) => (
@@ -273,12 +273,12 @@ export const ModalJabatanPegawai: React.FC<Modal> = ({ isOpen, onClose, onSucces
                                 <FloatingLabelSelect
                                     {...field}
                                     className="w-full"
-                                    id="tahun_mulai"
+                                    id="tahunMulai"
                                     label="Tahun Mulai"
                                     options={OptionTahun}
                                 />
-                                {errors.tahun_mulai &&
-                                    <p className="text-red-400 italic">{errors.tahun_mulai.message}</p>
+                                {errors.tahunMulai &&
+                                    <p className="text-red-400 italic">{errors.tahunMulai.message}</p>
                                 }
                             </>
                         )}
@@ -306,7 +306,7 @@ export const ModalJabatanPegawai: React.FC<Modal> = ({ isOpen, onClose, onSucces
                 {JabatanBerakhir?.value === "BERAKHIR" &&
                     <div className="flex items-center gap-1 rounded-lg border border-red-500 py-1  px-2  w-full">
                         <Controller
-                            name="bulan_berakhir"
+                            name="bulanBerakhir"
                             control={control}
                             rules={{ required: "wajib terisi" }}
                             render={({ field }) => (
@@ -314,18 +314,18 @@ export const ModalJabatanPegawai: React.FC<Modal> = ({ isOpen, onClose, onSucces
                                     <FloatingLabelSelect
                                         {...field}
                                         className="w-full"
-                                        id="bulan_berakhir"
+                                        id="bulanBerakhir"
                                         label="Bulan Berakhir"
                                         options={OptionBulan}
                                     />
-                                    {errors.bulan_berakhir &&
-                                        <p className="text-red-400 italic">{errors.bulan_berakhir.message}</p>
+                                    {errors.bulanBerakhir &&
+                                        <p className="text-red-400 italic">{errors.bulanBerakhir.message}</p>
                                     }
                                 </>
                             )}
                         />
                         <Controller
-                            name="tahun_berakhir"
+                            name="tahunBerakhir"
                             control={control}
                             rules={{ required: "wajib terisi" }}
                             render={({ field }) => (
@@ -333,12 +333,12 @@ export const ModalJabatanPegawai: React.FC<Modal> = ({ isOpen, onClose, onSucces
                                     <FloatingLabelSelect
                                         {...field}
                                         className="w-full"
-                                        id="tahun_berakhir"
+                                        id="tahunBerakhir"
                                         label="Tahun Berakhir"
                                         options={OptionTahun}
                                     />
-                                    {errors.tahun_berakhir &&
-                                        <p className="text-red-400 italic">{errors.tahun_berakhir.message}</p>
+                                    {errors.tahunBerakhir &&
+                                        <p className="text-red-400 italic">{errors.tahunBerakhir.message}</p>
                                     }
                                 </>
                             )}
