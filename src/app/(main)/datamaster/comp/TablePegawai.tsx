@@ -44,7 +44,7 @@ const TablePegawai = () => {
         const fetchPegawai = async () => {
             try {
                 setLoading(true);
-                apiFetch(`/api/v1/tpp/jabatan/detail/findall?kode_opd=${branding?.opd}&tahun=${branding?.tahun}&bulan=${branding?.bulan}`)
+                apiFetch(`/api/v1/tpp/jabatan/detail/findall?kode_opd=${branding?.opd}&tahun=${branding?.tahun?.value}&bulan=${branding?.bulan?.value}`)
                     .then(resp => {
                         setData(resp);
                     }).catch(err => {
