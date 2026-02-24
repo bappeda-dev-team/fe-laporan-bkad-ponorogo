@@ -76,7 +76,7 @@ export function useCetakTpp(
                 data.nama_tim,
 
                 // Basic TPP Konker
-                { content: `Rp.${formatRupiah(item.tpp_pegawai?.tpp_basic) || 0}` },
+                // { content: `Rp.${formatRupiah(item.tpp_pegawai?.tpp_basic) || 0}` },
 
                 // Nilai Kinerja Bappeda
                 {
@@ -144,7 +144,6 @@ export function useCetakTpp(
             "Pangkat/Golongan/Jabatan",
             "Jabatan Dalam Tim",
             "Nama Tim",
-            "Basic TPP Konker",
             "Nilai Kinerja BPPKAD",
             "Nilai Kinerja Tim",
             "Nilai Kinerja Person",
