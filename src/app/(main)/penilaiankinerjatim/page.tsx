@@ -12,6 +12,7 @@ const PenilaianKinerjaTim = () => {
 
     const bulan = branding?.bulan?.value ?? null;
     const tahun = branding?.tahun?.value ?? null;
+    const kodeOpd = branding?.opd;
 
 
     const isReady = Number.isInteger(bulan) && Number.isInteger(tahun);
@@ -21,8 +22,8 @@ const PenilaianKinerjaTim = () => {
         if (!isReady) {
             return null;
         }
-        return `/api/v1/timkerjabkad/laporan_tpp_all?tahun=${tahun}&bulan=${bulan}`;
-    }, [isReady, tahun, bulan]);
+        return `/api/v1/timkerjabkad/laporan_tpp_all?tahun=${tahun}&bulan=${bulan}&kodeOpd=${kodeOpd}`;
+    }, [isReady, tahun, bulan, kodeOpd]);
 
     const { data, loading, error, message } = useGet<PenilaianKinerjas[]>(
         url ?? "",
