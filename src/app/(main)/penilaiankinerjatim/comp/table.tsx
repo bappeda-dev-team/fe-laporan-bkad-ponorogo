@@ -70,6 +70,7 @@ const Table: React.FC<Table> = ({ data }) => {
                             <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Nilai Kinerja BPPKAD</th>
                             <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Nilai Kerja Tim</th>
                             <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Nilai Kerja Person</th>
+                            <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Nilai Kehadiran</th>
                             <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Nilai Akhir</th>
                             <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Aksi</th>
                         </tr>
@@ -84,6 +85,7 @@ const Table: React.FC<Table> = ({ data }) => {
                             <th className="border-r border-b py-1 border-gray-300 text-center">8</th>
                             <th className="border-r border-b py-1 border-gray-300 text-center">9</th>
                             <th className="border-r border-b py-1 border-gray-300 text-center">10</th>
+                            <th className="border-r border-b py-1 border-gray-300 text-center">11</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -141,6 +143,18 @@ const Table: React.FC<Table> = ({ data }) => {
                                                     />
                                                 ) : (
                                                     item.kinerja_person || 0
+                                                )}
+                                            </td>
+
+                                            <td className={tdClass}>
+                                                {editable ? (
+                                                    <NilaiPerson
+                                                        nilai={0}
+                                                        kode_tim={item.kode_tim}
+                                                        Data={item}
+                                                    />
+                                                ) : (
+                                                    0
                                                 )}
                                             </td>
                                         </>
