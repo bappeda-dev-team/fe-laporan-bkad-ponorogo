@@ -1,5 +1,6 @@
 import TableComponent from "@/components/page/TableComponent";
 import { PenilaianKinerjas } from "../type";
+import { NilaiKehadiran } from "../comp/NilaiKehadiran";
 import { useBrandingContext } from "@/provider/BrandingProvider";
 import { ButtonBlackBorder } from "@/components/button/button";
 import { TbPrinter } from "react-icons/tb";
@@ -73,6 +74,7 @@ const Table: React.FC<Table> = ({ data }) => {
                             <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Nilai Kehadiran</th>
                             <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Potongan BPJS 1%</th>
                             <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Potongan BPJS 4%</th>
+                            <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Nilai Kehadiran</th>
                             <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Nilai Akhir</th>
                             <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Aksi</th>
                         </tr>
@@ -92,6 +94,7 @@ const Table: React.FC<Table> = ({ data }) => {
                             <th className="border-r border-b py-1 border-gray-300 text-center">13</th>
                             <th className="border-r border-b py-1 border-gray-300 text-center">14</th>
                             <th className="border-r border-b py-1 border-gray-300 text-center">15</th>
+                            <th className="border-r border-b py-1 border-gray-300 text-center">16</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -123,6 +126,18 @@ const Table: React.FC<Table> = ({ data }) => {
                                         <td className={tdClass}>0</td>
                                         <td className={`border border-blue-500 px-6 py-4 text-center`}>{formatRupiah(item.tpp_pegawai?.bpjs_1 || 0)}</td>
                                         <td className={`border border-blue-500 px-6 py-4 text-center`}>{formatRupiah(item.tpp_pegawai?.bpjs_4 || 0)}</td>
+                                        <td className={`border border-blue-500 px-6 py-4 text-center`}>0</td>
+                                        <td className={tdClass}>
+                                            {editable ? (
+                                                <NilaiKehadiran
+                                                    nilai={0}
+                                                    kode_tim={item.kode_tim}
+                                                    Data={item}
+                                                />
+                                            ) : (
+                                                0
+                                            )}
+                                        </td>
                                         <td className={`border border-blue-500 px-6 py-4 text-center`}>{item.nilai_akhir || 0}</td>
                                         <td className="border border-blue-500 px-6 py-4">
                                             <div className="flex flex-col gap-1">
