@@ -43,4 +43,6 @@ export interface TppPegawaiResponse {
     jumlah_pajak: number;
     potongan_bpjs: number;
     jumlah_bersih: number;
+    bpjs_1 : number;
+    bpjs_4 : number;
 }

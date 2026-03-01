@@ -100,7 +100,11 @@ const TablePegawai = () => {
                                 <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[300px] text-center">Nama Pegawai</th>
                                 <th colSpan={2} className="border-r border-b py-3 px-4 border-gray-300 min-w-[100px] text-center">NIP</th>
                                 <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Basic TPP</th>
+                                <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[160px] text-center">No Rekeing</th>
+                                <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[160px] text-center">No NPWP</th>
                                 <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[160px] text-center">Pajak</th>
+                                <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[160px] text-center">Potongan PBJS 1%</th>
+                                <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[160px] text-center">Potongan PBJS 4%</th>
                                 <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Jabatan</th>
                                 <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Status Jabatan</th>
                                 <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Eselon</th>
@@ -136,6 +140,8 @@ const TablePegawai = () => {
                                                 </ButtonRed>
                                             </div>
                                         </td>
+                                        <td className="border py-3 px-4 border-yellow-500 text-center">-</td>
+                                        <td className="border py-3 px-4 border-yellow-500 text-center">-</td>
                                         <td className="border py-3 px-4 border-yellow-500 text-center">Rp.{formatRupiah(item.basicTpp ?? 0)}</td>
                                         <td className="border py-3 px-4 border-yellow-500 text-center">
                                             {(() => {
@@ -143,6 +149,8 @@ const TablePegawai = () => {
                                                 return Number.isFinite(pajak) ? `${pajak * 100}%` : "-";
                                             })()}
                                         </td>
+                                        <td className="border py-3 px-4 border-yellow-500 text-center">0</td>
+                                        <td className="border py-3 px-4 border-yellow-500 text-center">0</td>
                                         <td className="border py-3 px-4 border-yellow-500">{item.namaJabatan || "-"}</td>
                                         <td className="border py-3 px-4 border-yellow-500 text-center">{item.statusJabatan || "-"}</td>
                                         <td className="border py-3 px-4 border-yellow-500 text-center">{item.eselon || "-"}</td>

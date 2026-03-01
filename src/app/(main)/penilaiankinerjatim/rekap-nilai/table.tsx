@@ -1,7 +1,7 @@
 import TableComponent from "@/components/page/TableComponent";
-import { NilaiKinerja } from "./NilaiKinerja";
-import { NilaiTim } from "./NilaiTim";
-import { NilaiPerson } from "./NilaiPerson";
+import { NilaiKinerja } from "../comp/NilaiKinerja";
+import { NilaiTim } from "../comp/NilaiTim";
+import { NilaiPerson } from "../comp/NilaiPerson";
 import { PenilaianKinerjas } from "../type";
 import { useBrandingContext } from "@/provider/BrandingProvider";
 import { ButtonBlackBorder } from "@/components/button/button";
@@ -43,7 +43,7 @@ const Table: React.FC<Table> = ({ data }) => {
             <div className="flex flex-wrap items-center justify-between mb-1">
                 <div className="flex flex-wrap items-center justify-between mb-2">
                     <div className="flex flex-col">
-                        <h1 className="uppercase font-bold text-2xl">Penilaian Kinerja Tim {branding?.tahun?.label || "-"}</h1>
+                        <h1 className="uppercase font-bold text-2xl">Rekap Nilai {branding?.tahun?.label || "-"}</h1>
                     </div>
                 </div>
                 <div className="flex flex-wrap flex-col justify-center gap-1">
@@ -65,12 +65,16 @@ const Table: React.FC<Table> = ({ data }) => {
                             <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[50px] text-center">No</th>
                             <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Nama/NIP</th>
                             <th className="border-r border-b py-2 px-3 border-gray-300 min-w-[200px] text-center">Pangkat/Golongan/Jabatan</th>
+                            <th className="border-r border-b py-2 px-3 border-gray-300 min-w-[200px] text-center">No Rekening</th>
+                            <th className="border-r border-b py-2 px-3 border-gray-300 min-w-[200px] text-center">No NPWP</th>
                             <th className="border-r border-b py-2 px-3 border-gray-300 min-w-[200px] text-center">Nama Tim</th>
                             <th className="border-r border-b py-2 px-3 border-gray-300 min-w-[200px] text-center">Jabatan dalam tim</th>
                             <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Nilai Kinerja BPPKAD</th>
                             <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Nilai Kerja Tim</th>
                             <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Nilai Kerja Person</th>
                             <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Nilai Kehadiran</th>
+                            <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Potongan BPJS 1%</th>
+                            <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Potongan BPJS 4%</th>
                             <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Nilai Akhir</th>
                             <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Aksi</th>
                         </tr>
@@ -86,6 +90,10 @@ const Table: React.FC<Table> = ({ data }) => {
                             <th className="border-r border-b py-1 border-gray-300 text-center">9</th>
                             <th className="border-r border-b py-1 border-gray-300 text-center">10</th>
                             <th className="border-r border-b py-1 border-gray-300 text-center">11</th>
+                            <th className="border-r border-b py-1 border-gray-300 text-center">12</th>
+                            <th className="border-r border-b py-1 border-gray-300 text-center">13</th>
+                            <th className="border-r border-b py-1 border-gray-300 text-center">14</th>
+                            <th className="border-r border-b py-1 border-gray-300 text-center">15</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -93,7 +101,7 @@ const Table: React.FC<Table> = ({ data }) => {
                             data.slice().map((item: PenilaianKinerjas, index: number) => {
                                 const editable = isAllowed(item.nama_jabatan_tim);
                                 return (
-                                    <tr key={index}>
+                                    <tr key={index} className="hover:bg-slate-100">
                                         <td className={`border-b border-blue-500 px-6 py-4 text-center`}>{index + 1}</td>
                                         <td className={`border border-blue-500 px-6 py-4`}>
                                             <div className="flex flex-col">
@@ -107,57 +115,16 @@ const Table: React.FC<Table> = ({ data }) => {
                                                 <p>{item.nama_jabatan_tim || "-"}</p>
                                             </div>
                                         </td>
+                                        <td className={`border border-blue-500 px-6 py-4`}>-</td>
+                                        <td className={`border border-blue-500 px-6 py-4`}>-</td>
                                         <td className={`border border-blue-500 px-6 py-4`}>{item.nama_tim || "-"}</td>
                                         <td className={`border border-blue-500 px-6 py-4`}>{item.nama_jabatan_tim || "-"}</td>
-                                        <>
-                                            <td className={tdClass}>
-                                                {editable ? (
-                                                    <NilaiKinerja
-                                                        nilai={item.kinerja_bappeda || 0}
-                                                        kode_tim={item.kode_tim}
-                                                        Data={item}
-                                                    />
-                                                ) : (
-                                                    item.kinerja_bappeda || 0
-                                                )}
-                                            </td>
-
-                                            <td className={tdClass}>
-                                                {editable ? (
-                                                    <NilaiTim
-                                                        nilai={item.kinerja_tim || 0}
-                                                        kode_tim={item.kode_tim}
-                                                        Data={item}
-                                                    />
-                                                ) : (
-                                                    item.kinerja_tim || 0
-                                                )}
-                                            </td>
-
-                                            <td className={tdClass}>
-                                                {editable ? (
-                                                    <NilaiPerson
-                                                        nilai={item.kinerja_person || 0}
-                                                        kode_tim={item.kode_tim}
-                                                        Data={item}
-                                                    />
-                                                ) : (
-                                                    item.kinerja_person || 0
-                                                )}
-                                            </td>
-
-                                            <td className={tdClass}>
-                                                {editable ? (
-                                                    <NilaiPerson
-                                                        nilai={0}
-                                                        kode_tim={item.kode_tim}
-                                                        Data={item}
-                                                    />
-                                                ) : (
-                                                    0
-                                                )}
-                                            </td>
-                                        </>
+                                        <td className={tdClass}>{item.kinerja_bappeda || 0}</td>
+                                        <td className={tdClass}>{item.kinerja_tim || 0}</td>
+                                        <td className={tdClass}>{item.kinerja_person || 0}</td>
+                                        <td className={tdClass}>0</td>
+                                        <td className={`border border-blue-500 px-6 py-4 text-center`}>{item.tpp_pegawai?.bpjs_1 || 0} %</td>
+                                        <td className={`border border-blue-500 px-6 py-4 text-center`}>{item.tpp_pegawai?.bpjs_4 || 0} %</td>
                                         <td className={`border border-blue-500 px-6 py-4 text-center`}>{item.nilai_akhir || 0}</td>
                                         <td className="border border-blue-500 px-6 py-4">
                                             <div className="flex flex-col gap-1">

@@ -1,9 +1,9 @@
 'use client'
 
 import { useState, useMemo, useEffect } from "react";
-import Table from "./comp/table";
+import Table from "./comp/Table";
 import { useGet } from "@/app/hooks/useGet";
-import { PenilaianKinerjas } from "./type";
+import { PenilaianKinerjas } from ".././type";
 import { useBrandingContext } from "@/provider/BrandingProvider";
 
 const PenilaianKinerjaTim = () => {

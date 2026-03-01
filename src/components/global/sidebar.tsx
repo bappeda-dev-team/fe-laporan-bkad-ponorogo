@@ -4,9 +4,10 @@ import { ButtonBlackBorder, ButtonRedBorder } from "../button/button"
 import Link from "next/link"
 import Image from "next/image";
 import {
-  TbCircleFilled, TbUsersGroup, TbFileSettings,
+  TbCircleFilled, TbUsersGroup,
   TbDeviceAnalytics, TbDeviceImacDollar, TbLogout,
-  TbArrowBarLeft, TbArrowBarRight, TbSettings
+  TbArrowBarLeft, TbArrowBarRight, TbSettings,
+  TbFileSmile, TbFileCheck, TbFileChart, TbFileSpark, TbFile
 } from "react-icons/tb";
 import { usePathname } from "next/navigation";
 import useToast from "./toast";
@@ -139,19 +140,73 @@ export const Sidebar: React.FC<Sidebar> = ({ onShow, show }) => {
             </p>
           }
         </Link>
-        <Link
-          href='/penilaiankinerjatim'
+        <div
           className={`flex items-center gap-1 font-medium text-sm rounded-lg cursor-pointer py-1 px-5 ${getActiveClass(
             url.startsWith('/penilaiankinerjatim'), 'default'
           )}`}
         >
-          <TbFileSettings size={18} />
+          <TbFile size={18} />
           {show &&
             <p>
-              Penilaian Kinerja Tim
+              Penilaian Kinerja
             </p>
           }
-        </Link>
+        </div>
+        {/* LABEL PENILAIAN TIM */}
+        <div className="flex flex-col gap-1 ml-2 font-medium text-sm cursor-pointer pt-1 pb-3 px-5 border-l rounded-bl-lg border-b border-emerald-800 roinded-lg-">
+          <Link
+            href='/penilaiankinerjatim/nilai-opd'
+            className={`flex items-center gap-1 font-medium text-sm rounded-lg cursor-pointer py-1 px-5 ${getActiveClass(
+              url.startsWith('/penilaiankinerjatim/nilai-opd'), 'default'
+            )}`}
+          >
+            <TbFileSpark size={18} />
+            {show &&
+              <p>
+                Nilai OPD
+              </p>
+            }
+          </Link>
+          <Link
+            href='/penilaiankinerjatim/nilai-tim'
+            className={`flex items-center gap-1 font-medium text-sm rounded-lg cursor-pointer py-1 px-5 ${getActiveClass(
+              url.startsWith('/penilaiankinerjatim/nilai-tim'), 'default'
+            )}`}
+          >
+            <TbFileChart size={18} />
+            {show &&
+              <p>
+                Nilai Tim
+              </p>
+            }
+          </Link>
+          <Link
+            href='/penilaiankinerjatim/nilai-personal'
+            className={`flex items-center gap-1 font-medium text-sm rounded-lg cursor-pointer py-1 px-5 ${getActiveClass(
+              url.startsWith('/penilaiankinerjatim/nilai-personal'), 'default'
+            )}`}
+          >
+            <TbFileSmile size={18} />
+            {show &&
+              <p>
+                Nilai Personal
+              </p>
+            }
+          </Link>
+          <Link
+            href='/penilaiankinerjatim/rekap-nilai'
+            className={`flex items-center gap-1 font-medium text-sm rounded-lg cursor-pointer py-1 px-5 ${getActiveClass(
+              url.startsWith('/penilaiankinerjatim/rekap-nilai'), 'default'
+            )}`}
+          >
+            <TbFileCheck size={18} />
+            {show &&
+              <p>
+                Rekap Nilai
+              </p>
+            }
+          </Link>
+        </div>
         {app !== "Prioritas Pembangunan" &&
           <Link
             href='/laporantpp'
