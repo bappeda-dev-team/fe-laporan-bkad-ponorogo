@@ -1,13 +1,11 @@
 import TableComponent from "@/components/page/TableComponent";
-import { NilaiKinerja } from "../comp/NilaiKinerja";
-import { NilaiTim } from "../comp/NilaiTim";
-import { NilaiPerson } from "../comp/NilaiPerson";
 import { PenilaianKinerjas } from "../type";
 import { useBrandingContext } from "@/provider/BrandingProvider";
 import { ButtonBlackBorder } from "@/components/button/button";
 import { TbPrinter } from "react-icons/tb";
 import { useCetakPenilaianTimAll } from "../lib/useCetakPenilaianTimAll";
 import useToast from "@/components/global/toast";
+import { formatRupiah } from "@/app/hooks/formatRupiah";
 
 interface Table {
     data: PenilaianKinerjas[];
@@ -123,8 +121,8 @@ const Table: React.FC<Table> = ({ data }) => {
                                         <td className={tdClass}>{item.kinerja_tim || 0}</td>
                                         <td className={tdClass}>{item.kinerja_person || 0}</td>
                                         <td className={tdClass}>0</td>
-                                        <td className={`border border-blue-500 px-6 py-4 text-center`}>{item.tpp_pegawai?.bpjs_1 || 0} %</td>
-                                        <td className={`border border-blue-500 px-6 py-4 text-center`}>{item.tpp_pegawai?.bpjs_4 || 0} %</td>
+                                        <td className={`border border-blue-500 px-6 py-4 text-center`}>{formatRupiah(item.tpp_pegawai?.bpjs_1 || 0)}</td>
+                                        <td className={`border border-blue-500 px-6 py-4 text-center`}>{formatRupiah(item.tpp_pegawai?.bpjs_4 || 0)}</td>
                                         <td className={`border border-blue-500 px-6 py-4 text-center`}>{item.nilai_akhir || 0}</td>
                                         <td className="border border-blue-500 px-6 py-4">
                                             <div className="flex flex-col gap-1">

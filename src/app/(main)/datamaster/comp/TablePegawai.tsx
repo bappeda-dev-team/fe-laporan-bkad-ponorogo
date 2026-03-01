@@ -14,8 +14,6 @@ import { useBrandingContext } from "@/provider/BrandingProvider";
 
 const TablePegawai = () => {
 
-    const kode_opd = process.env.NEXT_PUBLIC_KODE_OPD;
-
     const [Data, setData] = useState<any>(null);
     const [Loading, setLoading] = useState<boolean>(true);
     const [HasError, setHasError] = useState<boolean>(false);

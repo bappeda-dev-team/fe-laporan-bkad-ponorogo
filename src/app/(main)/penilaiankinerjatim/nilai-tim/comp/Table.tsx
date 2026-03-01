@@ -95,20 +95,6 @@ const Table: React.FC<Table> = ({ data }) => {
                                                 item.kinerja_tim || 0
                                             )}
                                         </td>
-                                        <td className={`border border-blue-500 px-6 py-4 text-center`}>{item.nilai_akhir || 0}</td>
-                                        <td className="border border-blue-500 px-6 py-4">
-                                            <div className="flex flex-col gap-1">
-                                                <ButtonBlackBorder
-                                                    className="flex items-center gap-1"
-                                                    onClick={() => {
-                                                        toastInfo("Dalam Perbaikan");
-                                                    }}
-                                                >
-                                                    <TbPrinter />
-                                                    Cetak
-                                                </ButtonBlackBorder>
-                                            </div>
-                                        </td>
                                     </tr>
                                 )
                             })
