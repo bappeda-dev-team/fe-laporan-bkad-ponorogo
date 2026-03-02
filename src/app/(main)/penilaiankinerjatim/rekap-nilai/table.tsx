@@ -124,9 +124,8 @@ const Table: React.FC<Table> = ({ data }) => {
                                         <td className={tdClass}>{item.kinerja_tim || 0}</td>
                                         <td className={tdClass}>{item.kinerja_person || 0}</td>
                                         <td className={tdClass}>0</td>
-                                        <td className={`border border-blue-500 px-6 py-4 text-center`}>{formatRupiah(item.tpp_pegawai?.bpjs_1 || 0)}</td>
-                                        <td className={`border border-blue-500 px-6 py-4 text-center`}>{formatRupiah(item.tpp_pegawai?.bpjs_4 || 0)}</td>
-                                        <td className={`border border-blue-500 px-6 py-4 text-center`}>0</td>
+                                        <td className={`border border-blue-500 px-6 py-4 text-center`}>Rp.{formatRupiah(item.tpp_pegawai?.bpjs_1 || 0)}</td>
+                                        <td className={`border border-blue-500 px-6 py-4 text-center`}>Rp.{formatRupiah(item.tpp_pegawai?.bpjs_4 || 0)}</td>
                                         <td className={tdClass}>
                                             {editable ? (
                                                 <NilaiKehadiran
