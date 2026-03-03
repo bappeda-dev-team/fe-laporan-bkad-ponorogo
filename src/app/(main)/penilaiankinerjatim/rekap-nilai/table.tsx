@@ -71,7 +71,6 @@ const Table: React.FC<Table> = ({ data }) => {
                             <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Nilai Kinerja BPPKAD</th>
                             <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Nilai Kerja Tim</th>
                             <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Nilai Kerja Person</th>
-                            <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Nilai Kehadiran</th>
                             <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Potongan BPJS 1%</th>
                             <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Potongan BPJS 4%</th>
                             <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Nilai Kehadiran</th>
@@ -94,7 +93,6 @@ const Table: React.FC<Table> = ({ data }) => {
                             <th className="border-r border-b py-1 border-gray-300 text-center">13</th>
                             <th className="border-r border-b py-1 border-gray-300 text-center">14</th>
                             <th className="border-r border-b py-1 border-gray-300 text-center">15</th>
-                            <th className="border-r border-b py-1 border-gray-300 text-center">16</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -123,7 +121,6 @@ const Table: React.FC<Table> = ({ data }) => {
                                         <td className={tdClass}>{item.kinerja_bappeda || 0}</td>
                                         <td className={tdClass}>{item.kinerja_tim || 0}</td>
                                         <td className={tdClass}>{item.kinerja_person || 0}</td>
-                                        <td className={tdClass}>0</td>
                                         <td className={`border border-blue-500 px-6 py-4 text-center`}>Rp.{formatRupiah(item.tpp_pegawai?.bpjs_1 || 0)}</td>
                                         <td className={`border border-blue-500 px-6 py-4 text-center`}>Rp.{formatRupiah(item.tpp_pegawai?.bpjs_4 || 0)}</td>
                                         <td className={tdClass}>

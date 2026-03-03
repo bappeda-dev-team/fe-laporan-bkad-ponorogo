@@ -131,7 +131,7 @@ export const FormNilaiKehadiran: React.FC<FormNilaiKehadiran> = ({ nilai, onClos
                             <FloatingLabelInput
                                 {...field}
                                 id="nilai_kinerja"
-                                label="nilai kinerja"
+                                label="nilai Kehadiran"
                                 type="number"
                             />
                             {errors.nilai_kinerja &&
