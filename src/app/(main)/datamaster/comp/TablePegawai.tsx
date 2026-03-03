@@ -138,9 +138,9 @@ const TablePegawai = () => {
                                                 </ButtonRed>
                                             </div>
                                         </td>
-                                        <td className="border py-3 px-4 border-yellow-500 text-center">-</td>
-                                        <td className="border py-3 px-4 border-yellow-500 text-center">-</td>
                                         <td className="border py-3 px-4 border-yellow-500 text-center">Rp.{formatRupiah(item.basicTpp ?? 0)}</td>
+                                        <td className="border py-3 px-4 border-yellow-500 text-center">-</td>
+                                        <td className="border py-3 px-4 border-yellow-500 text-center">-</td>
                                         <td className="border py-3 px-4 border-yellow-500 text-center">
                                             {(() => {
                                                 const pajak = Number(item.pajak);
