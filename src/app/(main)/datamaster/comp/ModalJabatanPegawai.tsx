@@ -32,11 +32,9 @@ interface FormValue {
     golongan: string;
     namaRole: string;
     basicTpp: number | null;
-    no_rekening: number | null;
-    no_npwp: number | null;
+    nomorRekening: string | null;
+    npwp: string | null;
     pajak: OptionType | null;
-    bpjs_1: number | null;
-    bpjs_4: number | null;
     isActive: boolean;
     tanggalMulai: string;
     tanggalAkhir: string;
@@ -69,15 +67,13 @@ export const ModalJabatanPegawai: React.FC<Modal> = ({ isOpen, onClose, onSucces
             },
             pangkat: Data?.pangkat,
             golongan: Data?.golongan,
-            no_npwp: Data?.no_npwp ?? null,
-            no_rekening: Data?.no_rekening ?? null,
+            npwp: Data?.npwp ?? null,
+            nomorRekening: Data?.nomorRekening ?? null,
             basicTpp: Data?.basicTpp ?? null,
             pajak: Data?.pajak ? {
                 value: Data.pajak,
                 label: Data.pajak === 0.0 ? "0%" : `${Data.pajak * 100}%`,
             } : null,
-            bpjs_1: Data?.bpjs_1,
-            bpjs_4: Data?.bpjs_4,
             tanggalMulai: Data?.tanggalMulai ?? "",
             tanggalAkhir: Data?.tanggalAkhir ?? "",
             bulanMulai: Data?.bulanMulai ? {
@@ -182,11 +178,9 @@ export const ModalJabatanPegawai: React.FC<Modal> = ({ isOpen, onClose, onSucces
             eselon: data?.eselon?.value,
             pangkat: data?.pangkat,
             golongan: data?.golongan,
-            no_rekening: data?.no_rekening,
-            no_npwp: data?.no_npwp,
+            nomorRekening: data?.nomorRekening,
+            npwp: data?.npwp,
             basicTpp: data?.basicTpp,
-            bpjs_1: data?.bpjs_1,
-            bpjs_4: data?.bpjs_4,
             pajak: data?.pajak?.value,
             tanggalMulai: data?.tanggalMulai,
             tanggalAkhir: data?.tanggalAkhir,
@@ -481,7 +475,7 @@ export const ModalJabatanPegawai: React.FC<Modal> = ({ isOpen, onClose, onSucces
                     )}
                 />
                 <Controller
-                    name="no_rekening"
+                    name="nomorRekening"
                     control={control}
                     rules={{ required: "wajib terisi" }}
                     render={({ field }) => {
@@ -493,27 +487,27 @@ export const ModalJabatanPegawai: React.FC<Modal> = ({ isOpen, onClose, onSucces
                         const displayValue = field.value;
                         return (
                             <>
-                                <label htmlFor="no_rekening" className="text-sm text-slate-500">No Rekening</label>
+                                <label htmlFor="nomorRekening" className="text-sm text-slate-500">No Rekening</label>
                                 <input
                                     ref={field.ref}
                                     onBlur={field.onBlur}
                                     className="border px-4 py-2 rounded-lg"
-                                    id="no_rekening"
+                                    id="nomorRekening"
                                     type="text"
                                     inputMode="numeric"
                                     placeholder="Masukkan No Rekening"
                                     value={displayValue === null ? "" : displayValue}
                                     onChange={handleInputChange}
                                 />
-                                {errors.no_rekening &&
-                                    <p className="text-red-400 italic">{errors.no_rekening.message}</p>
+                                {errors.nomorRekening &&
+                                    <p className="text-red-400 italic">{errors.nomorRekening.message}</p>
                                 }
                             </>
                         )
                     }}
                 />
                 <Controller
-                    name="no_npwp"
+                    name="npwp"
                     control={control}
                     rules={{ required: "wajib terisi" }}
                     render={({ field }) => {
@@ -525,20 +519,20 @@ export const ModalJabatanPegawai: React.FC<Modal> = ({ isOpen, onClose, onSucces
                         const displayValue = field.value;
                         return (
                             <>
-                                <label htmlFor="no_npwp" className="text-sm text-slate-500">No NPWP</label>
+                                <label htmlFor="npwp" className="text-sm text-slate-500">No NPWP</label>
                                 <input
                                     ref={field.ref}
                                     onBlur={field.onBlur}
                                     className="border px-4 py-2 rounded-lg"
-                                    id="no_npwp"
+                                    id="npwp"
                                     type="text"
                                     inputMode="numeric"
                                     placeholder="Masukkan No NPWP"
                                     value={displayValue === null ? "" : displayValue}
                                     onChange={handleInputChange}
                                 />
-                                {errors.no_npwp &&
-                                    <p className="text-red-400 italic">{errors.no_npwp.message}</p>
+                                {errors.npwp &&
+                                    <p className="text-red-400 italic">{errors.npwp.message}</p>
                                 }
                             </>
                         )
@@ -594,70 +588,7 @@ export const ModalJabatanPegawai: React.FC<Modal> = ({ isOpen, onClose, onSucces
                         </>
                     )}
                 />
-                <Controller
-                    name="bpjs_1"
-                    control={control}
-                    rules={{ required: "wajib terisi" }}
-                    render={({ field }) => {
-                        const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-                            const inputValue = e.target.value;
-                            const numericValue = unformatNumber(inputValue);
-                            field.onChange(numericValue);
-                        };
-                        const displayValue = formatNumberWithDots(field.value ?? "");
-                        return (
-                            <>
-                                <label htmlFor="bpjs_1" className="text-sm text-slate-500">Potongan BPJS 1%</label>
-                                <input
-                                    ref={field.ref}
-                                    onBlur={field.onBlur}
-                                    className="border px-4 py-2 rounded-lg"
-                                    id="bpjs_1"
-                                    type="text"
-                                    inputMode="numeric"
-                                    placeholder="Masukkan Potongan BPJS 1%"
-                                    value={displayValue === null ? "" : displayValue}
-                                    onChange={handleInputChange}
-                                />
-                                {errors.bpjs_1 &&
-                                    <p className="text-red-400 italic">{errors.bpjs_1.message}</p>
-                                }
-                            </>
-                        )
-                    }}
-                />
-                <Controller
-                    name="bpjs_4"
-                    control={control}
-                    rules={{ required: "wajib terisi" }}
-                    render={({ field }) => {
-                        const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-                            const inputValue = e.target.value;
-                            const numericValue = unformatNumber(inputValue);
-                            field.onChange(numericValue);
-                        };
-                        const displayValue = formatNumberWithDots(field.value ?? "");
-                        return (
-                            <>
-                                <label htmlFor="bpjs_4" className="text-sm text-slate-500">Potongan BPJS 4%</label>
-                                <input
-                                    ref={field.ref}
-                                    onBlur={field.onBlur}
-                                    className="border px-4 py-2 rounded-lg"
-                                    id="bpjs_4"
-                                    type="text"
-                                    inputMode="numeric"
-                                    placeholder="Masukkan Potongan BPJS 4%"
-                                    value={displayValue === null ? "" : displayValue}
-                                    onChange={handleInputChange}
-                                />
-                                {errors.bpjs_4 &&
-                                    <p className="text-red-400 italic">{errors.bpjs_4.message}</p>
-                                }
-                            </>
-                        )
-                    }}
-                />
+              {/* BPJS 1 dan 4 otomatis dari backend */}
                 <div className="flex flex-col gap-2 mt-3">
                     <ButtonSky
                         className="w-full"
