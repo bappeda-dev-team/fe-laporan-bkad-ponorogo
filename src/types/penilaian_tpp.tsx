@@ -1,37 +1,40 @@
 export interface TppPegawaiResponse {
-    tpp_basic: number;
-    persentase_penerimaan: string;
-    jumlah_kotor: number;
-    pajak: number;
-    jumlah_pajak: number;
-    potongan_bpjs: number;
-    jumlah_bersih: number;
+  tpp_basic: number;
+  persentase_penerimaan: string;
+  jumlah_kotor: number;
+  pajak: number;
+  jumlah_pajak: number;
+  potongan_bpjs_1: number;
+  potongan_bpjs_4: number;
+  bpjs_1: number;
+  bpjs_4: number;
+  jumlah_bersih: number;
 }
 
 export interface PenilaianGroupedResponse extends TppPegawaiResponse {
-    id_pegawai: string;
-    nama_pegawai: string;
-    level_jabatan_tim: number;
-    nama_jabatan_tim: string;
-    pangkat: string;
-    golongan: string;
-    jenis_jabatan: string;
-    kode_tim: string;
-    tahun: string;
-    bulan: number;
+  id_pegawai: string;
+  nama_pegawai: string;
+  level_jabatan_tim: number;
+  nama_jabatan_tim: string;
+  pangkat: string;
+  golongan: string;
+  jenis_jabatan: string;
+  kode_tim: string;
+  tahun: string;
+  bulan: number;
 
-    kinerja_bappeda: number;
-    kinerja_tim: number;
-    kinerja_person: number;
-    nilai_akhir: number;
+  kinerja_bappeda: number;
+  kinerja_tim: number;
+  kinerja_person: number;
+  nilai_akhir: number;
 
-    tpp_pegawai?: TppPegawaiResponse;
+  tpp_pegawai?: TppPegawaiResponse;
 }
 
 export interface PenilaianTimResponse {
-    nama_tim: string;
-    kode_tim: string;
-    is_sekretariat: boolean;
-    keterangan: string;
-    penilaian_kinerjas: PenilaianGroupedResponse[];
+  nama_tim: string;
+  kode_tim: string;
+  is_sekretariat: boolean;
+  keterangan: string;
+  penilaian_kinerjas: PenilaianGroupedResponse[];
 }

@@ -32,6 +32,8 @@ interface FormValue {
     golongan: string;
     namaRole: string;
     basicTpp: number | null;
+    nomorRekening: string | null;
+    npwp: string | null;
     pajak: OptionType | null;
     isActive: boolean;
     tanggalMulai: string;
@@ -65,6 +67,8 @@ export const ModalJabatanPegawai: React.FC<Modal> = ({ isOpen, onClose, onSucces
             },
             pangkat: Data?.pangkat,
             golongan: Data?.golongan,
+            npwp: Data?.npwp ?? null,
+            nomorRekening: Data?.nomorRekening ?? null,
             basicTpp: Data?.basicTpp ?? null,
             pajak: Data?.pajak ? {
                 value: Data.pajak,
@@ -174,6 +178,8 @@ export const ModalJabatanPegawai: React.FC<Modal> = ({ isOpen, onClose, onSucces
             eselon: data?.eselon?.value,
             pangkat: data?.pangkat,
             golongan: data?.golongan,
+            nomorRekening: data?.nomorRekening,
+            npwp: data?.npwp,
             basicTpp: data?.basicTpp,
             pajak: data?.pajak?.value,
             tanggalMulai: data?.tanggalMulai,
@@ -469,6 +475,70 @@ export const ModalJabatanPegawai: React.FC<Modal> = ({ isOpen, onClose, onSucces
                     )}
                 />
                 <Controller
+                    name="nomorRekening"
+                    control={control}
+                    rules={{ required: "wajib terisi" }}
+                    render={({ field }) => {
+                        const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+                            const inputValue = e.target.value;
+                            const numericValue = unformatNumber(inputValue);
+                            field.onChange(numericValue);
+                        };
+                        const displayValue = field.value;
+                        return (
+                            <>
+                                <label htmlFor="nomorRekening" className="text-sm text-slate-500">No Rekening</label>
+                                <input
+                                    ref={field.ref}
+                                    onBlur={field.onBlur}
+                                    className="border px-4 py-2 rounded-lg"
+                                    id="nomorRekening"
+                                    type="text"
+                                    inputMode="numeric"
+                                    placeholder="Masukkan No Rekening"
+                                    value={displayValue === null ? "" : displayValue}
+                                    onChange={handleInputChange}
+                                />
+                                {errors.nomorRekening &&
+                                    <p className="text-red-400 italic">{errors.nomorRekening.message}</p>
+                                }
+                            </>
+                        )
+                    }}
+                />
+                <Controller
+                    name="npwp"
+                    control={control}
+                    rules={{ required: "wajib terisi" }}
+                    render={({ field }) => {
+                        const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+                            const inputValue = e.target.value;
+                            const numericValue = unformatNumber(inputValue);
+                            field.onChange(numericValue);
+                        };
+                        const displayValue = field.value;
+                        return (
+                            <>
+                                <label htmlFor="npwp" className="text-sm text-slate-500">No NPWP</label>
+                                <input
+                                    ref={field.ref}
+                                    onBlur={field.onBlur}
+                                    className="border px-4 py-2 rounded-lg"
+                                    id="npwp"
+                                    type="text"
+                                    inputMode="numeric"
+                                    placeholder="Masukkan No NPWP"
+                                    value={displayValue === null ? "" : displayValue}
+                                    onChange={handleInputChange}
+                                />
+                                {errors.npwp &&
+                                    <p className="text-red-400 italic">{errors.npwp.message}</p>
+                                }
+                            </>
+                        )
+                    }}
+                />
+                <Controller
                     name="basicTpp"
                     control={control}
                     rules={{ required: "wajib terisi" }}
@@ -518,6 +588,7 @@ export const ModalJabatanPegawai: React.FC<Modal> = ({ isOpen, onClose, onSucces
                         </>
                     )}
                 />
+              {/* BPJS 1 dan 4 otomatis dari backend */}
                 <div className="flex flex-col gap-2 mt-3">
                     <ButtonSky
                         className="w-full"

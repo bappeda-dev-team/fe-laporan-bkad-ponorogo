@@ -2,6 +2,7 @@
 
 import TableComponent from "@/components/page/TableComponent";
 import { formatRupiah } from "@/app/hooks/formatRupiah";
+import { formatPercent } from "@/app/hooks/formatPercent";
 import { TbCirclePlus, TbPencil } from "react-icons/tb";
 import { apiFetch } from "@/lib/apiFetch";
 import { useEffect, useState } from "react";
@@ -147,8 +148,8 @@ const TablePegawai = () => {
                                                 return Number.isFinite(pajak) ? `${pajak * 100}%` : "-";
                                             })()}
                                         </td>
-                                        <td className="border py-3 px-4 border-yellow-500 text-center">0</td>
-                                        <td className="border py-3 px-4 border-yellow-500 text-center">0</td>
+                                        <td className="border py-3 px-4 border-yellow-500 text-center">{formatPercent(item.bpjs_1 || 0)}</td>
+                                        <td className="border py-3 px-4 border-yellow-500 text-center">{formatPercent(item.bpjs_4 || 0)}</td>
                                         <td className="border py-3 px-4 border-yellow-500">{item.namaJabatan || "-"}</td>
                                         <td className="border py-3 px-4 border-yellow-500 text-center">{item.statusJabatan || "-"}</td>
                                         <td className="border py-3 px-4 border-yellow-500 text-center">{item.eselon || "-"}</td>

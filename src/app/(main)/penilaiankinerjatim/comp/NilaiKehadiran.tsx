@@ -83,35 +83,35 @@ export const FormNilaiKehadiran: React.FC<FormNilaiKehadiran> = ({ nilai, onClos
         const payload = {
             bulan: branding?.bulan?.value,
             id_pegawai: Data?.id_pegawai,
-            jenis_nilai: "KINERJA_TIM",
+            jenis_nilai: "KINERJA_KEHADIRAN",
             kode_opd: branding?.opd,
             kode_tim: kode_tim,
             nilai_kinerja: Number(data.nilai_kinerja),
             tahun: String(branding?.tahun?.value),
         }
-        console.log(payload);
-        toastSuccess("dalam pengembangan");
-        // try {
-        //     setProses(true);
-        //     await apiFetch(`api/v1/timkerjabkad/penilaian_kinerja`, {
-        //         method: "POST",
-        //         body: payload as any
-        //     }).then(_ => {
-        //         toastSuccess("data berhasil disimpan");
-        //         setEdited(true);
-        //         setHasilEdit(data.nilai_kinerja);
-        //         onUpdate(Number(data.nilai_kinerja));
-        //         // AlertNotification("Berhasil", "Berhasil Menambahkan Tim", "success", 3000, true);
-        //         handleClose();
-        //     }).catch(err => {
-        //         AlertNotification("Gagal", `${err}`, "error", 3000, true);
-        //     })
-        // } catch (err) {
-        //     console.log(err);
-        //     AlertNotification("Gagal", `${err}`, "error", 3000, true);
-        // } finally {
-        //     setProses(false);
-        // }
+        // console.log(payload);
+        // toastSuccess("dalam pengembangan");
+        try {
+            setProses(true);
+            await apiFetch(`/api/v1/timkerjabkad/penilaian_kinerja`, {
+                method: "POST",
+                body: payload as any
+            }).then(_ => {
+                toastSuccess("data berhasil disimpan");
+                setEdited(true);
+                setHasilEdit(data.nilai_kinerja);
+                onUpdate(Number(data.nilai_kinerja));
+                // AlertNotification("Berhasil", "Berhasil Menambahkan Tim", "success", 3000, true);
+                handleClose();
+            }).catch(err => {
+                AlertNotification("Gagal", `${err}`, "error", 3000, true);
+            })
+        } catch (err) {
+            console.log(err);
+            AlertNotification("Gagal", `${err}`, "error", 3000, true);
+        } finally {
+            setProses(false);
+        }
     }
 
     const handleClose = () => {
