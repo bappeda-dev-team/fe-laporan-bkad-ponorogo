@@ -147,8 +147,8 @@ const TablePegawai = () => {
                                                 return Number.isFinite(pajak) ? `${pajak * 100}%` : "-";
                                             })()}
                                         </td>
-                                        <td className="border py-3 px-4 border-yellow-500 text-center">0</td>
-                                        <td className="border py-3 px-4 border-yellow-500 text-center">0</td>
+                                        <td className="border py-3 px-4 border-yellow-500 text-center">Rp.{formatRupiah(item.bpjs_1 || 0)}</td>
+                                        <td className="border py-3 px-4 border-yellow-500 text-center">Rp.{formatRupiah(item.bpjs_4 || 0)}</td>
                                         <td className="border py-3 px-4 border-yellow-500">{item.namaJabatan || "-"}</td>
                                         <td className="border py-3 px-4 border-yellow-500 text-center">{item.statusJabatan || "-"}</td>
                                         <td className="border py-3 px-4 border-yellow-500 text-center">{item.eselon || "-"}</td>

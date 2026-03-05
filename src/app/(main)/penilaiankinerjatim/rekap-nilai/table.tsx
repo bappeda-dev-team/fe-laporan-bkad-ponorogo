@@ -126,12 +126,12 @@ const Table: React.FC<Table> = ({ data }) => {
                                         <td className={tdClass}>
                                             {editable ? (
                                                 <NilaiKehadiran
-                                                    nilai={0}
+                                                    nilai={item.kinerja_kehadiran || 0}
                                                     kode_tim={item.kode_tim}
                                                     Data={item}
                                                 />
                                             ) : (
-                                                0
+                                                item.kinerja_kehadiran || 0
                                             )}
                                         </td>
                                         <td className={`border border-blue-500 px-6 py-4 text-center`}>{item.nilai_akhir || 0}</td>

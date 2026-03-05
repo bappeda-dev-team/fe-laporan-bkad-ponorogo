@@ -31,6 +31,7 @@ export interface PenilaianKinerjas {
     kinerja_bappeda: number;
     kinerja_tim: number;
     kinerja_person: number;
+    kinerja_kehadiran: number;
     nilai_akhir: number;
     tpp_pegawai?: TppPegawaiResponse;
 }
