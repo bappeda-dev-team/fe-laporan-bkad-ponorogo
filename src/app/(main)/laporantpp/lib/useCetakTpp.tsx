@@ -122,8 +122,11 @@ export function useCetakTpp(
                 // Jumlah Pajak
                 { content: `Rp.${formatRupiah(item.tpp_pegawai?.jumlah_pajak) || 0}` },
 
-                // POT BPJS
-                { content: `Rp.${formatRupiah(item.tpp_pegawai?.potongan_bpjs) || 0}` },
+                // POT BPJS 1
+                { content: `Rp.${formatRupiah(item.tpp_pegawai?.bpjs_1) || 0}` },
+
+                // POT BPJS 4
+                { content: `Rp.${formatRupiah(item.tpp_pegawai?.bpjs_4) || 0}` },
 
                 // Jumlah Bersih
                 { content: `Rp.${formatRupiah(item.tpp_pegawai?.jumlah_bersih) || 0}` },
@@ -152,7 +155,8 @@ export function useCetakTpp(
             "Jumlah Kotor",
             "Pajak",
             "Jumlah Pajak",
-            "POT BPJS(1%)",
+            "POT BPJS 1",
+            "POT BPJS 4",
             "Jumlah Bersih",
             "Tanda Tangan",
         ]
