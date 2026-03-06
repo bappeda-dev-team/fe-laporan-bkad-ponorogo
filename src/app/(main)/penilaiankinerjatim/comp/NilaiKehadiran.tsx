@@ -5,11 +5,12 @@ import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { ButtonRedBorder, ButtonGreenBorder } from "@/components/button/button";
 import { useState, useEffect } from "react";
 import { TbPencil, TbDeviceFloppy, TbX } from "react-icons/tb";
-import { FloatingLabelInput } from "@/components/global/input";
+import { PercentInput } from "@/components/global/input";
 import { FormValue } from "../type";
 import { useBrandingContext } from "@/provider/BrandingProvider";
 import { apiFetch } from "@/lib/apiFetch";
 import { AlertNotification } from "@/components/global/sweetalert2";
+import { percentDisplay, percentPayload, formatPercent } from "@/app/hooks/kehadiranHelper";
 
 interface Modal {
     nilai: number;
@@ -27,7 +28,7 @@ export const NilaiKehadiran: React.FC<Modal> = ({ nilai, kode_tim, Data }) => {
     }, [nilai]);
 
     const handleUpdateNilai = (nilaiBaru: number) => {
-        setNilaiSaatIni(nilaiBaru);
+        setNilaiSaatIni(percentPayload(nilaiBaru));
     }
 
     if (Editing) {
@@ -40,22 +41,21 @@ export const NilaiKehadiran: React.FC<Modal> = ({ nilai, kode_tim, Data }) => {
                 onUpdate={handleUpdateNilai}
             />
         )
-    } else {
-        return (
-            <div className="flex items-center justify-center gap-2">
-                <p>{nilaiSaatIni || nilai}</p>
-                <button
-                    className="p-1 rounded-full border border-emerald-500 text-emerald-500 hover:bg-emerald-300 hover:text-white cursor-pointer"
-                    type="button"
-                    onClick={() => {
-                        setEditing(true);
-                    }}
-                >
-                    <TbPencil />
-                </button>
-            </div>
-        )
     }
+
+    return (
+        <div className="flex items-center justify-center gap-2">
+            <p>{percentDisplay(nilaiSaatIni)}%</p>
+
+            <button
+                className="p-1 rounded-full border border-emerald-500 text-emerald-500 hover:bg-emerald-300 hover:text-white cursor-pointer"
+                type="button"
+                onClick={() => setEditing(true)}
+            >
+                <TbPencil />
+            </button>
+        </div>
+    )
 }
 
 interface FormNilaiKehadiran {
@@ -67,16 +67,18 @@ interface FormNilaiKehadiran {
 }
 
 export const FormNilaiKehadiran: React.FC<FormNilaiKehadiran> = ({ nilai, onClose, kode_tim, Data, onUpdate }) => {
+    const defaultNilai =
+        nilai === 0
+            ? "100.00"
+            : percentDisplay(nilai)
 
     const { control, handleSubmit, reset, formState: { errors } } = useForm<FormValue>({
         defaultValues: {
-            nilai_kinerja: nilai === 0 ? 100 : 0,
+            nilai_kinerja: defaultNilai
         }
     });
     const { toastSuccess } = useToast();
-    const [Edited, setEdited] = useState<boolean>(false);
     const [Proses, setProses] = useState<boolean>(false);
-    const [HasilEdit, setHasilEdit] = useState<number | null>(null);
     const { branding } = useBrandingContext();
 
     const onSubmit: SubmitHandler<FormValue> = async (data) => {
@@ -86,7 +88,7 @@ export const FormNilaiKehadiran: React.FC<FormNilaiKehadiran> = ({ nilai, onClos
             jenis_nilai: "KINERJA_KEHADIRAN",
             kode_opd: branding?.opd,
             kode_tim: kode_tim,
-            nilai_kinerja: Number(data.nilai_kinerja),
+            nilai_kinerja: percentPayload(Number(data.nilai_kinerja)),
             tahun: String(branding?.tahun?.value),
         }
         // console.log(payload);
@@ -98,8 +100,6 @@ export const FormNilaiKehadiran: React.FC<FormNilaiKehadiran> = ({ nilai, onClos
                 body: payload as any
             }).then(_ => {
                 toastSuccess("data berhasil disimpan");
-                setEdited(true);
-                setHasilEdit(data.nilai_kinerja);
                 onUpdate(Number(data.nilai_kinerja));
                 // AlertNotification("Berhasil", "Berhasil Menambahkan Tim", "success", 3000, true);
                 handleClose();
@@ -124,18 +124,25 @@ export const FormNilaiKehadiran: React.FC<FormNilaiKehadiran> = ({ nilai, onClos
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Controller
                     name="nilai_kinerja"
-                    rules={{ required: "tidak boleh kosong" }}
+                    rules={{
+                        required: "tidak boleh kosong",
+                        max: { value: 100, message: "maksimum 100" },
+                        min: { value: 0, message: "minimum 0" }
+                    }}
                     control={control}
                     render={({ field }) => (
                         <>
-                            <FloatingLabelInput
-                                {...field}
+                            <PercentInput
                                 id="nilai_kinerja"
-                                label="nilai Kehadiran"
-                                type="number"
+                                value={field.value}
+                                onChangeAction={field.onChange}
+                                onBlurAction={field.onBlur}
                             />
+
                             {errors.nilai_kinerja &&
-                                <p className="text-xs italic text-red-500">{errors.nilai_kinerja?.message}</p>
+                                <p className="text-xs italic text-red-500">
+                                    {errors.nilai_kinerja?.message}
+                                </p>
                             }
                         </>
                     )}

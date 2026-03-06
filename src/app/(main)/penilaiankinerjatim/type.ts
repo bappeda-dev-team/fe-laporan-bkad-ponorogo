@@ -4,7 +4,7 @@ export interface FormValue {
     jenis_nilai: string,
     kode_opd: string,
     kode_tim: string,
-    nilai_kinerja: number,
+    nilai_kinerja: string, // hanya saat input
     tahun: string
 }
 

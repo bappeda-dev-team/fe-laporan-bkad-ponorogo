@@ -7,6 +7,7 @@ import { TbPrinter } from "react-icons/tb";
 import { useCetakPenilaianTimAll } from "../lib/useCetakPenilaianTimAll";
 import useToast from "@/components/global/toast";
 import { formatRupiah } from "@/app/hooks/formatRupiah";
+import { percentDisplay } from "@/app/hooks/kehadiranHelper"
 
 interface Table {
     data: PenilaianKinerjas[];
@@ -73,7 +74,7 @@ const Table: React.FC<Table> = ({ data }) => {
                             <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Nilai Kerja Person</th>
                             <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Potongan BPJS 1%</th>
                             <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Potongan BPJS 4%</th>
-                            <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Nilai Kehadiran</th>
+                            <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Persentase Kehadiran</th>
                             <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Nilai Akhir</th>
                             <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Aksi</th>
                         </tr>
@@ -131,7 +132,7 @@ const Table: React.FC<Table> = ({ data }) => {
                                                     Data={item}
                                                 />
                                             ) : (
-                                                item.kinerja_kehadiran || 0
+                                                `${percentDisplay(item.kinerja_kehadiran)}%` || 0
                                             )}
                                         </td>
                                         <td className={`border border-blue-500 px-6 py-4 text-center`}>{item.nilai_akhir || 0}</td>
