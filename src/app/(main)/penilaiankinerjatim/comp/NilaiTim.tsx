@@ -67,16 +67,18 @@ interface FormNilaiTim {
 }
 
 export const FormNilaiTim: React.FC<FormNilaiTim> = ({ nilai, onClose, kode_tim, Data, onUpdate }) => {
+    const defaultNilai =
+        nilai === 0
+            ? "100.00"
+            : String(nilai)
 
     const { control, handleSubmit, reset, formState: { errors } } = useForm<FormValue>({
         defaultValues: {
-            nilai_kinerja: nilai === 0 ? 100 : 0,
+            nilai_kinerja: defaultNilai,
         }
     });
     const { toastSuccess } = useToast();
-    const [Edited, setEdited] = useState<boolean>(false);
     const [Proses, setProses] = useState<boolean>(false);
-    const [HasilEdit, setHasilEdit] = useState<number | null>(null);
     const { branding } = useBrandingContext();
 
     const onSubmit: SubmitHandler<FormValue> = async (data) => {
@@ -97,8 +99,6 @@ export const FormNilaiTim: React.FC<FormNilaiTim> = ({ nilai, onClose, kode_tim,
                 body: payload as any
             }).then(_ => {
                 toastSuccess("data berhasil disimpan");
-                setEdited(true);
-                setHasilEdit(data.nilai_kinerja);
                 onUpdate(Number(data.nilai_kinerja));
                 // AlertNotification("Berhasil", "Berhasil Menambahkan Tim", "success", 3000, true);
                 handleClose();

@@ -67,10 +67,14 @@ interface FormNilaiKinerja {
 }
 
 export const FormNilaiKinerja: React.FC<FormNilaiKinerja> = ({ nilai, onClose, kode_tim, Data, onUpdate }) => {
+    const defaultNilai =
+        nilai === 0
+            ? "100.00"
+            : String(nilai)
 
     const { control, handleSubmit, reset, formState: { errors } } = useForm<FormValue>({
         defaultValues: {
-            nilai_kinerja: nilai === 0 ? 100 : nilai,
+            nilai_kinerja: defaultNilai,
         }
     });
     const { toastSuccess } = useToast();

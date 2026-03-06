@@ -74,7 +74,7 @@ export const FormNilaiKehadiran: React.FC<FormNilaiKehadiran> = ({ nilai, onClos
 
     const { control, handleSubmit, reset, formState: { errors } } = useForm<FormValue>({
         defaultValues: {
-            nilai_kinerja: defaultNilai
+          nilai_kinerja: defaultNilai
         }
     });
     const { toastSuccess } = useToast();
