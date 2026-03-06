@@ -63,6 +63,7 @@ export const Table: React.FC<Table> = ({ data }) => {
               <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Nilai Kinerja BPPKAD</th>
               <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Nilai Kerja Tim</th>
               <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Nilai Kerja Person</th>
+              <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Nilai Kehadiran</th>
               <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Nilai Akhir</th>
               <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Persentase penerimaan</th>
               <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Jumlah Kotor</th>
@@ -91,6 +92,7 @@ export const Table: React.FC<Table> = ({ data }) => {
               <th className="border-r border-b py-1 border-gray-300 text-center">15</th>
               <th className="border-r border-b py-1 border-gray-300 text-center">16</th>
               <th className="border-r border-b py-1 border-gray-300 text-center">17</th>
+              <th className="border-r border-b py-1 border-gray-300 text-center">18</th>
             </tr>
           </thead>
           <tbody>
@@ -116,6 +118,7 @@ export const Table: React.FC<Table> = ({ data }) => {
                     <td className={`border ${data.is_sekretariat ? "border-emerald-500" : "border-blue-500"} px-6 py-4 text-center`}>{item.kinerja_bappeda || 0}</td>
                     <td className={`border ${data.is_sekretariat ? "border-emerald-500" : "border-blue-500"} px-6 py-4 text-center`}>{item.kinerja_tim || 0}</td>
                     <td className={`border ${data.is_sekretariat ? "border-emerald-500" : "border-blue-500"} px-6 py-4 text-center`}>{item.kinerja_person || 0}</td>
+                    <td className={`border ${data.is_sekretariat ? "border-emerald-500" : "border-blue-500"} px-6 py-4 text-center`}>{item.kinerja_kehadiran || 0}</td>
                     <td className={`border ${data.is_sekretariat ? "border-emerald-500" : "border-blue-500"} px-6 py-4 text-center`}>{item.nilai_akhir || 0}</td>
                     <td className={`border ${data.is_sekretariat ? "border-emerald-500" : "border-blue-500"} px-6 py-4 text-center`}>{item.tpp_pegawai?.persentase_penerimaan || "-"}</td>
                     <td className={`border ${data.is_sekretariat ? "border-emerald-500" : "border-blue-500"} px-6 py-4 text-center`}>Rp.{formatRupiah(item.tpp_pegawai?.jumlah_kotor) ?? 0}</td>
@@ -134,13 +137,13 @@ export const Table: React.FC<Table> = ({ data }) => {
                 ))
               :
               <tr>
-                <td colSpan={17} className={`border ${data.is_sekretariat ? "border-emerald-500" : "border-blue-500"} px-6 py-4`}>Data Anggota Kosong</td>
+                <td colSpan={18} className={`border ${data.is_sekretariat ? "border-emerald-500" : "border-blue-500"} px-6 py-4`}>Data Anggota Kosong</td>
               </tr>
             }
           </tbody>
           <tfoot>
             <tr>
-              <td colSpan={15} className={`border ${data.is_sekretariat ? "border-emerald-500" : "border-blue-500"} px-6 py-4`}>Total</td>
+              <td colSpan={16} className={`border ${data.is_sekretariat ? "border-emerald-500" : "border-blue-500"} px-6 py-4`}>Total</td>
               <td className={`border ${data.is_sekretariat ? "border-emerald-500" : "border-blue-500"} px-6 py-4`}>
                 Rp.{formatRupiah(totalJumlahBersih(data?.penilaian_kinerjas))}
               </td>

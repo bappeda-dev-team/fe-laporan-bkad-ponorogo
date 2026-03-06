@@ -93,6 +93,12 @@ export function useCetakTppAllTim(
                     styles: { halign: "center" }
                 },
 
+                // Nilai Kinerja kehadiran
+                {
+                    content: `${item.kinerja_kehadiran || 0}`,
+                    styles: { halign: "center" }
+                },
+
                 // Nilai Akhir
                 {
                     content: `${item.nilai_akhir || 0}`,
@@ -145,6 +151,7 @@ export function useCetakTppAllTim(
             "Nilai Kinerja BPPKAD",
             "Nilai Kinerja Tim",
             "Nilai Kinerja Person",
+            "Nilai Kinerja Kehadiran",
             "Nilai Akhir",
             "Persentase Penerimaan",
             "Jumlah Kotor",
