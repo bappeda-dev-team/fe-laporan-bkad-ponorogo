@@ -5,6 +5,7 @@ import autoTable from "jspdf-autotable";
 import { useBrandingContext } from "@/provider/BrandingProvider";
 import { GetResponseFindAllTppAllTim } from "../type";
 import { formatRupiah } from "@/app/hooks/formatRupiah";
+import { percentDisplay } from "@/app/hooks/kehadiranHelper"
 
 export function useCetakTppAllTim(
     data: GetResponseFindAllTppAllTim[],
@@ -66,6 +67,9 @@ export function useCetakTppAllTim(
                 // Pangkat Golongan Jabatan
                 { content: `${item.pangkat || "N/A"} -  ${item.golongan || "N/A"} - ${item.nama_jabatan_tim || "N/A"}` },
 
+                // Nomor Rekening NPWP
+                { content: `${item.nomorRekening || "N/A"} / ${item.npwp || "N/A"}` },
+
                 // Jabatan Dalam Tim
                 item.nama_jabatan_tim,
 
@@ -95,7 +99,7 @@ export function useCetakTppAllTim(
 
                 // Nilai Kinerja kehadiran
                 {
-                    content: `${Number.isFinite(item.kinerja_kehadiran) ? `${item.kinerja_kehadiran}%` : '0'}`,
+                    content: `${`${percentDisplay(item.kinerja_kehadiran)}%` || 0}`,
                     styles: { halign: "center" }
                 },
 
@@ -145,6 +149,7 @@ export function useCetakTppAllTim(
             "No",
             "Nama/NIP",
             "Pangkat/Golongan/Jabatan",
+            "Nomor Rekening/NPWP",
             "Jabatan Dalam Tim",
             "Nama Tim",
             "Basic TPP Konker",

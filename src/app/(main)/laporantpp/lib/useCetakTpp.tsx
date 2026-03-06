@@ -5,6 +5,7 @@ import autoTable from "jspdf-autotable";
 import { useBrandingContext } from "@/provider/BrandingProvider";
 import { PenilaianGroupedResponse, PenilaianTimResponse } from "@/types/penilaian_tpp";
 import { formatRupiah } from "@/app/hooks/formatRupiah";
+import { percentDisplay } from "@/app/hooks/kehadiranHelper"
 
 export function useCetakTpp(
     data: PenilaianTimResponse | null,
@@ -69,6 +70,9 @@ export function useCetakTpp(
                 // Pangkat Golongan Jabatan
                 { content: `${item.pangkat || "N/A"} -  ${item.golongan || "N/A"} - ${item.nama_jabatan_tim || "N/A"}` },
 
+                // Nomor Rekening NPWP
+                { content: `${item.nomorRekening || "N/A"} / ${item.npwp || "N/A"}` },
+
                 // Jabatan Dalam Tim
                 item.nama_jabatan_tim,
 
@@ -93,6 +97,12 @@ export function useCetakTpp(
                 // Nilai Kinerja Person
                 {
                     content: `${item.kinerja_person || 0}`,
+                    styles: { halign: "center" }
+                },
+
+                // Nilai Kehadiran Person
+                {
+                    content: `${`${percentDisplay(item.kinerja_kehadiran)}%` || 0}`,
                     styles: { halign: "center" }
                 },
 
@@ -145,11 +155,13 @@ export function useCetakTpp(
             "No",
             "Nama/NIP",
             "Pangkat/Golongan/Jabatan",
+            "Nomor Rekening/NPWP",
             "Jabatan Dalam Tim",
             "Nama Tim",
             "Nilai Kinerja BPPKAD",
             "Nilai Kinerja Tim",
             "Nilai Kinerja Person",
+            "Persentase Kehadiran",
             "Nilai Akhir",
             "Persentase Penerimaan",
             "Jumlah Kotor",

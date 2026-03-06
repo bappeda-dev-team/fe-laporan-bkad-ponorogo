@@ -6,6 +6,8 @@ export interface GetResponseFindAllTppAllTim {
     nama_jabatan_tim: string;
     pangkat: string;
     golongan: string;
+    nomorRekening: string;
+    npwp: string;
     jenis_jabatan: string;
     kode_tim: string;
     tahun: string;
