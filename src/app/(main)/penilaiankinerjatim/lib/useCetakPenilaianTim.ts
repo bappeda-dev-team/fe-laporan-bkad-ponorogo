@@ -130,6 +130,7 @@ export function useCetakPenilaianTim(
                 textColor: [255, 255, 255], // putih
                 fontStyle: "bold",
                 halign: "center",
+                overflow: "linebreak",
                 lineWidth: 0.1,
                 lineColor: [0, 0, 0],
             },
