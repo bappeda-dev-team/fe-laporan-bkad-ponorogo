@@ -180,10 +180,12 @@ export function useCetakTppAllTim(
                 lineColor: [0, 0, 0],
             },
             headStyles: {
+                fontSize: 8,
                 fillColor: [41, 128, 185], // biru
                 textColor: [255, 255, 255], // putih
                 fontStyle: "bold",
                 halign: "center",
+                valign: "middle",
                 overflow: "linebreak",
                 lineWidth: 0.1,
                 lineColor: [0, 0, 0],
