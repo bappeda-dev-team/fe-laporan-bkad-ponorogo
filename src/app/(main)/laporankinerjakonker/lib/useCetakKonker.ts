@@ -208,6 +208,7 @@ export function useCetakKonker(data: KinerjaKonkerGetResponse[]) {
                 fillColor: [41, 128, 185],
                 textColor: [255, 255, 255], // putih
                 fontStyle: "bold",
+                overflow: "linebreak",
                 halign: "center",
                 lineWidth: 0.1,
                 lineColor: [0, 0, 0],

@@ -189,6 +189,7 @@ export function useCetakTpp(
                 fillColor: sekretariat ? "#33A477" : [41, 128, 185], // biru
                 textColor: [255, 255, 255], // putih
                 fontStyle: "bold",
+                overflow: "linebreak",
                 halign: "center",
                 lineWidth: 0.1,
                 lineColor: [0, 0, 0],
