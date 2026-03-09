@@ -18,6 +18,7 @@ interface Modal {
     jenis: "baru" | "edit";
     data?: TimGetResponse;
     tahun: number | null;
+    bulan: number | null;
 }
 interface FormValue {
     id: number;
@@ -27,9 +28,10 @@ interface FormValue {
     kode_tim: string;
     nama_tim: string;
     tahun: string;
+    bulan: number;
 }
 
-export const ModalTim: React.FC<Modal> = ({ isOpen, onClose, onSuccess, jenis, data, tahun }) => {
+export const ModalTim: React.FC<Modal> = ({ isOpen, onClose, onSuccess, jenis, data, tahun, bulan }) => {
     const [Sekretariat, setSekretariat] = useState<boolean>(false);
 
     const currentTahunStr = `${tahun}`
@@ -47,6 +49,7 @@ export const ModalTim: React.FC<Modal> = ({ isOpen, onClose, onSuccess, jenis, d
             nama_tim: data?.nama_tim,
             is_sekretariat: data?.is_sekretariat,
             tahun: currentTahunStr,
+            bulan: bulan ?? 0,
         }
     });
 
@@ -60,6 +63,7 @@ export const ModalTim: React.FC<Modal> = ({ isOpen, onClose, onSuccess, jenis, d
             nama_tim: data?.nama_tim ?? "",
             is_sekretariat: data?.is_sekretariat ?? false,
             tahun: String(resolvedTahun),
+            bulan: bulan ?? 0,
         });
 
         setSekretariat(Boolean(data?.is_sekretariat));
@@ -85,7 +89,8 @@ export const ModalTim: React.FC<Modal> = ({ isOpen, onClose, onSuccess, jenis, d
             keterangan: data.keterangan,
             is_active: true,
             is_sekretariat: Sekretariat,
-            tahun: String(resolvedTahun)
+            tahun: String(resolvedTahun),
+            bulan: bulan ?? 0,
         }
         // console.log(payload);
 
