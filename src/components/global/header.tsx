@@ -113,6 +113,8 @@ export const Header = () => {
     { label: "Oktober", value: 10 },
     { label: "November", value: 11 },
     { label: "Desember", value: 12 },
+    { label: "Bulan ke-13", value: 13 },
+    { label: "Bulan ke-14", value: 14 },
   ]
 
   const toggleMobileMenu = () => {

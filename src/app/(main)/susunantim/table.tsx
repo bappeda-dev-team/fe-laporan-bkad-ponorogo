@@ -71,6 +71,7 @@ export const Table = () => {
                     onClose={() => setModalOpen(false)}
                     onSuccess={() => setFetchTrigger((prev) => prev + 1)}
                     tahun={tahun}
+                    bulan={bulan}
                     jenis="baru"
                 />
             </>
