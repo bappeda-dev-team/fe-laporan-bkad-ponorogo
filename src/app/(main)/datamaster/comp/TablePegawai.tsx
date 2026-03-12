@@ -98,6 +98,7 @@ const TablePegawai = () => {
                 <th className="border-r border-b py-3 px-4 border-gray-300 w-[50px] text-center">No</th>
                 <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[300px] text-center">Nama Pegawai</th>
                 <th colSpan={2} className="border-r border-b py-3 px-4 border-gray-300 min-w-[100px] text-center">NIP</th>
+                <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[300px] text-center">Jenis Jabatan</th>
                 <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Basic TPP</th>
                 <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[160px] text-center">No Rekeing</th>
                 <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[160px] text-center">No NPWP</th>
@@ -139,6 +140,7 @@ const TablePegawai = () => {
                         </ButtonRed>
                       </div>
                     </td>
+                    <td className="border py-3 px-4 border-yellow-500 text-center">{item.jenisJabatan || "-"}</td>
                     <td className="border py-3 px-4 border-yellow-500 text-center">Rp.{formatRupiah(item.basicTpp ?? 0)}</td>
                     <td className="border py-3 px-4 border-yellow-500 text-center">{item.nomorRekening}</td>
                     <td className="border py-3 px-4 border-yellow-500 text-center">{item.npwp}</td>
