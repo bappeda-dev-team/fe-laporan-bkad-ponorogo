@@ -24,8 +24,8 @@ export function useCetakTppAllTim(
         const doc = new jsPDF({
             orientation: "landscape",
             unit: "mm",
-            format: "a3",
-            // format: [330, 210],
+            // format: "a3",
+            format: [330, 210],
         });
 
         const pageWidth = doc.internal.pageSize.getWidth();
@@ -83,7 +83,7 @@ export function useCetakTppAllTim(
                 item.nama_tim,
 
                 // Basic TPP Konker
-                { content: `Rp.${formatRupiah(item.tpp_pegawai?.tpp_basic) || 0}` },
+                // { content: `Rp.${formatRupiah(item.tpp_pegawai?.tpp_basic) || 0}` },
 
                 // Nilai Kinerja Bappeda
                 {
@@ -161,7 +161,7 @@ export function useCetakTppAllTim(
             "Nomor Rekening/NPWP",
             "Jabatan Dalam Tim",
             "Nama Tim",
-            "Basic TPP Konker",
+            // "Basic TPP Konker",
             "Nilai Kinerja BPPKAD",
             "Nilai Kinerja Tim",
             "Nilai Kinerja Person",
@@ -179,7 +179,7 @@ export function useCetakTppAllTim(
         const Head2 = Head1.map((_, idx) => `${idx + 1}`);
 
 
-        const widthBPJS = 20;
+        const widthBPJS = 14;
 
         autoTable(doc, {
             startY: 32,
@@ -187,13 +187,12 @@ export function useCetakTppAllTim(
             head: [Head1, Head2],
             body,
             styles: {
-                fontSize: 5,
+                fontSize: 6,
                 valign: "middle",
                 lineWidth: 0.1,
                 lineColor: [0, 0, 0],
             },
             headStyles: {
-                fontSize: 8,
                 fillColor: [41, 128, 185], // biru
                 textColor: [255, 255, 255], // putih
                 fontStyle: "bold",

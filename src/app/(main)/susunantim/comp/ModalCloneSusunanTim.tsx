@@ -80,6 +80,8 @@ export const ModalCloneSusunanTim: React.FC<ModalCloneProps> = ({
         { label: "Oktober", value: 10 },
         { label: "November", value: 11 },
         { label: "Desember", value: 12 },
+        { label: "Bulan ke-13", value: 13 },
+        { label: "Bulan ke-14", value: 14 },
     ]
 
     const onSubmit: SubmitHandler<CloneFormValue> = async (form) => {
@@ -148,6 +150,19 @@ export const ModalCloneSusunanTim: React.FC<ModalCloneProps> = ({
                             </label>
 
                             <Select
+                                styles={{
+                                    control: (base) => ({
+                                        ...base,
+                                        borderRadius: "10px",
+                                        minHeight: "36px"
+                                    }),
+                                    menuPortal: (base) => ({
+                                        ...base,
+                                        zIndex: 9999
+                                    })
+                                }}
+                                menuPortalTarget={document.body}
+                                menuPosition="fixed"
                                 options={OptionBulan}
                                 placeholder="Pilih Bulan"
                                 value={OptionBulan.find(o => o.value === field.value) || null}
@@ -175,6 +190,19 @@ export const ModalCloneSusunanTim: React.FC<ModalCloneProps> = ({
                             </label>
 
                             <Select
+                                styles={{
+                                    control: (base) => ({
+                                        ...base,
+                                        borderRadius: "10px",
+                                        minHeight: "36px"
+                                    }),
+                                    menuPortal: (base) => ({
+                                        ...base,
+                                        zIndex: 9999
+                                    })
+                                }}
+                                menuPortalTarget={document.body}
+                                menuPosition="fixed"
                                 options={OptionTahun}
                                 placeholder="Pilih Tahun"
                                 value={OptionTahun.find(o => o.value === field.value) || null}
