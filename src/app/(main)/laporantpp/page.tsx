@@ -9,8 +9,8 @@ import { useBrandingContext } from "@/provider/BrandingProvider";
 import { LoadingButtonClip } from "@/components/global/Loading";
 import { TbPrinter } from "react-icons/tb";
 import { GetResponseFindAllTppAllTim } from "./type";
-//import { useCetakTppAllTim } from "./lib/useCetakTppAllTim";
 import { ModalCetakTpp } from "./comp/ModalCetak";
+import { PenanggungJawabProps } from "@/types/penilaian_tpp";
 
 const LaporanTpp = () => {
     const [FetchTrigger, setFetchTrigger] = useState<number>(0);
@@ -25,7 +25,7 @@ const LaporanTpp = () => {
         if (!isReady) {
             return [null, null];
         }
-      return [`/api/v1/timkerjabkad/laporan_tpp?tahun=${branding?.tahun?.value}&bulan=${branding?.bulan?.value}&kodeOpd=${branding?.opd}`,
+        return [`/api/v1/timkerjabkad/laporan_tpp?tahun=${branding?.tahun?.value}&bulan=${branding?.bulan?.value}&kodeOpd=${branding?.opd}`,
         `/api/v1/timkerjabkad/laporan_tpp_all?tahun=${branding?.tahun?.value}&bulan=${branding?.bulan?.value}&kodeOpd=${branding?.opd}`
         ];
     }, [isReady, tahun, bulan]);
@@ -49,6 +49,11 @@ const LaporanTpp = () => {
             setModalCetak(true);
         }
     }
+
+    const penanggungJawab = useMemo(
+        () => getPenanggungJawab(data ?? []),
+        [data]
+    );
 
     // Fetch pertama kali saat sudah ready
     useEffect(() => {
@@ -93,7 +98,9 @@ const LaporanTpp = () => {
                         </ButtonBlackBorder>
                         {data?.map((item: PenilaianTimResponse, index: number) => (
                             <div key={index} className="flex flex-col gap-2">
-                                <Table data={item} />
+                                <Table data={item}
+                                    penanggungJawab={penanggungJawab}
+                                />
                             </div>
                         ))}
                         {ModalCetak &&
@@ -102,6 +109,7 @@ const LaporanTpp = () => {
                                 onClose={() => handleModalCetak()}
                                 DataAllTim={AllTim ?? []}
                                 jenis="all"
+                                penanggungJawab={penanggungJawab}
                             />
                         }
                     </>
@@ -114,3 +122,25 @@ const LaporanTpp = () => {
 }
 
 export default LaporanTpp;
+
+function getPenanggungJawab(tims: PenilaianTimResponse[]): PenanggungJawabProps {
+    const pj = tims.find(t => t.is_penanggung_jawab)?.penilaian_kinerjas?.[0];
+
+    if (!pj) {
+        return {
+            nama_pegawai: "-",
+            nip: "-",
+            pangkat: "-",
+            golongan: "-",
+            jabatan: "-",
+        };
+    }
+
+    return {
+        nama_pegawai: pj.nama_pegawai,
+        nip: pj.id_pegawai,
+        pangkat: pj.pangkat,
+        golongan: pj.golongan,
+        jabatan: pj.jabatan,
+    };
+}

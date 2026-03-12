@@ -26,6 +26,9 @@ export interface TppPegawaiResponse {
     jumlah_kotor: number;
     pajak: number;
     jumlah_pajak: number;
-    potongan_bpjs: number;
+    potongan_bpjs_1: number;
+    potongan_bpjs_4: number;
+    bpjs_1: number;
+    bpjs_4: number;
     jumlah_bersih: number;
 }

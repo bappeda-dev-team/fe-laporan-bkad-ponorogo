@@ -18,6 +18,7 @@ export interface PenilaianGroupedResponse extends TppPegawaiResponse {
   nama_jabatan_tim: string;
   pangkat: string;
   golongan: string;
+  jabatan: string;
   nomorRekening: string;
   npwp: string;
   jenis_jabatan: string;
@@ -38,6 +39,15 @@ export interface PenilaianTimResponse {
   nama_tim: string;
   kode_tim: string;
   is_sekretariat: boolean;
+  is_penanggung_jawab: boolean;
   keterangan: string;
   penilaian_kinerjas: PenilaianGroupedResponse[];
+}
+
+export interface PenanggungJawabProps {
+    nama_pegawai: string;
+    nip: string;
+    pangkat: string;
+    golongan: string;
+    jabatan: string;
 }

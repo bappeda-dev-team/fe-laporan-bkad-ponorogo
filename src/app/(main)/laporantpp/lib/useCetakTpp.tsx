@@ -3,7 +3,7 @@
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import { useBrandingContext } from "@/provider/BrandingProvider";
-import { PenilaianGroupedResponse, PenilaianTimResponse } from "@/types/penilaian_tpp";
+import { PenilaianGroupedResponse, PenilaianTimResponse, PenanggungJawabProps } from "@/types/penilaian_tpp";
 import { formatRupiah } from "@/app/hooks/formatRupiah";
 import { percentDisplay } from "@/app/hooks/kehadiranHelper"
 import { namaBulan } from "@/app/hooks/formatCetakBulan"
@@ -14,16 +14,20 @@ export function useCetakTpp(
     keterangan_tim: string,
     sekretariat: boolean,
     tanggal: string,
+    bulanCetak: string,
+    penanggungJawab: PenanggungJawabProps
 ) {
     const { branding } = useBrandingContext();
     // console.log("tanggal :", tanggal);
     const cetakPdf = () => {
         if (!data) return;
 
+        // F4 size: 210mm x 330mm
         const doc = new jsPDF({
             orientation: "landscape",
             unit: "mm",
             format: "a3",
+            // format: [330, 210],
         });
 
         const pageWidth = doc.internal.pageSize.getWidth();
@@ -108,10 +112,10 @@ export function useCetakTpp(
                 },
 
                 // Nilai Akhir
-                {
-                    content: `${item.nilai_akhir || 0}`,
-                    styles: { halign: "center" }
-                },
+                // {
+                //     content: `${item.nilai_akhir || 0}`,
+                //     styles: { halign: "center" }
+                // },
 
                 // Persentase Penerimaan
                 {
@@ -163,7 +167,7 @@ export function useCetakTpp(
             "Nilai Kinerja Tim",
             "Nilai Kinerja Person",
             "Persentase Kehadiran",
-            "Nilai Akhir",
+            // "Nilai Akhir",
             "Persentase Penerimaan",
             "Jumlah Kotor",
             "Pajak",
@@ -174,6 +178,8 @@ export function useCetakTpp(
             "Tanda Tangan",
         ]
         const Head2 = Head1.map((_, idx) => `${idx + 1}`);
+
+        const widthBPJS = 20;
 
         autoTable(doc, {
             startY: 32,
@@ -195,6 +201,10 @@ export function useCetakTpp(
                 lineWidth: 0.1,
                 lineColor: [0, 0, 0],
             },
+            columnStyles: {
+                14: { cellWidth: widthBPJS },
+                15: { cellWidth: widthBPJS }
+            }
         });
 
         // Ambil posisi akhir tabel
@@ -209,17 +219,18 @@ export function useCetakTpp(
 
         doc.setFont("helvetica", "normal");
         doc.setFontSize(9);
-        doc.text(`Ponorogo, ${tanggal} ${branding?.bulan?.label} ${branding.tahun?.value}`, centerX, startY);
+        doc.text(`Ponorogo, ${tanggal} ${bulanCetak} ${branding.tahun?.value}`, centerX, startY);
 
         // Semua teks pakai centerX
-        doc.text(`Plt. KEPALA BADAN PENDAPATAN,`, centerX, startY + 5);
-        doc.text("PENGELOLA KEUANGAN DAN ", centerX, startY + 9);
-        doc.text("ASET DAERAH ", centerX, startY + 13);
+        doc.text(penanggungJawab.jabatan, centerX, startY + 5);
+        // doc.text(`Plt. KEPALA BADAN PENDAPATAN,`, centerX, startY + 5);
+        // doc.text("PENGELOLA KEUANGAN DAN ", centerX, startY + 9);
+        // doc.text("ASET DAERAH ", centerX, startY + 13);
 
         // Spasi tanda tangan
-        doc.text(`${data.penilaian_kinerjas[0].nama_pegawai ?? "Penanggung Jawab"}`, centerX, startY + 33);
-        doc.text(`NIP ${data.penilaian_kinerjas[0].id_pegawai ?? "-"}`, centerX, startY + 37);
-        doc.text(`${data.penilaian_kinerjas[0].pangkat ?? "N/A"} ${data.penilaian_kinerjas[0].golongan ?? "N/A"}`, centerX, startY + 41);
+        doc.text(`${penanggungJawab.nama_pegawai ?? "Penanggung Jawab"}`, centerX, startY + 33);
+        doc.text(`NIP ${penanggungJawab.nip ?? "-"}`, centerX, startY + 37);
+        doc.text(`${penanggungJawab.pangkat ?? "N/A"} ${penanggungJawab.golongan ?? "N/A"}`, centerX, startY + 41);
 
 
         doc.save(`TPP-Konker-${nama_tim}-${branding?.bulan?.label}-${branding?.tahun?.value || 0}-${keterangan_tim}.pdf`);

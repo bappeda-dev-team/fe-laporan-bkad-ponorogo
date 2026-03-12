@@ -1,6 +1,6 @@
 import { useState } from "react";
 import TableComponent from "@/components/page/TableComponent";
-import { PenilaianTimResponse, PenilaianGroupedResponse } from "@/types/penilaian_tpp"
+import { PenilaianTimResponse, PenilaianGroupedResponse, PenanggungJawabProps } from "@/types/penilaian_tpp"
 import { formatRupiah } from "@/app/hooks/formatRupiah";
 import { percentDisplay } from "@/app/hooks/kehadiranHelper"
 import { ButtonBlackBorder } from "@/components/button/button";
@@ -10,8 +10,9 @@ import { ModalCetakTpp } from "./ModalCetak";
 
 interface Table {
     data: PenilaianTimResponse;
+    penanggungJawab: PenanggungJawabProps;
 }
-export const Table: React.FC<Table> = ({ data }) => {
+export const Table: React.FC<Table> = ({ data, penanggungJawab }) => {
 
     const [ModalCetak, setModalCetak] = useState<boolean>(false);
     const [DataCetak, setDataCetak] = useState<PenilaianTimResponse | null>(null);
@@ -169,6 +170,7 @@ export const Table: React.FC<Table> = ({ data }) => {
                     onClose={() => handleModalCetak(null)}
                     DataPerTim={DataCetak ?? null}
                     jenis="tim"
+                    penanggungJawab={penanggungJawab}
                 />
             }
         </div>
