@@ -6,6 +6,7 @@ import { useBrandingContext } from "@/provider/BrandingProvider";
 import { GetResponseFindAllTppAllTim } from "../type";
 import { formatRupiah } from "@/app/hooks/formatRupiah";
 import { percentDisplay } from "@/app/hooks/kehadiranHelper"
+import { namaBulan } from "@/app/hooks/formatCetakBulan"
 
 export function useCetakTppAllTim(
     data: GetResponseFindAllTppAllTim[],
@@ -44,7 +45,7 @@ export function useCetakTppAllTim(
 
         doc.setFontSize(12);
         doc.text(
-            `BULAN ${(branding?.bulan?.label)?.toUpperCase() || ""}`,
+            namaBulan(branding.bulan),
             pageWidth / 2,
             28,
             { align: "center" }

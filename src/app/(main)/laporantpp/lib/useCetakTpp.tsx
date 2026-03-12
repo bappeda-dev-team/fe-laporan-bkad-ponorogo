@@ -6,6 +6,7 @@ import { useBrandingContext } from "@/provider/BrandingProvider";
 import { PenilaianGroupedResponse, PenilaianTimResponse } from "@/types/penilaian_tpp";
 import { formatRupiah } from "@/app/hooks/formatRupiah";
 import { percentDisplay } from "@/app/hooks/kehadiranHelper"
+import { namaBulan } from "@/app/hooks/formatCetakBulan"
 
 export function useCetakTpp(
     data: PenilaianTimResponse | null,
@@ -47,7 +48,7 @@ export function useCetakTpp(
 
         doc.setFontSize(12);
         doc.text(
-            `BULAN ${(branding?.bulan?.label)?.toUpperCase() || ""}`,
+            namaBulan(branding.bulan),
             pageWidth / 2,
             28,
             { align: "center" }
