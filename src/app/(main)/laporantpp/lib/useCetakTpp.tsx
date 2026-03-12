@@ -26,8 +26,8 @@ export function useCetakTpp(
         const doc = new jsPDF({
             orientation: "landscape",
             unit: "mm",
-            format: "a3",
-            // format: [330, 210],
+            // format: "a3",
+            format: [330, 210],
         });
 
         const pageWidth = doc.internal.pageSize.getWidth();
@@ -179,7 +179,7 @@ export function useCetakTpp(
         ]
         const Head2 = Head1.map((_, idx) => `${idx + 1}`);
 
-        const widthBPJS = 20;
+        const widthBPJS = 14;
 
         autoTable(doc, {
             startY: 32,
@@ -187,7 +187,7 @@ export function useCetakTpp(
             head: [Head1, Head2],
             body,
             styles: {
-                fontSize: 9,
+                fontSize: 6,
                 valign: "middle",
                 lineWidth: 0.1,
                 lineColor: [0, 0, 0],
