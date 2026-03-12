@@ -207,7 +207,7 @@ export function useCetakTpp(
             { content: "" }
         ];
 
-        const widthBPJS = 14;
+        const widthBPJS = 18;
 
         autoTable(doc, {
             startY: 32,
@@ -232,9 +232,11 @@ export function useCetakTpp(
                 lineColor: [0, 0, 0],
             },
             columnStyles: {
+                11: { cellWidth: widthBPJS },
+                13: { cellWidth: widthBPJS },
                 14: { cellWidth: widthBPJS },
                 15: { cellWidth: widthBPJS },
-                16: { cellWidth: 18 }
+                16: { cellWidth: widthBPJS }
             }
         });
 
