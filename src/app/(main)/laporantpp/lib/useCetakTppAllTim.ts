@@ -214,25 +214,65 @@ export function useCetakTppAllTim(
 
         // Ukuran kotak tanda tangan
         const boxWidth = 60;
-        const boxX = pageWidth - boxWidth - 40; // kanan kertas
+        const boxX = pageWidth - boxWidth - 20;
         const centerX = boxX + boxWidth / 2;
 
         const startY = finalY + 10;
 
         doc.setFont("helvetica", "normal");
         doc.setFontSize(9);
-        doc.text(`Ponorogo, ${tanggal} ${bulanCetak} ${branding.tahun?.value}`, centerX, startY);
+
+        doc.text(
+            `Ponorogo, ${tanggal} ${bulanCetak} ${branding.tahun?.value}`,
+            centerX,
+            startY,
+            { align: "center" }
+        );
+
+        // cetak jabatan
+        const lineCount = printJabatan(
+            doc,
+            penanggungJawab.jabatan,
+            centerX,
+            startY + 5,
+            boxWidth
+        );
+
+        // offset berdasarkan jumlah baris jabatan
+        const offset = lineCount * 4;
+
+        // Spasi tanda tangan
+        doc.text(
+            `${penanggungJawab.nama_pegawai ?? "Penanggung Jawab"}`,
+            centerX,
+            startY + 33 + offset,
+            { align: "center" }
+        );
+
+        doc.text(
+            `NIP ${penanggungJawab.nip ?? "-"}`,
+            centerX,
+            startY + 37 + offset,
+            { align: "center" }
+        );
+
+        doc.text(
+            `${penanggungJawab.pangkat ?? "N/A"} ${penanggungJawab.golongan ?? "N/A"}`,
+            centerX,
+            startY + 41 + offset,
+            { align: "center" }
+        );
 
         // Semua teks pakai centerX
-        doc.text(penanggungJawab.jabatan, centerX, startY + 5);
+        // doc.text(penanggungJawab.jabatan, centerX, startY + 5);
         // doc.text(`Plt. KEPALA BADAN PENDAPATAN,`, centerX, startY + 5);
         // doc.text("PENGELOLA KEUANGAN DAN ", centerX, startY + 9);
         // doc.text("ASET DAERAH ", centerX, startY + 13);
 
         // Spasi tanda tangan
-        doc.text(`${penanggungJawab.nama_pegawai ?? "Penanggung Jawab"}`, centerX, startY + 33);
-        doc.text(`NIP ${penanggungJawab.nip ?? "-"}`, centerX, startY + 37);
-        doc.text(`${penanggungJawab.pangkat ?? "N/A"} ${penanggungJawab.golongan ?? "N/A"}`, centerX, startY + 41);
+        // doc.text(`${penanggungJawab.nama_pegawai ?? "Penanggung Jawab"}`, centerX, startY + 33);
+        // doc.text(`NIP ${penanggungJawab.nip ?? "-"}`, centerX, startY + 37);
+        // doc.text(`${penanggungJawab.pangkat ?? "N/A"} ${penanggungJawab.golongan ?? "N/A"}`, centerX, startY + 41);
 
         // Spasi tanda tangan
         // doc.text(`"Penanggung Jawab"}`, centerX, startY + 33);
@@ -244,4 +284,20 @@ export function useCetakTppAllTim(
     };
 
     return { cetakPdfAllTim };
+}
+
+function printJabatan(
+    doc: jsPDF,
+    jabatan: string,
+    centerX: number,
+    startY: number,
+    boxWidth: number
+) {
+    const lines = doc.splitTextToSize(jabatan.toUpperCase(), boxWidth);
+
+    lines.forEach((line: string, i: number) => {
+        doc.text(line, centerX, startY + i * 4, { align: "center" });
+    });
+
+    return lines.length;
 }

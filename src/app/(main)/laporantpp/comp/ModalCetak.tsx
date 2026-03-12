@@ -10,7 +10,7 @@ import { useCetakTppAllTim } from "../lib/useCetakTppAllTim";
 import { AlertNotification } from "@/components/global/sweetalert2";
 import { GetResponseFindAllTppAllTim } from "../type";
 import Select from "react-select";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface Modal {
     isOpen: boolean;
@@ -83,6 +83,16 @@ export const ModalCetakTpp: React.FC<Modal> = ({
         penanggungJawab
     );
 
+    useEffect(() => {
+        if (!tanggal || !bulan) return;
+
+        if (jenis === "tim") {
+            cetakPdf();
+        } else if (jenis === "all") {
+            cetakPdfAllTim();
+        }
+    }, [tanggal, bulan]);
+
     const onSubmit: SubmitHandler<FormValue> = (data) => {
 
         const tanggalForm = data.tanggal;
@@ -92,15 +102,10 @@ export const ModalCetakTpp: React.FC<Modal> = ({
             AlertNotification("Tanggal atau Bulan Masih Kosong", "", "warning", 2000, true);
             return;
         }
+        console.log("BULANFORM: ", bulanForm)
 
         setTanggal(tanggalForm);
         setBulan(bulanForm);
-
-        if (jenis === "tim") {
-            cetakPdf();
-        } else if (jenis === "all") {
-            cetakPdfAllTim();
-        }
     };
 
     const handleClose = () => {
