@@ -1,7 +1,7 @@
 "use client";
 
 import jsPDF from "jspdf";
-import autoTable from "jspdf-autotable";
+import autoTable, { RowInput } from "jspdf-autotable";
 import { useBrandingContext } from "@/provider/BrandingProvider";
 import { GetResponseFindAllTppAllTim } from "../type";
 import { formatRupiah } from "@/app/hooks/formatRupiah";
@@ -178,6 +178,34 @@ export function useCetakTppAllTim(
         ]
         const Head2 = Head1.map((_, idx) => `${idx + 1}`);
 
+        // footer total
+        const totals = data.reduce(
+            (acc, item) => {
+                acc.kotor += item.tpp_pegawai?.jumlah_kotor ?? 0;
+                acc.pajak += item.tpp_pegawai?.jumlah_pajak ?? 0;
+                acc.bpjs1 += item.tpp_pegawai?.bpjs_1 ?? 0;
+                acc.bpjs4 += item.tpp_pegawai?.bpjs_4 ?? 0;
+                acc.bersih += item.tpp_pegawai?.jumlah_bersih ?? 0;
+                return acc;
+            },
+            {
+                kotor: 0,
+                pajak: 0,
+                bpjs1: 0,
+                bpjs4: 0,
+                bersih: 0,
+            }
+        );
+        const footRow: RowInput = [
+            { content: "Total", colSpan: 11, styles: { halign: "left", fontStyle: "bold" } },
+            { content: `Rp.${formatRupiah(totals.kotor)}`, styles: { fontStyle: "bold" } },
+            { content: "", styles: { halign: "right", fontStyle: "bold" } },
+            { content: `Rp.${formatRupiah(totals.pajak)}`, styles: { fontStyle: "bold" } },
+            { content: `Rp.${formatRupiah(totals.bpjs1)}`, styles: { fontStyle: "bold" } },
+            { content: `Rp.${formatRupiah(totals.bpjs4)}`, styles: { fontStyle: "bold" } },
+            { content: `Rp.${formatRupiah(totals.bersih)}`, styles: { fontStyle: "bold" } },
+            { content: "" }
+        ];
 
         const widthBPJS = 14;
 
@@ -186,6 +214,8 @@ export function useCetakTppAllTim(
             theme: "grid",
             head: [Head1, Head2],
             body,
+            foot: [footRow],
+            showFoot: "lastPage",
             styles: {
                 fontSize: 6,
                 valign: "middle",
@@ -204,7 +234,8 @@ export function useCetakTppAllTim(
             },
             columnStyles: {
                 14: { cellWidth: widthBPJS },
-                15: { cellWidth: widthBPJS }
+                15: { cellWidth: widthBPJS },
+                16: { cellWidth: 18 }
             }
         });
 
@@ -241,12 +272,31 @@ export function useCetakTppAllTim(
         const offset = lineCount * 4;
 
         // Spasi tanda tangan
+        // set bold
+        doc.setFont("helvetica", "bold");
+
         doc.text(
             `${penanggungJawab.nama_pegawai ?? "Penanggung Jawab"}`,
             centerX,
             startY + 33 + offset,
             { align: "center" }
         );
+
+        // hitung lebar text
+        const text = `${penanggungJawab.nama_pegawai ?? "Penanggung Jawab"}`;
+        const textWidth = doc.getTextWidth(text);
+
+        // gambar underline
+        doc.line(
+            centerX - textWidth / 2,
+            startY + 34 + offset,
+            centerX + textWidth / 2,
+            startY + 34 + offset
+        );
+
+        // kembalikan font normal
+        doc.setFont("helvetica", "normal");
+
 
         doc.text(
             `NIP ${penanggungJawab.nip ?? "-"}`,
