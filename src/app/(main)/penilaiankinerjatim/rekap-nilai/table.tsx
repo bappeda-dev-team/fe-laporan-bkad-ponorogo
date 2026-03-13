@@ -8,6 +8,7 @@ import { useCetakPenilaianTimAll } from "../lib/useCetakPenilaianTimAll";
 import useToast from "@/components/global/toast";
 import { formatRupiah } from "@/app/hooks/formatRupiah";
 import { percentDisplay } from "@/app/hooks/kehadiranHelper"
+import { useCetakPerson } from "../lib/useCetakPerson";
 
 interface Table {
     data: PenilaianKinerjas[];
@@ -17,6 +18,7 @@ const Table: React.FC<Table> = ({ data }) => {
 
     const { branding } = useBrandingContext();
     const { cetakPdfAllTim } = useCetakPenilaianTimAll(data ?? [], "12");
+    const { cetakPersonPdf } = useCetakPerson();
     const { toastInfo } = useToast();
 
     const roleAccessMap: Record<string, string[]> = {
@@ -141,7 +143,7 @@ const Table: React.FC<Table> = ({ data }) => {
                                                 <ButtonBlackBorder
                                                     className="flex items-center gap-1"
                                                     onClick={() => {
-                                                        toastInfo("Dalam Perbaikan");
+                                                        cetakPersonPdf(item, item.nama_pegawai, item.id_pegawai, item.jenis_jabatan, item.nama_jabatan_tim, false, item.nama_tim);
                                                     }}
                                                 >
                                                     <TbPrinter />
