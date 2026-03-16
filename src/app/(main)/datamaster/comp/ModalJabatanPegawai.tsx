@@ -234,6 +234,8 @@ export const ModalJabatanPegawai: React.FC<Modal> = ({ isOpen, onClose, onSucces
         // Kembalikan null jika string kosong, atau angka jika valid
         return numberString === '' ? null : Number(numberString);
     };
+    const sanitizeNumericString = (v: string) => v.replace(/\D/g, "");
+
 
     const JabatanBerakhir = useWatch({
         control,
@@ -481,15 +483,21 @@ export const ModalJabatanPegawai: React.FC<Modal> = ({ isOpen, onClose, onSucces
                     control={control}
                     rules={{ required: "wajib terisi" }}
                     render={({ field }) => {
+
                         const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
                             const inputValue = e.target.value;
-                            const numericValue = unformatNumber(inputValue);
+                            const numericValue = sanitizeNumericString(inputValue);
                             field.onChange(numericValue);
                         };
-                        const displayValue = field.value;
+
+                        const displayValue = field.value ?? "";
+
                         return (
                             <>
-                                <label htmlFor="nomorRekening" className="text-sm text-slate-500">No Rekening</label>
+                                <label htmlFor="nomorRekening" className="text-sm text-slate-500">
+                                    No Rekening
+                                </label>
+
                                 <input
                                     ref={field.ref}
                                     onBlur={field.onBlur}
@@ -498,30 +506,40 @@ export const ModalJabatanPegawai: React.FC<Modal> = ({ isOpen, onClose, onSucces
                                     type="text"
                                     inputMode="numeric"
                                     placeholder="Masukkan No Rekening"
-                                    value={displayValue === null ? "" : displayValue}
+                                    value={displayValue}
                                     onChange={handleInputChange}
                                 />
+
                                 {errors.nomorRekening &&
-                                    <p className="text-red-400 italic">{errors.nomorRekening.message}</p>
+                                    <p className="text-red-400 italic">
+                                        {errors.nomorRekening.message}
+                                    </p>
                                 }
                             </>
                         )
                     }}
                 />
+
                 <Controller
                     name="npwp"
                     control={control}
                     rules={{ required: "wajib terisi" }}
                     render={({ field }) => {
+
                         const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
                             const inputValue = e.target.value;
-                            const numericValue = unformatNumber(inputValue);
+                            const numericValue = sanitizeNumericString(inputValue);
                             field.onChange(numericValue);
                         };
-                        const displayValue = field.value;
+
+                        const displayValue = field.value ?? "";
+
                         return (
                             <>
-                                <label htmlFor="npwp" className="text-sm text-slate-500">No NPWP</label>
+                                <label htmlFor="npwp" className="text-sm text-slate-500">
+                                    No NPWP
+                                </label>
+
                                 <input
                                     ref={field.ref}
                                     onBlur={field.onBlur}
@@ -530,11 +548,14 @@ export const ModalJabatanPegawai: React.FC<Modal> = ({ isOpen, onClose, onSucces
                                     type="text"
                                     inputMode="numeric"
                                     placeholder="Masukkan No NPWP"
-                                    value={displayValue === null ? "" : displayValue}
+                                    value={displayValue}
                                     onChange={handleInputChange}
                                 />
+
                                 {errors.npwp &&
-                                    <p className="text-red-400 italic">{errors.npwp.message}</p>
+                                    <p className="text-red-400 italic">
+                                        {errors.npwp.message}
+                                    </p>
                                 }
                             </>
                         )
@@ -590,7 +611,7 @@ export const ModalJabatanPegawai: React.FC<Modal> = ({ isOpen, onClose, onSucces
                         </>
                     )}
                 />
-              {/* BPJS 1 dan 4 otomatis dari backend */}
+                {/* BPJS 1 dan 4 otomatis dari backend */}
                 <div className="flex flex-col gap-2 mt-3">
                     <ButtonSky
                         className="w-full"
