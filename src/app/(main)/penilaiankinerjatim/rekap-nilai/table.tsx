@@ -117,8 +117,8 @@ const Table: React.FC<Table> = ({ data }) => {
                                                 <p>{item.nama_jabatan_tim || "-"}</p>
                                             </div>
                                         </td>
-                                        <td className={`border border-blue-500 px-6 py-4`}>-</td>
-                                        <td className={`border border-blue-500 px-6 py-4`}>-</td>
+                                        <td className={`border border-blue-500 px-6 py-4`}>{item.nomorRekening || "-"}</td>
+                                        <td className={`border border-blue-500 px-6 py-4`}>{item.npwp || "-"}</td>
                                         <td className={`border border-blue-500 px-6 py-4`}>{item.nama_tim || "-"}</td>
                                         <td className={`border border-blue-500 px-6 py-4`}>{item.nama_jabatan_tim || "-"}</td>
                                         <td className={tdClass}>{item.kinerja_bappeda || 0}</td>

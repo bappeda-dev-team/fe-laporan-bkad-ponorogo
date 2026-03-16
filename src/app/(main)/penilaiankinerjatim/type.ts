@@ -24,6 +24,8 @@ export interface PenilaianKinerjas {
     pangkat: string;
     golongan: string;
     jenis_jabatan: string;
+    nomorRekening: string;
+    npwp: string;
     kode_tim: string;
     nama_tim: string;
     tahun: string;
