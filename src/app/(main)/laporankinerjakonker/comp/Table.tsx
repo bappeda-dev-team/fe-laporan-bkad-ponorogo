@@ -322,9 +322,10 @@ export const Table = () => {
                                 "-"
                               }
                             </td>
-                            <td className="border border-blue-500 px-6 py-4">
-                              {/* PELAKSANA */}
-                              <div className="flex flex-col justify-center gap-2">
+                            {/* PETUGAS TIM */}
+                            {p_index === 0 &&
+                            <td rowSpan={item.pohon_kinerja?.length > 0 ? item.pohon_kinerja.length : 1} className="border border-blue-500 px-6 py-4">
+                              <div className="flex flex-col justify- gap-2">
                                 {item.petugas_tims ?
                                   item.petugas_tims.map((pt: PetugasTims, pt_index) => (
                                     <div key={pt_index} className="px-1 flex items-center gap-1 border rounded-lg">
@@ -356,6 +357,8 @@ export const Table = () => {
                                 </ButtonSkyBorder>
                               </div>
                             </td>
+                            }
+                            {/* PELAKSANA */}
                             <td className="border border-blue-500 px-6 py-4">
                               {p.pelaksanas?.length > 0 ?
                                 p.pelaksanas.map((pl: Pelaksanas, pl_index: number) => (
