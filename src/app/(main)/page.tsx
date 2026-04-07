@@ -6,7 +6,7 @@ export default function Home() {
 
   const logo = process.env.NEXT_PUBLIC_LOGO_URL || "";
   const pemda = process.env.NEXT_PUBLIC_NAMA_PEMDA || "";
-  const namaOpdSingkatan = process.env.NEXT_PUBLIC_NAMA_OPD_SINGKATAN || "BPPKAD";
+  const namaOpdSingkatan = process.env.NEXT_PUBLIC_NAMA_OPD_SINGKATAN || "";
   
   return (
     <>

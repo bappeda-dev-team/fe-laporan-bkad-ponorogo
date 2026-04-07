@@ -22,8 +22,8 @@ export const Sidebar: React.FC<Sidebar> = ({ onShow, show }) => {
   const url = usePathname();
   const logo = process.env.NEXT_PUBLIC_LOGO_URL || "";
   const app = process.env.NEXT_PUBLIC_NAMA_APLIKASI || "";
-  const namaOpd = process.env.NEXT_PUBLIC_NAMA_OPD || "BADAN PENDAPATAN, PENGELOLAAN KEUANGAN DAN ASET DAERAH";
-  const namaOpdSingkatan = process.env.NEXT_PUBLIC_NAMA_OPD_SINGKATAN || "BPPKAD";
+  const namaOpd = process.env.NEXT_PUBLIC_NAMA_OPD || "";
+  const namaOpdSingkatan = process.env.NEXT_PUBLIC_NAMA_OPD_SINGKATAN || "";
   const { toastSuccess } = useToast();
 
   const getActiveClass = (isActive: boolean, type = 'default') => {

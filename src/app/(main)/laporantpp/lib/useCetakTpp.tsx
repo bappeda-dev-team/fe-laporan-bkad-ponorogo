@@ -18,6 +18,8 @@ export function useCetakTpp(
     penanggungJawab: PenanggungJawabProps
 ) {
     const { branding } = useBrandingContext();
+    const namaOpd = branding.namaOpd
+    const namaOpdSingkatan = branding.namaOpdSingkatan
     // console.log("tanggal :", tanggal);
     const cetakPdf = () => {
         if (!data) return;
@@ -44,7 +46,7 @@ export function useCetakTpp(
 
         doc.setFontSize(12);
         doc.text(
-            "BADAN PENDAPATAN, PENGELOLAAN KEUANGAN DAN ASET DAERAH",
+            namaOpd,
             pageWidth / 2,
             20,
             { align: "center" }
@@ -163,7 +165,7 @@ export function useCetakTpp(
             "Nomor Rekening/NPWP",
             "Jabatan Dalam Tim",
             "Nama Tim",
-            "Nilai Kinerja BPPKAD",
+            `Nilai Kinerja ${namaOpdSingkatan}`,
             "Nilai Kinerja Tim",
             "Nilai Kinerja Person",
             "Persentase Kehadiran",

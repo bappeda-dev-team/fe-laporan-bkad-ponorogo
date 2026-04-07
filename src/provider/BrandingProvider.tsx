@@ -14,6 +14,8 @@ interface BrandingContextType {
         tahun: OptionType | null;
         bulan: OptionType | null;
         opd: string;
+        namaOpd: string;
+        namaOpdSingkatan: string;
         user: UserInfo | null;
     };
 }
@@ -24,6 +26,9 @@ interface UserInfo {
     kode_opd: string;
     nip: string;
     roles: string[];
+    namaTim: string;
+    kodeTim: string;
+    namaJabatanTim: string;
 }
 
 const appName = process.env.NEXT_PUBLIC_NAMA_APLIKASI || "";
@@ -31,6 +36,8 @@ const clientName = process.env.NEXT_PUBLIC_NAMA_PEMDA || "";
 const logo = process.env.NEXT_PUBLIC_LOGO_URL || "";
 const api_url = process.env.NEXT_PUBLIC_API_URL || "";
 const opd = process.env.NEXT_PUBLIC_KODE_OPD || "";
+const namaOpd = process.env.NEXT_PUBLIC_NAMA_OPD || "";
+const namaOpdSingkatan = process.env.NEXT_PUBLIC_NAMA_OPD_SINGKATAN || "";
 
 const USER_CACHE_KEY = "branding-user";
 
@@ -116,6 +123,8 @@ export function BrandingProvider({ children }: { children: React.ReactNode }) {
                     tahun: Tahun,
                     bulan: Bulan,
                     opd,
+                    namaOpd,
+                    namaOpdSingkatan,
                     user: User,
                 },
             }}

@@ -7,6 +7,7 @@ import { ButtonBlackBorder } from "@/components/button/button";
 import { TbPrinter } from "react-icons/tb";
 // import { useCetakTpp } from "../lib/useCetakTpp";
 import { ModalCetakTpp } from "./ModalCetak";
+import { useBrandingContext } from "@/provider/BrandingProvider";
 
 interface Table {
     data: PenilaianTimResponse;
@@ -16,6 +17,8 @@ export const Table: React.FC<Table> = ({ data, penanggungJawab }) => {
 
     const [ModalCetak, setModalCetak] = useState<boolean>(false);
     const [DataCetak, setDataCetak] = useState<PenilaianTimResponse | null>(null);
+    const { branding } = useBrandingContext();
+    const namaOpdSingkatan = branding.namaOpdSingkatan
 
     // const { cetakPdf } = useCetakTpp(data ?? [], data.nama_tim, data.keterangan, data.is_sekretariat);
 
@@ -63,7 +66,7 @@ export const Table: React.FC<Table> = ({ data, penanggungJawab }) => {
                             <th className="border-r border-b py-2 px-3 border-gray-300 min-w-[200px] text-center">Nomor Rekening/NPWP</th>
                             <th className="border-r border-b py-2 px-3 border-gray-300 min-w-[200px] text-center">Jabatan dalam tim</th>
                             <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[150px] text-center">Basic TPP kondisi kerja</th>
-                            <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Nilai Kinerja BPPKAD</th>
+                            <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Nilai Kinerja {namaOpdSingkatan}</th>
                             <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Nilai Kerja Tim</th>
                             <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Nilai Kerja Person</th>
                             <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Persentase Kehadiran</th>

@@ -14,6 +14,7 @@ const Table: React.FC<Table> = ({ data }) => {
 
     const { branding } = useBrandingContext();
     const { toastInfo } = useToast();
+    const namaOpdSingkatan = branding.namaOpdSingkatan
 
     const roleAccessMap: Record<string, string[]> = {
         // yang dinilai : penilai
@@ -52,7 +53,7 @@ const Table: React.FC<Table> = ({ data }) => {
                             <th className="border-r border-b py-2 px-3 border-gray-300 min-w-[200px] text-center">Pangkat/Golongan/Jabatan</th>
                             <th className="border-r border-b py-2 px-3 border-gray-300 min-w-[200px] text-center">Nama Tim</th>
                             <th className="border-r border-b py-2 px-3 border-gray-300 min-w-[200px] text-center">Jabatan dalam tim</th>
-                            <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Nilai Kinerja BPPKAD</th>
+                            <th className="border-r border-b py-3 px-4 border-gray-300 min-w-[200px] text-center">Nilai Kinerja {namaOpdSingkatan}</th>
                         </tr>
                         <tr className={`text-white bg-blue-600`}>
                             <th className="border-r border-b py-1 border-gray-300 text-center">1</th>

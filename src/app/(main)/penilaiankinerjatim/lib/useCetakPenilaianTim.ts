@@ -13,6 +13,8 @@ export function useCetakPenilaianTim(
     sekretariat: boolean,
 ) {
     const { branding } = useBrandingContext();
+    const namaOpd = branding.namaOpd
+    const namaOpdSingkatan = branding.namaOpdSingkatan
     // console.log("tanggal :", tanggal);
     const cetakPdf = () => {
         if (!data) return;
@@ -37,7 +39,7 @@ export function useCetakPenilaianTim(
 
         doc.setFontSize(12);
         doc.text(
-            "BADAN PENDAPATAN, PENGELOLAAN KEUANGAN DAN ASET DAERAH",
+            namaOpd,
             pageWidth / 2,
             20,
             { align: "center" }
@@ -107,7 +109,7 @@ export function useCetakPenilaianTim(
             "Jabatan Dalam Tim",
             "Nama Tim",
             "Basic TPP Konker",
-            "Nilai Kinerja BPPKAD",
+            `Nilai Kinerja ${namaOpdSingkatan}`,
             "Nilai Kinerja Tim",
             "Nilai Kinerja Person",
             "Nilai Akhir",
