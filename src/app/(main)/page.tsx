@@ -6,6 +6,7 @@ export default function Home() {
 
   const logo = process.env.NEXT_PUBLIC_LOGO_URL || "";
   const pemda = process.env.NEXT_PUBLIC_NAMA_PEMDA || "";
+  const namaOpdSingkatan = process.env.NEXT_PUBLIC_NAMA_OPD_SINGKATAN || "BPPKAD";
   
   return (
     <>
@@ -20,7 +21,7 @@ export default function Home() {
             width={100}
             height={100}
           />
-          <h1 className="text-4xl uppercase font-extrabold">Laporan BPPKAD</h1>
+          <h1 className="text-4xl uppercase font-extrabold">Laporan {namaOpdSingkatan}</h1>
           <h3 className="text-base font-light">{pemda}</h3>
           <ButtonBlackBorder 
             halaman_url='/datamaster'

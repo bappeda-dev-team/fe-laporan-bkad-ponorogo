@@ -22,6 +22,8 @@ export const Sidebar: React.FC<Sidebar> = ({ onShow, show }) => {
   const url = usePathname();
   const logo = process.env.NEXT_PUBLIC_LOGO_URL || "";
   const app = process.env.NEXT_PUBLIC_NAMA_APLIKASI || "";
+  const namaOpd = process.env.NEXT_PUBLIC_NAMA_OPD || "BADAN PENDAPATAN, PENGELOLAAN KEUANGAN DAN ASET DAERAH";
+  const namaOpdSingkatan = process.env.NEXT_PUBLIC_NAMA_OPD_SINGKATAN || "BPPKAD";
   const { toastSuccess } = useToast();
 
   const getActiveClass = (isActive: boolean, type = 'default') => {
@@ -73,7 +75,7 @@ export const Sidebar: React.FC<Sidebar> = ({ onShow, show }) => {
           height={40}
         />
         {show &&
-          <h1 className="font-bold text-emerald-600 uppercase border-b border-emerald-600 text-center">BADAN PENDAPATAN, PENGELOLAAN KEUANGAN DAN ASET DAERAH (BPPKAD)</h1>
+          <h1 className="font-bold text-emerald-600 uppercase border-b border-emerald-600 text-center">{namaOpd} ({namaOpdSingkatan})</h1>
         }
       </div>
       <ul className="flex flex-col gap-2">
