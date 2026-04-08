@@ -55,7 +55,7 @@ export const Table = () => {
     if (!isReady) {
       return null;
     }
-    return `/api/v1/timkerjabkad/timkerja/${branding?.opd}/all_program_unggulan?tahun=${tahun}&bulan=${bulan}`;
+    return `/api/v1/timkerja/timkerja/${branding?.opd}/all_program_unggulan?tahun=${tahun}&bulan=${bulan}`;
   }, [isReady, tahun, bulan]);
 
   const { data: DataTable, error: ErrorProgram,
@@ -106,7 +106,7 @@ export const Table = () => {
   }
 
   const hapusProgram = async (id: number) => {
-    await apiFetch(`/api/v1/timkerjabkad/timkerja/program_unggulan/${id}`, {
+    await apiFetch(`/api/v1/timkerja/timkerja/program_unggulan/${id}`, {
       method: "DELETE",
     }).then(resp => {
       toastSuccess("Program dihapus");
@@ -118,7 +118,7 @@ export const Table = () => {
   const hapusPetugasTim = async (id: number) => {
     try {
       setLoadingHapus(true);
-      await apiFetch(`/api/v1/timkerjabkad/petugas_tim/${id}`, {
+      await apiFetch(`/api/v1/timkerja/petugas_tim/${id}`, {
         method: "DELETE",
       }).then(resp => {
         toastSuccess("petugas dihapus");
