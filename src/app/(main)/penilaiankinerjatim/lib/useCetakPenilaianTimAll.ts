@@ -155,9 +155,9 @@ export function useCetakPenilaianTimAll(
         doc.text(`Ponorogo, ${tanggal} ${branding?.bulan?.label} ${branding.tahun?.value}`, centerX, startY);
 
         // Semua teks pakai centerX
-        doc.text(`Plt. KEPALA BADAN PENDAPATAN,`, centerX, startY + 5);
-        doc.text("PENGELOLAAN KEUANGAN DAN ", centerX, startY + 9);
-        doc.text("ASET DAERAH ", centerX, startY + 13);
+        // doc.text(`Plt. KEPALA BADAN PENDAPATAN,`, centerX, startY + 5);
+        // doc.text("PENGELOLAAN KEUANGAN DAN ", centerX, startY + 9);
+        // doc.text("ASET DAERAH ", centerX, startY + 13);
 
         // Spasi tanda tangan
         doc.text(`${data[0].nama_pegawai ?? "Penanggung Jawab"}`, centerX, startY + 33);

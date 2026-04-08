@@ -32,7 +32,7 @@ const TableJabatan = () => {
     }
 
     const HapusJabatan = async (id: number) => {
-        await apiFetch(`/api-laporan/timkerja/jabatantim/${id}`, {
+        await apiFetch(`/api-laporan/jabatantim/${id}`, {
             method: "DELETE",
         }).then(_resp => {
             // toastSuccess("anggota berhasil dihapus");
