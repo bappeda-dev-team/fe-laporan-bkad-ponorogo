@@ -25,7 +25,7 @@ export const Table = () => {
         if (!isReady) {
             return null;
         }
-        return `/api/v1/timkerja/timkerja?tahun=${tahun}&bulan=${bulan}`;
+        return `/api/timkerja/timkerja?tahun=${tahun}&bulan=${bulan}`;
     }, [isReady, tahun, bulan]);
 
     const { data, loading, error, message } = useGet<TimGetResponse[]>(

@@ -20,7 +20,7 @@ const LaporanKinerjaKonker = () => {
     if (!isReady) {
       return null;
     }
-    return `/api/v1/timkerja/timkerja-non-sekretariat?tahun=${tahun}&bulan=${bulan}`;
+    return `/api/timkerja/timkerja/timkerja-non-sekretariat?tahun=${tahun}&bulan=${bulan}`;
   }, [isReady, tahun, bulan]);
 
   const { data, loading, error, message } = useGet<TimGetResponse[]>(

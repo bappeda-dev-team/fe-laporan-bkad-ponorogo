@@ -58,7 +58,7 @@ export const ModalPelaksana: React.FC<Modal> = ({ isOpen, onClose, onSuccess, id
     const [Proses, setProses] = useState<boolean>(false);
     const { toastSuccess, toastInfo, toastError } = useToast();
 
-    const { data: DataTim, error, loading } = useGet<TimGetResponse[]>(`/api/v1/timkerja/timkerja?tahun=${tahun}&bulan=${bulan}`)
+    const { data: DataTim, error, loading } = useGet<TimGetResponse[]>(`/api/timkerja/timkerja/timkerja?tahun=${tahun}&bulan=${bulan}`)
 
     useEffect(() => {
         if (DataTim) {
@@ -110,7 +110,7 @@ export const ModalPelaksana: React.FC<Modal> = ({ isOpen, onClose, onSuccess, id
             // console.log(payload);
             try {
                 setProses(true);
-                await apiFetch(`/api/v1/timkerja/petugas_tim`, {
+                await apiFetch(`/api/timkerja/timkerja/petugas_tim`, {
                     method: "POST",
                     body: payload as any
                 }).then(_ => {
