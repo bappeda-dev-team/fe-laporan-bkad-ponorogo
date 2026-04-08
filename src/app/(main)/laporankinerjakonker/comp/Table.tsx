@@ -59,7 +59,7 @@ export const Table: React.FC<TableKonker> = ({ data }) => {
         if (!isReady) {
             return null;
         }
-        return `/api-laporan/timkerja/${data.kode_tim}/program_unggulan?tahun=${tahun}&bulan=${bulan}`;
+        return `/api/v1/timkerja/timkerja/${data.kode_tim}/program_unggulan?tahun=${tahun}&bulan=${bulan}`;
     }, [isReady, tahun, bulan]);
 
     const { data: DataTable, error: ErrorProgram,
@@ -110,7 +110,7 @@ export const Table: React.FC<TableKonker> = ({ data }) => {
     }
 
     const hapusProgram = async (id: number) => {
-        await apiFetch(`/api-laporan/timkerja/program_unggulan/${id}`, {
+        await apiFetch(`/api/v1/timkerja/timkerja/program_unggulan/${id}`, {
             method: "DELETE",
         }).then(resp => {
             toastSuccess("Program dihapus");
@@ -122,7 +122,7 @@ export const Table: React.FC<TableKonker> = ({ data }) => {
     const hapusPetugasTim = async (id: number) => {
         try {
             setLoadingHapus(true);
-            await apiFetch(`/api-laporan/petugas_tim/${id}`, {
+            await apiFetch(`/api/v1/timkerja/petugas_tim/${id}`, {
                 method: "DELETE",
             }).then(resp => {
                 toastSuccess("petugas dihapus");

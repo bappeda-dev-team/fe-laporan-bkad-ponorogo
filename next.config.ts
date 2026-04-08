@@ -1,26 +1,26 @@
 import type { NextConfig } from "next";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080"
-const apiOpd = "timkerja" // timkerja | timkerjabkad
+const API_TIMKERJA = process.env.NEXT_PUBLIC_API_TIMKERJA!
 
 const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
-        source: "/api/v1/:path*", // panggilan fe
-        destination: `${API_URL}/api/v1/:path*` // backend
+        source: "/api/v1/timkerja/:path*",
+        destination: `${API_TIMKERJA}/:path*`
       },
       {
-        source: "/api-laporan/:path*", // panggilan fe
-        destination: `${API_URL}/api/v1/${apiOpd}/:path*` // backend
+        source: "/api/v1/:path*",
+        destination: `${API_URL}/api/v1/:path*`
       },
       {
         source: "/auth/:path*",
-        destination: `${API_URL}/auth/:path*` // backend
+        destination: `${API_URL}/auth/:path*`
       },
       {
         source: "/user-info",
-        destination: `${API_URL}/user-info` // backend
+        destination: `${API_URL}/user-info`
       }
     ]
   },

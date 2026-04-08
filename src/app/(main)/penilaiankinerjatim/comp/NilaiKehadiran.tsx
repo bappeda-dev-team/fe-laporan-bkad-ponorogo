@@ -95,7 +95,7 @@ export const FormNilaiKehadiran: React.FC<FormNilaiKehadiran> = ({ nilai, onClos
         // toastSuccess("dalam pengembangan");
         try {
             setProses(true);
-            await apiFetch(`/api-laporan/penilaian_kinerja`, {
+            await apiFetch(`/api/v1/timkerja/penilaian_kinerja`, {
                 method: "POST",
                 body: payload as any
             }).then(_ => {
