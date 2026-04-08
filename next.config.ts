@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
         destination: `${API_URL}/api/v1/:path*` // backend
       },
       {
-        source: "/api/timkerja/:path*", // panggilan fe
+        source: "/api-laporan/:path*", // panggilan fe
         destination: `${API_URL}/api/v1/${apiOpd}/:path*` // backend
       },
       {

@@ -46,7 +46,7 @@ export const ModalJabatanTim: React.FC<Modal> = ({ isOpen, onClose, onSuccess, j
             setProses(true);
           // kenapa misah misah hooknya
           // pakai satu aja, useGet
-            await apiFetch("/api/timkerja/timkerja/jabatantim", {
+            await apiFetch("/api-laporan/timkerja/jabatantim", {
                 method: jenis === "baru" ? "POST" : "PUT",
                 body: payload as any
             }).then(_ => {

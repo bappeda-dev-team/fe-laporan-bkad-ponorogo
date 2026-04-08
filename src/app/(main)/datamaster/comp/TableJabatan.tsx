@@ -17,7 +17,7 @@ const TableJabatan = () => {
     const [DataModal, setDataModal] = useState<JabatanGetResponse | null>(null);
     const [FetchTrigger, setFetchTrigger] = useState<number>(0);
 
-    const { data, loading, error, message } = useGet<JabatanGetResponse[]>('/api/timkerja/timkerja/jabatantim', FetchTrigger);
+    const { data, loading, error, message } = useGet<JabatanGetResponse[]>('/api-laporan/jabatantim', FetchTrigger);
 
     const handleModal = (jenis: "baru" | "edit" | "", data: JabatanGetResponse | null) => {
         if (ModalOpen) {
@@ -32,7 +32,7 @@ const TableJabatan = () => {
     }
 
     const HapusJabatan = async (id: number) => {
-        await apiFetch(`/api/timkerja/timkerja/jabatantim/${id}`, {
+        await apiFetch(`/api-laporan/timkerja/jabatantim/${id}`, {
             method: "DELETE",
         }).then(_resp => {
             // toastSuccess("anggota berhasil dihapus");

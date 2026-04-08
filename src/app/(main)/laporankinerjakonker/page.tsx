@@ -20,7 +20,7 @@ const LaporanKinerjaKonker = () => {
     if (!isReady) {
       return null;
     }
-    return `/api/timkerja/timkerja/timkerja-non-sekretariat?tahun=${tahun}&bulan=${bulan}`;
+    return `/api-laporan/timkerja-non-sekretariat?tahun=${tahun}&bulan=${bulan}`;
   }, [isReady, tahun, bulan]);
 
   const { data, loading, error, message } = useGet<TimGetResponse[]>(
@@ -50,9 +50,15 @@ const LaporanKinerjaKonker = () => {
   } else {
     return (
       <>
-        <div className="flex flex-col p-2 mb-2 border-2 border-blue-500 rounded-lg bg-white">
-          <Table />
-        </div>
+        {(data?.length === 0 || data === null) ?
+          <h1>Tidak ada Tim yang dibentuk / Belum Ditambahkan</h1>
+          :
+          data.map((item: TimGetResponse, index: number) => (
+            <div key={index} className="flex flex-col p-2 mb-2 border-2 border-blue-500 rounded-lg">
+              <Table data={item} />
+            </div>
+          ))
+        }
       </>
     )
   }
