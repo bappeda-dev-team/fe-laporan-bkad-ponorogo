@@ -1,6 +1,8 @@
 export interface FormValue {
     bukti_dukung: string,
     bulan: number,
+    faktor_pendorong: string,
+    faktor_penghambat: string,
     id_pohon: string;
     id_rencana_kinerja: string,
     id_program_unggulan: number;
@@ -9,12 +11,8 @@ export interface FormValue {
     kode_tim: string,
     realisasi_anggaran: number,
     rekomendasi_tl: string,
+    risiko_hukum: string;
     rencana_aksi: string,
-    analisa_pendapatan_sumber_dana_pendapatan: string;
-    catatan_realisasi_anggaran: string;
-    catatan_penata_usaha_keuangan: string;
-    catatan_pelaporan_keuangan: string;
-    catatan_pelaporan_aset: string;
     tahun: string
 }
 
