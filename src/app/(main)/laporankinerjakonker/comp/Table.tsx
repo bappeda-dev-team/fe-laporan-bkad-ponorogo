@@ -109,8 +109,8 @@ export const Table: React.FC<TableKonker> = ({ data }) => {
         }
     }
 
-    const hapusProgram = async (id: number) => {
-        await apiFetch(`/api/v1/timkerja/timkerja/program_unggulan/${id}`, {
+    const hapusProgram = async (id: number, kodeTim: string) => {
+        await apiFetch(`/api/v1/timkerja/timkerja/${kodeTim}/program_unggulan/${id}`, {
             method: "DELETE",
         }).then(resp => {
             toastSuccess("Program dihapus");
@@ -253,7 +253,7 @@ export const Table: React.FC<TableKonker> = ({ data }) => {
                                                             onClick={() => {
                                                                 AlertQuestion("Hapus Program", "data dari kolom 9 sampai 14 akan terhapus juga", "question", "Hapus", "Batal").then((result) => {
                                                                     if (result.isConfirmed) {
-                                                                        hapusProgram(item.id);
+                                                                        hapusProgram(item.id, item.kode_tim);
                                                                     }
                                                                 })
                                                             }}
