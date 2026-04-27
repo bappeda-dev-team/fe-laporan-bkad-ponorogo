@@ -46,6 +46,37 @@ interface FormValue {
 
 export const ModalJabatanPegawai: React.FC<Modal> = ({ isOpen, onClose, onSuccess, jenis, Data }) => {
 
+    const OptionBulan = [
+        { label: "Januari", value: 1 },
+        { label: "Februari", value: 2 },
+        { label: "Maret", value: 3 },
+        { label: "April", value: 4 },
+        { label: "Mei", value: 5 },
+        { label: "Juni", value: 6 },
+        { label: "Juli", value: 7 },
+        { label: "Agustus", value: 8 },
+        { label: "September", value: 9 },
+        { label: "Oktober", value: 10 },
+        { label: "November", value: 11 },
+        { label: "Desember", value: 12 },
+        { label: "Bulan ke-13", value: 13 },
+        { label: "Bulan ke-14", value: 14 },
+    ]
+    const OptionTahun = [
+        { label: "2019", value: 2019 },
+        { label: "2020", value: 2020 },
+        { label: "2021", value: 2021 },
+        { label: "2022", value: 2022 },
+        { label: "2023", value: 2023 },
+        { label: "2024", value: 2024 },
+        { label: "2025", value: 2025 },
+        { label: "2026", value: 2026 },
+        { label: "2027", value: 2027 },
+        { label: "2028", value: 2028 },
+        { label: "2029", value: 2029 },
+        { label: "2030", value: 2030 },
+    ];
+
     const { branding } = useBrandingContext();
     const { control, handleSubmit, reset, formState: { errors } } = useForm<FormValue>({
         defaultValues: {
@@ -76,24 +107,22 @@ export const ModalJabatanPegawai: React.FC<Modal> = ({ isOpen, onClose, onSucces
             } : null,
             tanggalMulai: Data?.tanggalMulai ?? "",
             tanggalAkhir: Data?.tanggalAkhir ?? "",
-            bulanMulai: Data?.bulanMulai ? {
-                value: branding?.bulan?.value,
-                label: branding?.bulan?.label,
-            } : null,
-            tahunMulai: Data?.tahunMulai ? {
-                value: branding?.tahun?.value,
-                label: branding?.tahun?.label
-            } : null,
-            bulanBerakhir: Data?.bulanBerakhir ? {
-                value: branding?.bulan?.value,
-                label: branding?.bulan?.label,
-            } : null,
-            tahunBerakhir: Data?.tahunBerakhir ? {
-                value: branding?.tahun?.value,
-                label: branding?.tahun?.label
-            } : null,
+            bulanMulai: Data?.bulanMulai
+                ? OptionBulan.find(opt => opt.value === Data?.bulanMulai)
+                : null,
+            tahunMulai: Data?.tahunMulai
+                ? OptionTahun.find(t => t.value === Data?.tahunMulai)
+                : null,
+            bulanBerakhir: Data?.bulanBerakhir
+                ? OptionBulan.find(opt => opt.value === Data?.bulanBerakhir)
+                : null,
+            tahunBerakhir: Data?.tahunBerakhir
+                ? OptionTahun.find(thn => thn.value === Data?.tahunBerakhir)
+                : null,
         }
     })
+
+    console.log("Data Pegawai : ", Data);
 
     const [Proses, setProses] = useState<boolean>(false);
     const { toastSuccess } = useToast();
@@ -139,36 +168,6 @@ export const ModalJabatanPegawai: React.FC<Modal> = ({ isOpen, onClose, onSucces
         { value: 0.15, label: "15%" },
     ];
 
-    const OptionTahun = [
-        { label: "2019", value: 2019 },
-        { label: "2020", value: 2020 },
-        { label: "2021", value: 2021 },
-        { label: "2022", value: 2022 },
-        { label: "2023", value: 2023 },
-        { label: "2024", value: 2024 },
-        { label: "2025", value: 2025 },
-        { label: "2026", value: 2026 },
-        { label: "2027", value: 2027 },
-        { label: "2028", value: 2028 },
-        { label: "2029", value: 2029 },
-        { label: "2030", value: 2030 },
-    ];
-    const OptionBulan = [
-        { label: "Januari", value: 1 },
-        { label: "Februari", value: 2 },
-        { label: "Maret", value: 3 },
-        { label: "April", value: 4 },
-        { label: "Mei", value: 5 },
-        { label: "Juni", value: 6 },
-        { label: "Juli", value: 7 },
-        { label: "Agustus", value: 8 },
-        { label: "September", value: 9 },
-        { label: "Oktober", value: 10 },
-        { label: "November", value: 11 },
-        { label: "Desember", value: 12 },
-        { label: "Bulan ke-13", value: 13 },
-        { label: "Bulan ke-14", value: 14 },
-    ]
     const onSubmit: SubmitHandler<FormValue> = async (data) => {
         const payload = {
             namaPegawai: data.namaPegawai,
